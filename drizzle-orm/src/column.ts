@@ -113,11 +113,11 @@ export abstract class Column<
 	abstract getSQLType(): string;
 
 	mapFromDriverValue(value: unknown): unknown {
-		return value;
+		return value ?? undefined;
 	}
 
 	mapToDriverValue(value: unknown): unknown {
-		return value;
+		return value ?? null;
 	}
 
 	// ** @internal */

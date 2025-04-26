@@ -70,7 +70,7 @@
 			],
 			"outputLogs": "new-only"
 		},
-		"drizzle-zod#build": {
+		"@fisch0920/drizzle-zod#build": {
 			"dependsOn": [
 				"drizzle-orm#build"
 			],

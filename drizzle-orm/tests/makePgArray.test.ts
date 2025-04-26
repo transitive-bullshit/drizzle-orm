@@ -119,19 +119,19 @@ describe.concurrent('makePgArray', () => {
 	});
 
 	it('parses an array with null values', ({ expect }) => {
-		const input = ['1', null, '3'];
+		const input = ['1', undefined, '3'];
 		const output = table.a.mapToDriverValue(input);
-		expect(output).toEqual('{"1",null,"3"}');
+		expect(output).toEqual('{"1",undefined,"3"}');
 	});
 
 	it('parses an array with null values in nested arrays', ({ expect }) => {
 		const input = [
 			['1', '2', '3'],
-			[null, '5', '6'],
+			[undefined, '5', '6'],
 			['7', '8', '9'],
 		];
 		const output = table.b.mapToDriverValue(input);
-		expect(output).toEqual('{{"1","2","3"},{null,"5","6"},{"7","8","9"}}');
+		expect(output).toEqual('{{"1","2","3"},{undefined,"5","6"},{"7","8","9"}}');
 	});
 
 	it('parses string array with empty strings', ({ expect }) => {

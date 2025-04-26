@@ -177,7 +177,7 @@ const usersOnUpdate = mysqlTable('users_on_update', {
 	updateCounter: int('update_counter').default(sql`1`).$onUpdateFn(() => sql`update_counter + 1`),
 	updatedAt: datetime('updated_at', { mode: 'date', fsp: 3 }).$onUpdate(() => new Date()),
 	uppercaseName: text('uppercase_name').$onUpdateFn(() => sql`upper(name)`),
-	alwaysNull: text('always_null').$type<string | undefined>().$onUpdateFn(() => undefined), // need to add $type because $onUpdate add a default value
+	alwaysNull: text('always_null').$type<string | null>().$onUpdateFn(() => null), // need to add $type because $onUpdate add a default value
 });
 
 const datesTable = mysqlTable('datestable', {

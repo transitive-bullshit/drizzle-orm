@@ -592,8 +592,8 @@ test('insert + findManyWith + db.all', async () => {
 	]);
 
 	expect(batchResponse[3]).toEqual([
-		[1, 'John', 0, null],
-		[2, 'Dan', 0, null],
+		[1, 'John', 0, undefined],
+		[2, 'Dan', 0, undefined],
 		// { id: 1, name: 'John', verified: 0, invited_by: undefined },
 		// { id: 2, name: 'Dan', verified: 0, invited_by: undefined },
 	]);

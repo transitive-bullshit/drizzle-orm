@@ -260,7 +260,7 @@ const usersOnUpdate = pgTable('users_on_update', {
 	name: text('name').notNull(),
 	updateCounter: integer('update_counter').default(sql`1`).$onUpdateFn(() => sql`update_counter + 1`),
 	updatedAt: timestamp('updated_at', { mode: 'date', precision: 3 }).$onUpdate(() => new Date()),
-	alwaysNull: text('always_null').$type<string | undefined>().$onUpdate(() => undefined),
+	alwaysNull: text('always_null').$type<string | null>().$onUpdate(() => null),
 	// uppercaseName: text('uppercase_name').$onUpdateFn(() => sql`upper(name)`), looks like this is not supported in pg
 });
 

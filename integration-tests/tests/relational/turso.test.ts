@@ -2325,10 +2325,10 @@ test('Get user with invitee', async () => {
 	usersWithInvitee.sort((a, b) => (a.id > b.id) ? 1 : -1);
 
 	expect(usersWithInvitee.length).eq(4);
-	expect(usersWithInvitee[0]?.invitee).toBeNull();
-	expect(usersWithInvitee[1]?.invitee).toBeNull();
-	expect(usersWithInvitee[2]?.invitee).not.toBeNull();
-	expect(usersWithInvitee[3]?.invitee).not.toBeNull();
+	expect(usersWithInvitee[0]?.invitee).toBeUndefined();
+	expect(usersWithInvitee[1]?.invitee).toBeUndefined();
+	expect(usersWithInvitee[2]?.invitee).not.toBeUndefined();
+	expect(usersWithInvitee[3]?.invitee).not.toBeUndefined();
 
 	expect(usersWithInvitee[0]).toEqual({
 		id: 1,
@@ -2393,8 +2393,8 @@ test('Get user + limit with invitee', async () => {
 	usersWithInvitee.sort((a, b) => (a.id > b.id) ? 1 : -1);
 
 	expect(usersWithInvitee.length).eq(2);
-	expect(usersWithInvitee[0]?.invitee).toBeNull();
-	expect(usersWithInvitee[1]?.invitee).not.toBeNull();
+	expect(usersWithInvitee[0]?.invitee).toBeUndefined();
+	expect(usersWithInvitee[1]?.invitee).not.toBeUndefined();
 
 	expect(usersWithInvitee[0]).toEqual({
 		id: 1,
@@ -2449,10 +2449,10 @@ test('Get user with invitee and custom fields', async () => {
 	usersWithInvitee.sort((a, b) => (a.id > b.id) ? 1 : -1);
 
 	expect(usersWithInvitee.length).eq(4);
-	expect(usersWithInvitee[0]?.invitee).toBeNull();
-	expect(usersWithInvitee[1]?.invitee).toBeNull();
-	expect(usersWithInvitee[2]?.invitee).not.toBeNull();
-	expect(usersWithInvitee[3]?.invitee).not.toBeNull();
+	expect(usersWithInvitee[0]?.invitee).toBeUndefined();
+	expect(usersWithInvitee[1]?.invitee).toBeUndefined();
+	expect(usersWithInvitee[2]?.invitee).not.toBeUndefined();
+	expect(usersWithInvitee[3]?.invitee).not.toBeUndefined();
 
 	expect(usersWithInvitee[0]).toEqual({
 		id: 1,
@@ -2526,9 +2526,9 @@ test('Get user with invitee and custom fields + limits', async () => {
 	usersWithInvitee.sort((a, b) => (a.id > b.id) ? 1 : -1);
 
 	expect(usersWithInvitee.length).eq(3);
-	expect(usersWithInvitee[0]?.invitee).toBeNull();
-	expect(usersWithInvitee[1]?.invitee).toBeNull();
-	expect(usersWithInvitee[2]?.invitee).not.toBeNull();
+	expect(usersWithInvitee[0]?.invitee).toBeUndefined();
+	expect(usersWithInvitee[1]?.invitee).toBeUndefined();
+	expect(usersWithInvitee[2]?.invitee).not.toBeUndefined();
 
 	expect(usersWithInvitee[0]).toEqual({
 		id: 1,
@@ -2587,10 +2587,10 @@ test('Get user with invitee + order by', async () => {
 	>();
 
 	expect(usersWithInvitee.length).eq(4);
-	expect(usersWithInvitee[3]?.invitee).toBeNull();
-	expect(usersWithInvitee[2]?.invitee).toBeNull();
-	expect(usersWithInvitee[1]?.invitee).not.toBeNull();
-	expect(usersWithInvitee[0]?.invitee).not.toBeNull();
+	expect(usersWithInvitee[3]?.invitee).toBeUndefined();
+	expect(usersWithInvitee[2]?.invitee).toBeUndefined();
+	expect(usersWithInvitee[1]?.invitee).not.toBeUndefined();
+	expect(usersWithInvitee[0]?.invitee).not.toBeUndefined();
 
 	expect(usersWithInvitee[3]).toEqual({
 		id: 1,
@@ -2653,8 +2653,8 @@ test('Get user with invitee + where', async () => {
 	>();
 
 	expect(usersWithInvitee.length).eq(2);
-	expect(usersWithInvitee[0]?.invitee).not.toBeNull();
-	expect(usersWithInvitee[1]?.invitee).not.toBeNull();
+	expect(usersWithInvitee[0]?.invitee).not.toBeUndefined();
+	expect(usersWithInvitee[1]?.invitee).not.toBeUndefined();
 
 	expect(usersWithInvitee).toContainEqual({
 		id: 3,
@@ -2708,8 +2708,8 @@ test('Get user with invitee + where + partial', async () => {
 	>();
 
 	expect(usersWithInvitee.length).eq(2);
-	expect(usersWithInvitee[0]?.invitee).not.toBeNull();
-	expect(usersWithInvitee[1]?.invitee).not.toBeNull();
+	expect(usersWithInvitee[0]?.invitee).not.toBeUndefined();
+	expect(usersWithInvitee[1]?.invitee).not.toBeUndefined();
 
 	expect(usersWithInvitee).toContainEqual({
 		id: 3,
@@ -2757,8 +2757,8 @@ test('Get user with invitee + where + partial.  Did not select users id, but use
 	>();
 
 	expect(usersWithInvitee.length).eq(2);
-	expect(usersWithInvitee[0]?.invitee).not.toBeNull();
-	expect(usersWithInvitee[1]?.invitee).not.toBeNull();
+	expect(usersWithInvitee[0]?.invitee).not.toBeUndefined();
+	expect(usersWithInvitee[1]?.invitee).not.toBeUndefined();
 
 	expect(usersWithInvitee).toContainEqual({
 		name: 'Alex',
@@ -2808,8 +2808,8 @@ test('Get user with invitee + where + partial(true+false)', async () => {
 	>();
 
 	expect(usersWithInvitee.length).eq(2);
-	expect(usersWithInvitee[0]?.invitee).not.toBeNull();
-	expect(usersWithInvitee[1]?.invitee).not.toBeNull();
+	expect(usersWithInvitee[0]?.invitee).not.toBeUndefined();
+	expect(usersWithInvitee[1]?.invitee).not.toBeUndefined();
 
 	expect(usersWithInvitee).toContainEqual({
 		id: 3,
@@ -2859,8 +2859,8 @@ test('Get user with invitee + where + partial(false)', async () => {
 	>();
 
 	expect(usersWithInvitee.length).eq(2);
-	expect(usersWithInvitee[0]?.invitee).not.toBeNull();
-	expect(usersWithInvitee[1]?.invitee).not.toBeNull();
+	expect(usersWithInvitee[0]?.invitee).not.toBeUndefined();
+	expect(usersWithInvitee[1]?.invitee).not.toBeUndefined();
 
 	expect(usersWithInvitee).toContainEqual({
 		id: 3,
@@ -2921,10 +2921,10 @@ test('Get user with invitee and posts', async () => {
 
 	expect(response.length).eq(4);
 
-	expect(response[0]?.invitee).toBeNull();
-	expect(response[1]?.invitee).toBeNull();
-	expect(response[2]?.invitee).not.toBeNull();
-	expect(response[3]?.invitee).not.toBeNull();
+	expect(response[0]?.invitee).toBeUndefined();
+	expect(response[1]?.invitee).toBeUndefined();
+	expect(response[2]?.invitee).not.toBeUndefined();
+	expect(response[3]?.invitee).not.toBeUndefined();
 
 	expect(response[0]?.posts.length).eq(1);
 	expect(response[1]?.posts.length).eq(1);
@@ -3011,9 +3011,9 @@ test('Get user with invitee and posts + limit posts and users', async () => {
 
 	expect(response.length).eq(3);
 
-	expect(response[0]?.invitee).toBeNull();
-	expect(response[1]?.invitee).toBeNull();
-	expect(response[2]?.invitee).not.toBeNull();
+	expect(response[0]?.invitee).toBeUndefined();
+	expect(response[1]?.invitee).toBeUndefined();
+	expect(response[2]?.invitee).not.toBeUndefined();
 
 	expect(response[0]?.posts.length).eq(1);
 	expect(response[1]?.posts.length).eq(1);
@@ -3098,9 +3098,9 @@ test('Get user with invitee and posts + limits + custom fields in each', async (
 
 	expect(response.length).eq(3);
 
-	expect(response[0]?.invitee).toBeNull();
-	expect(response[1]?.invitee).toBeNull();
-	expect(response[2]?.invitee).not.toBeNull();
+	expect(response[0]?.invitee).toBeUndefined();
+	expect(response[1]?.invitee).toBeUndefined();
+	expect(response[2]?.invitee).not.toBeUndefined();
 
 	expect(response[0]?.posts.length).eq(1);
 	expect(response[1]?.posts.length).eq(1);
@@ -3190,10 +3190,10 @@ test('Get user with invitee and posts + custom fields in each', async () => {
 
 	expect(response.length).eq(4);
 
-	expect(response[0]?.invitee).toBeNull();
-	expect(response[1]?.invitee).toBeNull();
-	expect(response[2]?.invitee).not.toBeNull();
-	expect(response[3]?.invitee).not.toBeNull();
+	expect(response[0]?.invitee).toBeUndefined();
+	expect(response[1]?.invitee).toBeUndefined();
+	expect(response[2]?.invitee).not.toBeUndefined();
+	expect(response[3]?.invitee).not.toBeUndefined();
 
 	expect(response[0]?.posts.length).eq(2);
 	expect(response[1]?.posts.length).eq(2);
@@ -3301,10 +3301,10 @@ test.skip('Get user with invitee and posts + orderBy', async () => {
 
 	expect(response.length).eq(4);
 
-	expect(response[3]?.invitee).toBeNull();
-	expect(response[2]?.invitee).toBeNull();
-	expect(response[1]?.invitee).not.toBeNull();
-	expect(response[0]?.invitee).not.toBeNull();
+	expect(response[3]?.invitee).toBeUndefined();
+	expect(response[2]?.invitee).toBeUndefined();
+	expect(response[1]?.invitee).not.toBeUndefined();
+	expect(response[0]?.invitee).not.toBeUndefined();
 
 	expect(response[0]?.posts.length).eq(0);
 	expect(response[1]?.posts.length).eq(1);
@@ -3404,8 +3404,8 @@ test('Get user with invitee and posts + where', async () => {
 
 	expect(response.length).eq(2);
 
-	expect(response[0]?.invitee).toBeNull();
-	expect(response[1]?.invitee).not.toBeNull();
+	expect(response[0]?.invitee).toBeUndefined();
+	expect(response[1]?.invitee).not.toBeUndefined();
 
 	expect(response[0]?.posts.length).eq(1);
 	expect(response[1]?.posts.length).eq(0);
@@ -3475,7 +3475,7 @@ test('Get user with invitee and posts + limit posts and users + where', async ()
 
 	expect(response.length).eq(1);
 
-	expect(response[0]?.invitee).not.toBeNull();
+	expect(response[0]?.invitee).not.toBeUndefined();
 	expect(response[0]?.posts.length).eq(1);
 
 	expect(response).toContainEqual({
@@ -3541,8 +3541,8 @@ test('Get user with invitee and posts + orderBy + where + custom', async () => {
 
 	expect(response.length).eq(2);
 
-	expect(response[1]?.invitee).not.toBeNull();
-	expect(response[0]?.invitee).not.toBeNull();
+	expect(response[1]?.invitee).not.toBeUndefined();
+	expect(response[0]?.invitee).not.toBeUndefined();
 
 	expect(response[0]?.posts.length).eq(0);
 	expect(response[1]?.posts.length).eq(1);
@@ -3639,8 +3639,8 @@ test('Get user with invitee and posts + orderBy + where + partial + custom', asy
 
 	expect(response.length).eq(2);
 
-	expect(response[1]?.invitee).not.toBeNull();
-	expect(response[0]?.invitee).not.toBeNull();
+	expect(response[1]?.invitee).not.toBeUndefined();
+	expect(response[0]?.invitee).not.toBeUndefined();
 
 	expect(response[0]?.posts.length).eq(0);
 	expect(response[1]?.posts.length).eq(1);

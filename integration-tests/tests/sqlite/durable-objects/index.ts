@@ -60,7 +60,7 @@ export const usersOnUpdate = sqliteTable('users_on_update', {
 	name: text('name').notNull(),
 	updateCounter: integer('update_counter').default(sql`1`).$onUpdateFn(() => sql`update_counter + 1`),
 	updatedAt: integer('updated_at', { mode: 'timestamp_ms' }).$onUpdate(() => new Date()),
-	alwaysNull: text('always_null').$type<string | undefined>().$onUpdate(() => undefined),
+	alwaysNull: text('always_null').$type<string | null>().$onUpdate(() => null),
 });
 
 export const users2Table = sqliteTable('users2', {

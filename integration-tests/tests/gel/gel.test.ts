@@ -120,8 +120,8 @@ const usersOnUpdate = gelTable('users_on_update', {
 		.$onUpdateFn(() => sql`update_counter + 1`),
 	updatedAt: timestamptz('updated_at').$onUpdate(() => new Date()),
 	alwaysNull: text('always_null')
-		.$type<string | undefined>()
-		.$onUpdate(() => undefined),
+		.$type<string | null>()
+		.$onUpdate(() => null),
 });
 
 const citiesTable = gelTable('cities', {
@@ -3258,7 +3258,7 @@ describe('some', async () => {
 		const result3 = await db.select({ value: avgDistinct(table.b) }).from(table);
 
 		expect(result1[0]?.value).toBe('33.3333333333333333');
-		expect(result2[0]?.value).toBeNull();
+		expect(result2[0]?.value).toBeUndefined();
 		expect(result3[0]?.value).toBe('42.5000000000000000');
 	});
 
@@ -3272,7 +3272,7 @@ describe('some', async () => {
 		const result3 = await db.select({ value: sumDistinct(table.b) }).from(table);
 
 		expect(result1[0]?.value).toBe('200');
-		expect(result2[0]?.value).toBeNull();
+		expect(result2[0]?.value).toBeUndefined();
 		expect(result3[0]?.value).toBe('170');
 	});
 
@@ -3285,7 +3285,7 @@ describe('some', async () => {
 		const result2 = await db.select({ value: max(table.nullOnly) }).from(table);
 
 		expect(result1[0]?.value).toBe(90);
-		expect(result2[0]?.value).toBeNull();
+		expect(result2[0]?.value).toBeUndefined();
 	});
 
 	test('aggregate function: min', async (ctx) => {
@@ -3297,7 +3297,7 @@ describe('some', async () => {
 		const result2 = await db.select({ value: min(table.nullOnly) }).from(table);
 
 		expect(result1[0]?.value).toBe(10);
-		expect(result2[0]?.value).toBeNull();
+		expect(result2[0]?.value).toBeUndefined();
 	});
 
 	test('array mapping and parsing', async (ctx) => {

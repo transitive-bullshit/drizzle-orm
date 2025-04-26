@@ -108,7 +108,7 @@ export const usersOnUpdate = sqliteTable('users_on_update', {
 	name: text('name').notNull(),
 	updateCounter: integer('update_counter').default(sql`1`).$onUpdateFn(() => sql`update_counter + 1`),
 	updatedAt: integer('updated_at', { mode: 'timestamp_ms' }).$onUpdate(() => new Date()),
-	alwaysNull: text('always_null').$type<string | undefined>().$onUpdate(() => undefined),
+	alwaysNull: text('always_null').$type<string | null>().$onUpdate(() => null),
 	// uppercaseName: text('uppercase_name').$onUpdateFn(() =>
 	// 	sql`upper(s.name)`
 	// ),  This doesn't seem to be supported in sqlite
@@ -2891,7 +2891,7 @@ export function tests() {
 			const result3 = await db.select({ value: avgDistinct(table.b) }).from(table);
 
 			expect(result1[0]?.value).toBe('24');
-			expect(result2[0]?.value).toBeNull();
+			expect(result2[0]?.value).toBeUndefined();
 			expect(result3[0]?.value).toBe('42.5');
 		});
 
@@ -2905,7 +2905,7 @@ export function tests() {
 			const result3 = await db.select({ value: sumDistinct(table.b) }).from(table);
 
 			expect(result1[0]?.value).toBe('200');
-			expect(result2[0]?.value).toBeNull();
+			expect(result2[0]?.value).toBeUndefined();
 			expect(result3[0]?.value).toBe('170');
 		});
 
@@ -2918,7 +2918,7 @@ export function tests() {
 			const result2 = await db.select({ value: max(table.nullOnly) }).from(table);
 
 			expect(result1[0]?.value).toBe(90);
-			expect(result2[0]?.value).toBeNull();
+			expect(result2[0]?.value).toBeUndefined();
 		});
 
 		test('aggregate function: min', async (ctx) => {
@@ -2930,7 +2930,7 @@ export function tests() {
 			const result2 = await db.select({ value: min(table.nullOnly) }).from(table);
 
 			expect(result1[0]?.value).toBe(10);
-			expect(result2[0]?.value).toBeNull();
+			expect(result2[0]?.value).toBeUndefined();
 		});
 
 		test('test $onUpdateFn and $onUpdate works as $default', async (ctx) => {

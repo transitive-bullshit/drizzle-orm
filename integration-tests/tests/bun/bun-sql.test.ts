@@ -98,7 +98,7 @@ const usersOnUpdate = pgTable('users_on_update', {
 	name: text('name').notNull(),
 	updateCounter: integer('update_counter').default(sql`1`).$onUpdateFn(() => sql`update_counter + 1`),
 	updatedAt: timestamp('updated_at', { mode: 'date', precision: 3 }).$onUpdate(() => new Date()),
-	alwaysNull: text('always_null').$type<string | undefined>().$onUpdate(() => undefined),
+	alwaysNull: text('always_null').$type<string | null>().$onUpdate(() => null),
 });
 
 const citiesTable = pgTable('cities', {
@@ -3419,7 +3419,7 @@ test('aggregate function: avg', async () => {
 	const result3 = await db.select({ value: avgDistinct(table.b) }).from(table);
 
 	expect(result1[0]?.value).toBe('33.3333333333333333');
-	expect(result2[0]?.value).toBeNull();
+	expect(result2[0]?.value).toBeUndefined();
 	expect(result3[0]?.value).toBe('42.5000000000000000');
 });
 
@@ -3432,7 +3432,7 @@ test('aggregate function: sum', async () => {
 	const result3 = await db.select({ value: sumDistinct(table.b) }).from(table);
 
 	expect(result1[0]?.value).toBe('200');
-	expect(result2[0]?.value).toBeNull();
+	expect(result2[0]?.value).toBeUndefined();
 	expect(result3[0]?.value).toBe('170');
 });
 
@@ -3444,7 +3444,7 @@ test('aggregate function: max', async () => {
 	const result2 = await db.select({ value: max(table.nullOnly) }).from(table);
 
 	expect(result1[0]?.value).toBe(90);
-	expect(result2[0]?.value).toBeNull();
+	expect(result2[0]?.value).toBeUndefined();
 });
 
 test('aggregate function: min', async () => {
@@ -3455,7 +3455,7 @@ test('aggregate function: min', async () => {
 	const result2 = await db.select({ value: min(table.nullOnly) }).from(table);
 
 	expect(result1[0]?.value).toBe(10);
-	expect(result2[0]?.value).toBeNull();
+	expect(result2[0]?.value).toBeUndefined();
 });
 
 test.skip('array mapping and parsing', async () => {

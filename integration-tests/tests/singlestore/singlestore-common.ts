@@ -169,7 +169,7 @@ const usersOnUpdate = singlestoreTable('users_on_update', {
 	name: text('name').notNull(),
 	updateCounter: int('update_counter').default(sql`1`).$onUpdateFn(() => sql`update_counter + 1`),
 	updatedAt: datetime('updated_at', { mode: 'date' }).$onUpdateFn(() => new Date()),
-	alwaysNull: text('always_null').$type<string | undefined>().$onUpdateFn(() => undefined), // need to add $type because $onUpdate add a default value
+	alwaysNull: text('always_null').$type<string | null>().$onUpdateFn(() => null), // need to add $type because $onUpdate add a default value
 });
 
 const datesTable = singlestoreTable('datestable', {
