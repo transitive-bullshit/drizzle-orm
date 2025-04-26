@@ -108,7 +108,7 @@ export const usersOnUpdate = sqliteTable('users_on_update', {
 	name: text('name').notNull(),
 	updateCounter: integer('update_counter').default(sql`1`).$onUpdateFn(() => sql`update_counter + 1`),
 	updatedAt: integer('updated_at', { mode: 'timestamp_ms' }).$onUpdate(() => new Date()),
-	alwaysNull: text('always_null').$type<string | null>().$onUpdate(() => null),
+	alwaysNull: text('always_null').$type<string | undefined>().$onUpdate(() => undefined),
 	// uppercaseName: text('uppercase_name').$onUpdateFn(() =>
 	// 	sql`upper(s.name)`
 	// ),  This doesn't seem to be supported in sqlite
@@ -332,10 +332,10 @@ export function tests() {
 				{ name: 'value 1', a: 5, b: 10, c: 20 },
 				{ name: 'value 1', a: 5, b: 20, c: 30 },
 				{ name: 'value 2', a: 10, b: 50, c: 60 },
-				{ name: 'value 3', a: 20, b: 20, c: null },
-				{ name: 'value 4', a: null, b: 90, c: 120 },
-				{ name: 'value 5', a: 80, b: 10, c: null },
-				{ name: 'value 6', a: null, b: null, c: 150 },
+				{ name: 'value 3', a: 20, b: 20, c: undefined },
+				{ name: 'value 4', a: undefined, b: 90, c: 120 },
+				{ name: 'value 5', a: 80, b: 10, c: undefined },
+				{ name: 'value 6', a: undefined, b: undefined, c: 150 },
 			]);
 		}
 
@@ -399,7 +399,13 @@ export function tests() {
 			const result = await db.select().from(usersTable).all();
 			expect(result[0]!.createdAt).toBeInstanceOf(Date);
 			expect(Math.abs(result[0]!.createdAt.getTime() - now)).toBeLessThan(5000);
-			expect(result).toEqual([{ id: 1, name: 'John', verified: false, json: null, createdAt: result[0]!.createdAt }]);
+			expect(result).toEqual([{
+				id: 1,
+				name: 'John',
+				verified: false,
+				json: undefined,
+				createdAt: result[0]!.createdAt,
+			}]);
 		});
 
 		test('select partial', async (ctx) => {
@@ -583,7 +589,7 @@ export function tests() {
 
 			const res = await db.select().from(users).all();
 
-			expect(res).toEqual([{ id: 1, name: 'Dan', state: null }]);
+			expect(res).toEqual([{ id: 1, name: 'Dan', state: undefined }]);
 		});
 
 		test('Insert all defaults in multiple rows', async (ctx) => {
@@ -605,7 +611,7 @@ export function tests() {
 
 			const res = await db.select().from(users).all();
 
-			expect(res).toEqual([{ id: 1, name: 'Dan', state: null }, { id: 2, name: 'Dan', state: null }]);
+			expect(res).toEqual([{ id: 1, name: 'Dan', state: undefined }, { id: 2, name: 'Dan', state: undefined }]);
 		});
 
 		test('update returning sql', async (ctx) => {
@@ -644,7 +650,13 @@ export function tests() {
 			await db.insert(usersTable).values({ name: 'John' }).run();
 			const result = await db.select().from(usersTable).all();
 
-			expect(result).toEqual([{ id: 1, name: 'John', verified: false, json: null, createdAt: result[0]!.createdAt }]);
+			expect(result).toEqual([{
+				id: 1,
+				name: 'John',
+				verified: false,
+				json: undefined,
+				createdAt: result[0]!.createdAt,
+			}]);
 		});
 
 		test('insert with overridden default values', async (ctx) => {
@@ -653,7 +665,13 @@ export function tests() {
 			await db.insert(usersTable).values({ name: 'John', verified: true }).run();
 			const result = await db.select().from(usersTable).all();
 
-			expect(result).toEqual([{ id: 1, name: 'John', verified: true, json: null, createdAt: result[0]!.createdAt }]);
+			expect(result).toEqual([{
+				id: 1,
+				name: 'John',
+				verified: true,
+				json: undefined,
+				createdAt: result[0]!.createdAt,
+			}]);
 		});
 
 		test('update with returning all fields', async (ctx) => {
@@ -667,7 +685,13 @@ export function tests() {
 
 			expect(users[0]!.createdAt).toBeInstanceOf(Date);
 			expect(Math.abs(users[0]!.createdAt.getTime() - now)).toBeLessThan(5000);
-			expect(users).toEqual([{ id: 1, name: 'Jane', verified: false, json: null, createdAt: users[0]!.createdAt }]);
+			expect(users).toEqual([{
+				id: 1,
+				name: 'Jane',
+				verified: false,
+				json: undefined,
+				createdAt: users[0]!.createdAt,
+			}]);
 		});
 
 		test('update with returning partial', async (ctx) => {
@@ -692,7 +716,13 @@ export function tests() {
 
 			expect(users[0]!.createdAt).toBeInstanceOf(Date);
 			expect(Math.abs(users[0]!.createdAt.getTime() - now)).toBeLessThan(5000);
-			expect(users).toEqual([{ id: 1, name: 'John', verified: false, json: null, createdAt: users[0]!.createdAt }]);
+			expect(users).toEqual([{
+				id: 1,
+				name: 'John',
+				verified: false,
+				json: undefined,
+				createdAt: users[0]!.createdAt,
+			}]);
 		});
 
 		test('delete with returning partial', async (ctx) => {
@@ -751,10 +781,10 @@ export function tests() {
 			}).from(usersTable).all();
 
 			expect(result).toEqual([
-				{ id: 1, name: 'John', json: null, verified: false },
+				{ id: 1, name: 'John', json: undefined, verified: false },
 				{ id: 2, name: 'Bruce', json: ['foo', 'bar'], verified: false },
-				{ id: 3, name: 'Jane', json: null, verified: false },
-				{ id: 4, name: 'Austin', json: null, verified: true },
+				{ id: 3, name: 'Jane', json: undefined, verified: false },
+				{ id: 4, name: 'Austin', json: undefined, verified: true },
 			]);
 		});
 
@@ -776,10 +806,10 @@ export function tests() {
 				.all();
 
 			expect(result).toEqual([
-				{ id: 1, name: 'John', json: null, verified: false },
+				{ id: 1, name: 'John', json: undefined, verified: false },
 				{ id: 2, name: 'Bruce', json: ['foo', 'bar'], verified: false },
-				{ id: 3, name: 'Jane', json: null, verified: false },
-				{ id: 4, name: 'Austin', json: null, verified: true },
+				{ id: 3, name: 'Jane', json: undefined, verified: false },
+				{ id: 4, name: 'Austin', json: undefined, verified: true },
 			]);
 		});
 
@@ -1565,9 +1595,9 @@ export function tests() {
 
 			await db.run(sql`create table ${test} (t timestamp)`);
 
-			await db.insert(test).values({ t: null }).run();
+			await db.insert(test).values({ t: undefined }).run();
 			const res = await db.select().from(test).all();
-			expect(res).toEqual([{ t: null }]);
+			expect(res).toEqual([{ t: undefined }]);
 
 			await db.run(sql`drop table ${test}`);
 		});
@@ -1925,7 +1955,7 @@ export function tests() {
 				},
 				{
 					users_join_view: { id: 2, name: 'Jane', cityId: 2 },
-					new_yorkers_sq: null,
+					new_yorkers_sq: undefined,
 				},
 				{
 					users_join_view: { id: 3, name: 'Jack', cityId: 1 },
@@ -1933,7 +1963,7 @@ export function tests() {
 				},
 				{
 					users_join_view: { id: 4, name: 'Jill', cityId: 2 },
-					new_yorkers_sq: null,
+					new_yorkers_sq: undefined,
 				},
 			]);
 
@@ -2933,10 +2963,10 @@ export function tests() {
 			const response = await db.select({ ...rest }).from(usersOnUpdate).orderBy(asc(usersOnUpdate.id));
 
 			expect(response).toEqual([
-				{ name: 'John', id: 1, updateCounter: 1, alwaysNull: null },
-				{ name: 'Jane', id: 2, updateCounter: 1, alwaysNull: null },
-				{ name: 'Jack', id: 3, updateCounter: 1, alwaysNull: null },
-				{ name: 'Jill', id: 4, updateCounter: 1, alwaysNull: null },
+				{ name: 'John', id: 1, updateCounter: 1, alwaysNull: undefined },
+				{ name: 'Jane', id: 2, updateCounter: 1, alwaysNull: undefined },
+				{ name: 'Jack', id: 3, updateCounter: 1, alwaysNull: undefined },
+				{ name: 'Jill', id: 4, updateCounter: 1, alwaysNull: undefined },
 			]);
 			const msDelay = 250;
 
@@ -2971,17 +3001,17 @@ export function tests() {
 			const { updatedAt, ...rest } = getTableColumns(usersOnUpdate);
 
 			await db.update(usersOnUpdate).set({ name: 'Angel' }).where(eq(usersOnUpdate.id, 1));
-			await db.update(usersOnUpdate).set({ updateCounter: null }).where(eq(usersOnUpdate.id, 2));
+			await db.update(usersOnUpdate).set({ updateCounter: undefined }).where(eq(usersOnUpdate.id, 2));
 
 			const justDates = await db.select({ updatedAt }).from(usersOnUpdate).orderBy(asc(usersOnUpdate.id));
 
 			const response = await db.select({ ...rest }).from(usersOnUpdate).orderBy(asc(usersOnUpdate.id));
 
 			expect(response).toEqual([
-				{ name: 'Angel', id: 1, updateCounter: 2, alwaysNull: null },
-				{ name: 'Jane', id: 2, updateCounter: null, alwaysNull: null },
-				{ name: 'Jack', id: 3, updateCounter: 1, alwaysNull: null },
-				{ name: 'Jill', id: 4, updateCounter: 1, alwaysNull: null },
+				{ name: 'Angel', id: 1, updateCounter: 2, alwaysNull: undefined },
+				{ name: 'Jane', id: 2, updateCounter: undefined, alwaysNull: undefined },
+				{ name: 'Jack', id: 3, updateCounter: 1, alwaysNull: undefined },
+				{ name: 'Jill', id: 4, updateCounter: 1, alwaysNull: undefined },
 			]);
 			const msDelay = 250;
 
@@ -3343,18 +3373,18 @@ export function tests() {
 			expect(typeof rawRes[0]?.numericBig).toStrictEqual('bigint');
 
 			type ExpectedType = {
-				int: number | null;
-				bool: boolean | null;
-				time: Date | null;
-				timeMs: Date | null;
-				bigint: bigint | null;
-				buffer: Buffer | null;
+				int: number | undefined;
+				bool: boolean | undefined;
+				time: Date | undefined;
+				timeMs: Date | undefined;
+				bigint: bigint | undefined;
+				buffer: Buffer | undefined;
 				json: unknown;
-				numeric: string | null;
-				numericNum: number | null;
-				numericBig: bigint | null;
-				real: number | null;
-				text: string | null;
+				numeric: string | undefined;
+				numericNum: number | undefined;
+				numericBig: bigint | undefined;
+				real: number | undefined;
+				text: string | undefined;
 				jsonText: unknown;
 			}[];
 

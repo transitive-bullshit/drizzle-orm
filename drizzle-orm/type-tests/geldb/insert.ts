@@ -110,7 +110,7 @@ Expect<
 	Equal<{
 		id: number;
 		homeCity: number;
-		mySubclass: string | null;
+		mySubclass: string | undefined;
 	}[], typeof insertReturningPartial>
 >;
 
@@ -136,7 +136,7 @@ Expect<
 	Equal<{
 		id: number;
 		homeCity: number;
-		mySubclass: string | null;
+		mySubclass: string | undefined;
 	}[], typeof insertReturningPartialPrepared>
 >;
 

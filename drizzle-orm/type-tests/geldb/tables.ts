@@ -119,7 +119,7 @@ export const classes = gelTable('classes_table', {
 Expect<
 	Equal<{
 		id: number;
-		class?: string | null;
+		class?: string | undefined;
 		subClass: string;
 	}, typeof classes.$inferInsert>
 >;
@@ -827,9 +827,9 @@ export const citiesCustom = customSchema.table('cities_table', {
 					userId: number;
 				};
 				custom_user: {
-					id: number | null;
+					id: number | undefined;
 				};
-			} | null;
+			} | undefined;
 			ticket: {
 				staffId: number;
 			};

@@ -53,14 +53,13 @@ import type {
 	SingleStoreYear,
 } from 'drizzle-orm/singlestore-core';
 import type { SQLiteInteger, SQLiteReal, SQLiteText } from 'drizzle-orm/sqlite-core';
-import { z } from 'zod';
-import { z as zod } from 'zod';
+import { z, z as zod } from 'zod';
 import { CONSTANTS } from './constants.ts';
 import type { CreateSchemaFactoryOptions } from './schema.types.ts';
 import { isColumnType, isWithEnum } from './utils.ts';
 import type { Json } from './utils.ts';
 
-export const literalSchema = z.union([z.string(), z.number(), z.boolean(), z.null()]);
+export const literalSchema = z.union([z.string(), z.number(), z.boolean()]);
 export const jsonSchema: z.ZodType<Json> = z.union([literalSchema, z.record(z.any()), z.array(z.any())]);
 export const bufferSchema: z.ZodType<Buffer> = z.custom<Buffer>((v) => v instanceof Buffer); // eslint-disable-line no-instanceof/no-instanceof
 

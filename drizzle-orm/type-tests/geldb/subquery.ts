@@ -45,8 +45,8 @@ const result = await db
 Expect<
 	Equal<
 		{
-			name: string | null;
-			authorId: number | null;
+			name: string | undefined;
+			authorId: number | undefined;
 			count1: number;
 			totalCount: number;
 		}[],
@@ -72,8 +72,8 @@ Expect<
 	Equal<
 		{
 			id: number;
-			name: string | null;
-			id2: number | null;
+			name: string | undefined;
+			id2: number | undefined;
 		}[],
 		typeof res
 	>
@@ -91,7 +91,7 @@ const resUnion = await db.select().from(sqUnion);
 Expect<
 	Equal<{
 		id: number;
-		name: string | null;
-		authorId: number | null;
+		name: string | undefined;
+		authorId: number | undefined;
 	}[], typeof resUnion>
 >;

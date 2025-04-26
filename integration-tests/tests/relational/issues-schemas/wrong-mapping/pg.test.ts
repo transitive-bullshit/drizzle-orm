@@ -275,27 +275,27 @@ test('Simple case from GH', async () => {
 			modifierGroups: {
 				menuItemId: string;
 				modifierGroupId: string;
-				order: number | null;
+				order: number | undefined;
 				modifierGroup: {
 					id: string;
 					modifiers: {
 						modifierGroupId: string;
-						order: number | null;
+						order: number | undefined;
 						modifierId: string;
 						modifier: {
 							id: string;
-							ingredientId: string | null;
-							itemId: string | null;
+							ingredientId: string | undefined;
+							itemId: string | undefined;
 							ingredient: {
 								id: string;
 								name: string;
-								description: string | null;
-								imageUrl: string | null;
-								inStock: boolean | null;
-							} | null;
+								description: string | undefined;
+								imageUrl: string | undefined;
+								inStock: boolean | undefined;
+							} | undefined;
 							item: {
 								id: string;
-							} | null;
+							} | undefined;
 						};
 					}[];
 				};

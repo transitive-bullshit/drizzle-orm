@@ -67,7 +67,7 @@ Expect<Equal<{ id: number; homeCity: number }[], typeof minusTest>>;
 
 const union2Test = await union(db.select().from(cities), db.select().from(cities), db.select().from(cities));
 
-Expect<Equal<{ id: number; name: string; population: number | null }[], typeof union2Test>>;
+Expect<Equal<{ id: number; name: string; population: number | undefined }[], typeof union2Test>>;
 
 const unionAll2Test = await unionAll(
 	db.select({
@@ -78,7 +78,7 @@ const unionAll2Test = await unionAll(
 	db.select().from(cities),
 );
 
-Expect<Equal<{ id: number; name: string; population: number | null }[], typeof unionAll2Test>>;
+Expect<Equal<{ id: number; name: string; population: number | undefined }[], typeof unionAll2Test>>;
 
 const intersect2Test = await intersect(
 	db.select({
@@ -98,7 +98,7 @@ const intersect2Test = await intersect(
 	}).from(cities),
 );
 
-Expect<Equal<{ id: number; name: string; population: number | null }[], typeof intersect2Test>>;
+Expect<Equal<{ id: number; name: string; population: number | undefined }[], typeof intersect2Test>>;
 
 // TODO Implement views for SingleStore (https://docs.singlestore.com/cloud/reference/sql-reference/data-definition-language-ddl/create-view/)
 /* const except2Test = await except(
@@ -118,13 +118,13 @@ const unionfull = await union(db.select().from(users), db.select().from(users)).
 Expect<
 	Equal<{
 		id: number;
-		text: string | null;
+		text: string | undefined;
 		homeCity: number;
-		currentCity: number | null;
+		currentCity: number | undefined;
 		serialNullable: number;
 		serialNotNull: number;
 		class: 'A' | 'C';
-		subClass: 'B' | 'D' | null;
+		subClass: 'B' | 'D' | undefined;
 		age1: number;
 		createdAt: Date;
 		enumCol: 'a' | 'b' | 'c';

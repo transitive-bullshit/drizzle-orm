@@ -229,7 +229,7 @@ test('Simple case from GH', async () => {
 			instagram: string;
 			youtube: string;
 			website: string;
-			spotifyId: string | null;
+			spotifyId: string | undefined;
 			members: {
 				member: {
 					id: number;
@@ -249,7 +249,7 @@ test('Simple case from GH', async () => {
 				createdAt: Date;
 				updatedAt: Date;
 				image: string;
-				spotifyId: string | null;
+				spotifyId: string | undefined;
 				artistId: number;
 				region: 'en' | 'kr' | 'jp' | 'other';
 				releaseDate: Date;
@@ -269,6 +269,6 @@ test('Simple case from GH', async () => {
 		region: 'en',
 		releaseDate: response?.albums[0]?.releaseDate,
 		image: '',
-		spotifyId: null,
+		spotifyId: undefined,
 	});
 });

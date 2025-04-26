@@ -220,7 +220,9 @@ export class SQL<T = unknown> implements SQLWrapper {
 					return { sql: escapeParam(paramStartIndex.value++, chunk), params: [chunk], typings: ['none'] };
 				}
 
-				const mappedValue = chunk.value === null ? null : chunk.encoder.mapToDriverValue(chunk.value);
+				const mappedValue = chunk.value === null || chunk.value === undefined
+					? undefined
+					: chunk.encoder.mapToDriverValue(chunk.value);
 
 				if (is(mappedValue, SQL)) {
 					return this.buildQueryFromSourceParams([mappedValue], config);
@@ -288,7 +290,7 @@ export class SQL<T = unknown> implements SQLWrapper {
 		chunk: unknown,
 		{ escapeString }: BuildQueryConfig,
 	): string {
-		if (chunk === null) {
+		if (chunk === null || chunk === undefined) {
 			return 'null';
 		}
 		if (typeof chunk === 'number' || typeof chunk === 'boolean') {

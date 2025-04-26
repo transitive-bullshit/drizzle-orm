@@ -38,12 +38,14 @@ export function mapResultRow<TResult>(
 					node = node[pathChunk];
 				} else {
 					const rawValue = row[columnIndex]!;
-					const value = node[pathChunk] = rawValue === null ? null : decoder.mapFromDriverValue(rawValue);
+					const value = node[pathChunk] = rawValue === undefined || rawValue === null
+						? undefined
+						: decoder.mapFromDriverValue(rawValue);
 
 					if (joinsNotNullableMap && is(field, Column) && path.length === 2) {
 						const objectName = path[0]!;
 						if (!(objectName in nullifyMap)) {
-							nullifyMap[objectName] = value === null ? getTableName(field.table) : false;
+							nullifyMap[objectName] = value === undefined ? getTableName(field.table) : false;
 						} else if (
 							typeof nullifyMap[objectName] === 'string' && nullifyMap[objectName] !== getTableName(field.table)
 						) {
@@ -61,7 +63,7 @@ export function mapResultRow<TResult>(
 	if (joinsNotNullableMap && Object.keys(nullifyMap).length > 0) {
 		for (const [objectName, tableName] of Object.entries(nullifyMap)) {
 			if (typeof tableName === 'string' && !joinsNotNullableMap[tableName]) {
-				result[objectName] = null;
+				result[objectName] = undefined;
 			}
 		}
 	}
@@ -128,7 +130,7 @@ export function mapUpdateSet(table: Table, values: Record<string, unknown>): Upd
 	return Object.fromEntries(entries);
 }
 
-export type UpdateSet = Record<string, SQL | Param | AnyColumn | null | undefined>;
+export type UpdateSet = Record<string, SQL | Param | AnyColumn | undefined>;
 
 export type OneOrMany<T> = T | T[];
 
@@ -223,7 +225,7 @@ export interface DrizzleConfig<TSchema extends Record<string, unknown> = Record<
 export type ValidateShape<T, ValidShape, TResult = T> = T extends ValidShape
 	? Exclude<keyof T, keyof ValidShape> extends never ? TResult
 	: DrizzleTypeError<
-		`Invalid key(s): ${Exclude<(keyof T) & (string | number | bigint | boolean | null | undefined), keyof ValidShape>}`
+		`Invalid key(s): ${Exclude<(keyof T) & (string | number | bigint | boolean | undefined), keyof ValidShape>}`
 	>
 	: never;
 

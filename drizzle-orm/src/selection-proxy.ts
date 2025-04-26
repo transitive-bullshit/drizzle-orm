@@ -112,7 +112,7 @@ export class SelectionProxyHandler<T extends Subquery | Record<string, unknown> 
 			return value;
 		}
 
-		if (typeof value !== 'object' || value === null) {
+		if (typeof value !== 'object' || value === null || value === undefined) {
 			return value;
 		}
 

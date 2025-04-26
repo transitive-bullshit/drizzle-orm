@@ -10,8 +10,8 @@ export type JoinType = 'inner' | 'left' | 'right' | 'full' | 'cross';
 
 export type JoinNullability = 'nullable' | 'not-null';
 
-export type ApplyNullability<T, TNullability extends JoinNullability> = TNullability extends 'nullable' ? T | null
-	: TNullability extends 'null' ? null
+export type ApplyNullability<T, TNullability extends JoinNullability> = TNullability extends 'nullable' ? T | undefined
+	: TNullability extends 'null' ? undefined
 	: T;
 
 export type ApplyNullabilityToColumn<TColumn extends Column, TNullability extends JoinNullability> =

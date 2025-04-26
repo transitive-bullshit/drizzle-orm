@@ -414,7 +414,7 @@ test('select all fields', async (ctx) => {
 
 	expect(result[0]!.createdAt).toBeInstanceOf(Date);
 	expect(Math.abs(result[0]!.createdAt.getTime() - now)).toBeLessThan(3000);
-	expect(result).toEqual([{ id: 1, name: 'John', verified: false, jsonb: null, createdAt: result[0]!.createdAt }]);
+	expect(result).toEqual([{ id: 1, name: 'John', verified: false, jsonb: undefined, createdAt: result[0]!.createdAt }]);
 });
 
 test('update with returning all fields', async (ctx) => {
@@ -432,7 +432,7 @@ test('update with returning all fields', async (ctx) => {
 	expect(users[0]!.createdAt).toBeInstanceOf(Date);
 	expect(Math.abs(users[0]!.createdAt.getTime() - now)).toBeLessThan(3000);
 	expect(users).toEqual([
-		{ id: 1, name: 'Jane', verified: false, jsonb: null, createdAt: users[0]!.createdAt },
+		{ id: 1, name: 'Jane', verified: false, jsonb: undefined, createdAt: users[0]!.createdAt },
 	]);
 });
 
@@ -447,7 +447,7 @@ test('delete with returning all fields', async (ctx) => {
 	expect(users[0]!.createdAt).toBeInstanceOf(Date);
 	expect(Math.abs(users[0]!.createdAt.getTime() - now)).toBeLessThan(3000);
 	expect(users).toEqual([
-		{ id: 1, name: 'John', verified: false, jsonb: null, createdAt: users[0]!.createdAt },
+		{ id: 1, name: 'John', verified: false, jsonb: undefined, createdAt: users[0]!.createdAt },
 	]);
 });
 
@@ -461,7 +461,7 @@ test('mySchema :: select all fields', async (ctx) => {
 
 	expect(result[0]!.createdAt).toBeInstanceOf(Date);
 	expect(Math.abs(result[0]!.createdAt.getTime() - now)).toBeLessThan(3000);
-	expect(result).toEqual([{ id: 1, name: 'John', verified: false, jsonb: null, createdAt: result[0]!.createdAt }]);
+	expect(result).toEqual([{ id: 1, name: 'John', verified: false, jsonb: undefined, createdAt: result[0]!.createdAt }]);
 });
 
 test('mySchema :: delete with returning all fields', async (ctx) => {
@@ -474,7 +474,7 @@ test('mySchema :: delete with returning all fields', async (ctx) => {
 
 	expect(users[0]!.createdAt).toBeInstanceOf(Date);
 	expect(Math.abs(users[0]!.createdAt.getTime() - now)).toBeLessThan(3000);
-	expect(users).toEqual([{ id: 1, name: 'John', verified: false, jsonb: null, createdAt: users[0]!.createdAt }]);
+	expect(users).toEqual([{ id: 1, name: 'John', verified: false, jsonb: undefined, createdAt: users[0]!.createdAt }]);
 });
 
 skipTests([
@@ -516,7 +516,7 @@ beforeEach(async () => {
 			create table users (
 				id serial primary key,
 				name text not null,
-				verified boolean not null default false, 
+				verified boolean not null default false,
 				jsonb jsonb,
 				created_at timestamptz not null default now()
 			)

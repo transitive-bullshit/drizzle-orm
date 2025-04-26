@@ -105,7 +105,7 @@ Expect<Equal<{ id: number; homeCity: string }[], typeof exceptAllTest>>;
 
 const union2Test = await union(db.select().from(cities), db.select().from(cities), db.select().from(cities));
 
-Expect<Equal<{ id: number; name: string; population: number | null }[], typeof union2Test>>;
+Expect<Equal<{ id: number; name: string; population: number | undefined }[], typeof union2Test>>;
 
 const unionAll2Test = await unionAll(
 	db.select({
@@ -116,7 +116,7 @@ const unionAll2Test = await unionAll(
 	db.select().from(cities),
 );
 
-Expect<Equal<{ id: number; name: string; population: number | null }[], typeof unionAll2Test>>;
+Expect<Equal<{ id: number; name: string; population: number | undefined }[], typeof unionAll2Test>>;
 
 const intersect2Test = await intersect(
 	db.select({
@@ -136,7 +136,7 @@ const intersect2Test = await intersect(
 	}).from(cities),
 );
 
-Expect<Equal<{ id: number; name: string; population: number | null }[], typeof intersect2Test>>;
+Expect<Equal<{ id: number; name: string; population: number | undefined }[], typeof intersect2Test>>;
 
 const intersectAll2Test = await intersectAll(
 	union(
@@ -163,10 +163,10 @@ Expect<
 		id: number;
 		uuid: string;
 		homeCity: number;
-		currentCity: number | null;
+		currentCity: number | undefined;
 		class: string;
-		subClass: string | null;
-		text: string | null;
+		subClass: string | undefined;
+		text: string | undefined;
 		age1: number;
 		createdAt: Date;
 		arrayCol: string[];

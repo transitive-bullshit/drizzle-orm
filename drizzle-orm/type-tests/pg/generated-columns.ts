@@ -25,11 +25,11 @@ const users = pgTable(
 		Equal<
 			{
 				id: number;
-				firstName: string | null;
-				lastName: string | null;
+				firstName: string | undefined;
+				lastName: string | undefined;
 				email: string;
 				fullName: string;
-				upperName: string | null;
+				upperName: string | undefined;
 			},
 			User
 		>
@@ -40,8 +40,8 @@ const users = pgTable(
 			{
 				email: string;
 				id?: number | undefined;
-				firstName?: string | null | undefined;
-				lastName?: string | null | undefined;
+				firstName?: string | undefined;
+				lastName?: string | undefined;
 			},
 			NewUser
 		>
@@ -56,11 +56,11 @@ const users = pgTable(
 		Equal<
 			{
 				id: number;
-				firstName: string | null;
-				lastName: string | null;
+				firstName: string | undefined;
+				lastName: string | undefined;
 				email: string;
 				fullName: string;
-				upperName: string | null;
+				upperName: string | undefined;
 			},
 			User
 		>
@@ -71,8 +71,8 @@ const users = pgTable(
 			{
 				email: string;
 				id?: number | undefined;
-				firstName?: string | null | undefined;
-				lastName?: string | null | undefined;
+				firstName?: string | undefined;
+				lastName?: string | undefined;
 			},
 			NewUser
 		>
@@ -86,11 +86,11 @@ const users = pgTable(
 		Equal<
 			{
 				id: number;
-				firstName: string | null;
-				lastName: string | null;
+				firstName: string | undefined;
+				lastName: string | undefined;
 				email: string;
 				fullName: string;
-				upperName: string | null;
+				upperName: string | undefined;
 			}[],
 			typeof dbUsers
 		>
@@ -106,11 +106,11 @@ const users = pgTable(
 		Equal<
 			{
 				id: number;
-				firstName: string | null;
-				lastName: string | null;
+				firstName: string | undefined;
+				lastName: string | undefined;
 				email: string;
 				fullName: string;
-				upperName: string | null;
+				upperName: string | undefined;
 			} | undefined,
 			typeof dbUser
 		>
@@ -126,11 +126,11 @@ const users = pgTable(
 		Equal<
 			{
 				id: number;
-				firstName: string | null;
-				lastName: string | null;
+				firstName: string | undefined;
+				lastName: string | undefined;
 				email: string;
 				fullName: string;
-				upperName: string | null;
+				upperName: string | undefined;
 			}[],
 			typeof dbUser
 		>

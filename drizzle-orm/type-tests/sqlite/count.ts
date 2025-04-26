@@ -40,8 +40,8 @@ Expect<
 	Equal<
 		{
 			id: number;
-			name: string | null;
-			authorId: number | null;
+			name: string | undefined;
+			authorId: number | undefined;
 			count1: number;
 		}[],
 		typeof embedded
@@ -52,8 +52,8 @@ Expect<
 	Equal<
 		{
 			id: number;
-			name: string | null;
-			authorId: number | null;
+			name: string | undefined;
+			authorId: number | undefined;
 			count1: number;
 		}[],
 		typeof embeddedFilters

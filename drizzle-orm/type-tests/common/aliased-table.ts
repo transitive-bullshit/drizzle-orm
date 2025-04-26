@@ -43,12 +43,12 @@ Expect<
 			id: number;
 			uuid: string;
 			homeCity: number;
-			currentCity: number | null;
+			currentCity: number | undefined;
 			serialNullable: number;
 			serialNotNull: number;
 			class: 'A' | 'C';
-			subClass: 'B' | 'D' | null;
-			text: string | null;
+			subClass: 'B' | 'D' | undefined;
+			text: string | undefined;
 			age1: number;
 			createdAt: Date;
 			enumCol: 'a' | 'b' | 'c';
@@ -58,17 +58,17 @@ Expect<
 			id: number;
 			uuid: string;
 			homeCity: number;
-			currentCity: number | null;
+			currentCity: number | undefined;
 			serialNullable: number;
 			serialNotNull: number;
 			class: 'A' | 'C';
-			subClass: 'B' | 'D' | null;
-			text: string | null;
+			subClass: 'B' | 'D' | undefined;
+			text: string | undefined;
 			age1: number;
 			createdAt: Date;
 			enumCol: 'a' | 'b' | 'c';
 			arrayCol: string[];
-		} | null;
+		} | undefined;
 	}[]>
 >;
 
@@ -77,12 +77,12 @@ Expect<
 		users_table: {
 			id: number;
 			homeCity: number;
-			currentCity: number | null;
-			serialNullable: number | null;
+			currentCity: number | undefined;
+			serialNullable: number | undefined;
 			serialNotNull: number;
 			class: 'A' | 'C';
-			subClass: 'B' | 'D' | null;
-			name: string | null;
+			subClass: 'B' | 'D' | undefined;
+			name: string | undefined;
 			age1: number;
 			createdAt: Date;
 			enumCol: 'a' | 'b' | 'c';
@@ -90,16 +90,16 @@ Expect<
 		usersAlias: {
 			id: number;
 			homeCity: number;
-			currentCity: number | null;
-			serialNullable: number | null;
+			currentCity: number | undefined;
+			serialNullable: number | undefined;
 			serialNotNull: number;
 			class: 'A' | 'C';
-			subClass: 'B' | 'D' | null;
-			name: string | null;
+			subClass: 'B' | 'D' | undefined;
+			name: string | undefined;
 			age1: number;
 			createdAt: Date;
 			enumCol: 'a' | 'b' | 'c';
-		} | null;
+		} | undefined;
 	}[]>
 >;
 
@@ -108,12 +108,12 @@ Expect<
 		users_table: {
 			id: number;
 			homeCity: number;
-			currentCity: number | null;
+			currentCity: number | undefined;
 			serialNullable: number;
 			serialNotNull: number;
 			class: 'A' | 'C';
-			subClass: 'B' | 'D' | null;
-			text: string | null;
+			subClass: 'B' | 'D' | undefined;
+			text: string | undefined;
 			age1: number;
 			createdAt: Date;
 			enumCol: 'a' | 'b' | 'c';
@@ -121,16 +121,16 @@ Expect<
 		usersAlias: {
 			id: number;
 			homeCity: number;
-			currentCity: number | null;
+			currentCity: number | undefined;
 			serialNullable: number;
 			serialNotNull: number;
 			class: 'A' | 'C';
-			subClass: 'B' | 'D' | null;
-			text: string | null;
+			subClass: 'B' | 'D' | undefined;
+			text: string | undefined;
 			age1: number;
 			createdAt: Date;
 			enumCol: 'a' | 'b' | 'c';
-		} | null;
+		} | undefined;
 	}[]>
 >;
 
@@ -140,12 +140,12 @@ Expect<
 			id: number;
 			uuid: string;
 			homeCity: number;
-			currentCity: number | null;
+			currentCity: number | undefined;
 			serialNullable: number;
 			serialNotNull: number;
 			class: 'A' | 'C';
-			subClass: 'B' | 'D' | null;
-			text: string | null;
+			subClass: 'B' | 'D' | undefined;
+			text: string | undefined;
 			age1: number;
 			createdAt: Date;
 			enumCol: 'a' | 'b' | 'c';
@@ -155,17 +155,17 @@ Expect<
 			id: number;
 			uuid: string;
 			homeCity: number;
-			currentCity: number | null;
+			currentCity: number | undefined;
 			serialNullable: number;
 			serialNotNull: number;
 			class: 'A' | 'C';
-			subClass: 'B' | 'D' | null;
-			text: string | null;
+			subClass: 'B' | 'D' | undefined;
+			text: string | undefined;
 			age1: number;
 			createdAt: Date;
 			enumCol: 'a' | 'b' | 'c';
 			arrayCol: string[];
-		} | null;
+		} | undefined;
 	}[]>
 >;
 
@@ -174,12 +174,12 @@ Expect<
 		users_table: {
 			id: number;
 			homeCity: number;
-			currentCity: number | null;
-			serialNullable: number | null;
+			currentCity: number | undefined;
+			serialNullable: number | undefined;
 			serialNotNull: number;
 			class: 'A' | 'C';
-			subClass: 'B' | 'D' | null;
-			name: string | null;
+			subClass: 'B' | 'D' | undefined;
+			name: string | undefined;
 			age1: number;
 			createdAt: Date;
 			enumCol: 'a' | 'b' | 'c';
@@ -187,16 +187,16 @@ Expect<
 		usersvAlias: {
 			id: number;
 			homeCity: number;
-			currentCity: number | null;
-			serialNullable: number | null;
+			currentCity: number | undefined;
+			serialNullable: number | undefined;
 			serialNotNull: number;
 			class: 'A' | 'C';
-			subClass: 'B' | 'D' | null;
-			name: string | null;
+			subClass: 'B' | 'D' | undefined;
+			name: string | undefined;
 			age1: number;
 			createdAt: Date;
 			enumCol: 'a' | 'b' | 'c';
-		} | null;
+		} | undefined;
 	}[]>
 >;
 
@@ -205,12 +205,12 @@ Expect<
 		users_table: {
 			id: number;
 			homeCity: number;
-			currentCity: number | null;
+			currentCity: number | undefined;
 			serialNullable: number;
 			serialNotNull: number;
 			class: 'A' | 'C';
-			subClass: 'B' | 'D' | null;
-			text: string | null;
+			subClass: 'B' | 'D' | undefined;
+			text: string | undefined;
 			age1: number;
 			createdAt: Date;
 			enumCol: 'a' | 'b' | 'c';
@@ -218,15 +218,15 @@ Expect<
 		usersvAlias: {
 			id: number;
 			homeCity: number;
-			currentCity: number | null;
+			currentCity: number | undefined;
 			serialNullable: number;
 			serialNotNull: number;
 			class: 'A' | 'C';
-			subClass: 'B' | 'D' | null;
-			text: string | null;
+			subClass: 'B' | 'D' | undefined;
+			text: string | undefined;
 			age1: number;
 			createdAt: Date;
 			enumCol: 'a' | 'b' | 'c';
-		} | null;
+		} | undefined;
 	}[]>
 >;

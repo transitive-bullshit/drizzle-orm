@@ -190,11 +190,11 @@
 // 		id: number;
 // 		name: string;
 // 		verified: boolean;
-// 		invitedBy: number | null;
+// 		invitedBy: number | undefined;
 // 		posts: {
 // 			id: number;
 // 			content: string;
-// 			ownerId: number | null;
+// 			ownerId: number | undefined;
 // 			createdAt: Date;
 // 		}[];
 // 	}[]>();
@@ -210,21 +210,21 @@
 // 		id: 1,
 // 		name: 'Dan',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{ id: 1, ownerId: 1, content: 'Post1', createdAt: usersWithPosts[0]?.posts[0]?.createdAt }],
 // 	});
 // 	expect(usersWithPosts[1]).toEqual({
 // 		id: 2,
 // 		name: 'Andrew',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{ id: 2, ownerId: 2, content: 'Post2', createdAt: usersWithPosts[1]?.posts[0]?.createdAt }],
 // 	});
 // 	expect(usersWithPosts[2]).toEqual({
 // 		id: 3,
 // 		name: 'Alex',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{ id: 3, ownerId: 3, content: 'Post3', createdAt: usersWithPosts[2]?.posts[0]?.createdAt }],
 // 	});
 // });
@@ -260,11 +260,11 @@
 // 		id: number;
 // 		name: string;
 // 		verified: boolean;
-// 		invitedBy: number | null;
+// 		invitedBy: number | undefined;
 // 		posts: {
 // 			id: number;
 // 			content: string;
-// 			ownerId: number | null;
+// 			ownerId: number | undefined;
 // 			createdAt: Date;
 // 		}[];
 // 	}[]>();
@@ -283,21 +283,21 @@
 // 		id: 1,
 // 		name: 'Dan',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{ id: 1, ownerId: 1, content: 'Post1', createdAt: usersWithPosts[0]?.posts[0]?.createdAt }],
 // 	});
 // 	expect(usersWithPosts[1]).toEqual({
 // 		id: 2,
 // 		name: 'Andrew',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{ id: 4, ownerId: 2, content: 'Post2', createdAt: usersWithPosts[1]?.posts[0]?.createdAt }],
 // 	});
 // 	expect(usersWithPosts[2]).toEqual({
 // 		id: 3,
 // 		name: 'Alex',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{ id: 6, ownerId: 3, content: 'Post3', createdAt: usersWithPosts[2]?.posts[0]?.createdAt }],
 // 	});
 // });
@@ -334,11 +334,11 @@
 // 		id: number;
 // 		name: string;
 // 		verified: boolean;
-// 		invitedBy: number | null;
+// 		invitedBy: number | undefined;
 // 		posts: {
 // 			id: number;
 // 			content: string;
-// 			ownerId: number | null;
+// 			ownerId: number | undefined;
 // 			createdAt: Date;
 // 		}[];
 // 	}[]>();
@@ -355,14 +355,14 @@
 // 		id: 1,
 // 		name: 'Dan',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{ id: 1, ownerId: 1, content: 'Post1', createdAt: usersWithPosts[0]?.posts[0]?.createdAt }],
 // 	});
 // 	expect(usersWithPosts[1]).toEqual({
 // 		id: 2,
 // 		name: 'Andrew',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{ id: 4, ownerId: 2, content: 'Post2', createdAt: usersWithPosts[1]?.posts[0]?.createdAt }],
 // 	});
 // });
@@ -399,12 +399,12 @@
 // 		id: number;
 // 		name: string;
 // 		verified: boolean;
-// 		invitedBy: number | null;
+// 		invitedBy: number | undefined;
 // 		lowerName: string;
 // 		posts: {
 // 			id: number;
 // 			content: string;
-// 			ownerId: number | null;
+// 			ownerId: number | undefined;
 // 			createdAt: Date;
 // 		}[];
 // 	}[]>();
@@ -423,7 +423,7 @@
 // 		id: 1,
 // 		name: 'Dan',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		lowerName: 'dan',
 // 		posts: [{ id: 1, ownerId: 1, content: 'Post1', createdAt: usersWithPosts[0]?.posts[0]?.createdAt }, {
 // 			id: 2,
@@ -437,7 +437,7 @@
 // 		name: 'Andrew',
 // 		lowerName: 'andrew',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{ id: 4, ownerId: 2, content: 'Post2', createdAt: usersWithPosts[1]?.posts[0]?.createdAt }, {
 // 			id: 5,
 // 			ownerId: 2,
@@ -450,7 +450,7 @@
 // 		name: 'Alex',
 // 		lowerName: 'alex',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{ id: 6, ownerId: 3, content: 'Post3', createdAt: usersWithPosts[2]?.posts[0]?.createdAt }, {
 // 			id: 7,
 // 			ownerId: 3,
@@ -495,12 +495,12 @@
 // 		id: number;
 // 		name: string;
 // 		verified: boolean;
-// 		invitedBy: number | null;
+// 		invitedBy: number | undefined;
 // 		lowerName: string;
 // 		posts: {
 // 			id: number;
 // 			content: string;
-// 			ownerId: number | null;
+// 			ownerId: number | undefined;
 // 			createdAt: Date;
 // 		}[];
 // 	}[]>();
@@ -513,7 +513,7 @@
 // 		name: 'Dan',
 // 		lowerName: 'dan',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{ id: 1, ownerId: 1, content: 'Post1', createdAt: usersWithPosts[0]?.posts[0]?.createdAt }],
 // 	});
 // });
@@ -550,11 +550,11 @@
 // 		id: number;
 // 		name: string;
 // 		verified: boolean;
-// 		invitedBy: number | null;
+// 		invitedBy: number | undefined;
 // 		posts: {
 // 			id: number;
 // 			content: string;
-// 			ownerId: number | null;
+// 			ownerId: number | undefined;
 // 			createdAt: Date;
 // 		}[];
 // 	}[]>();
@@ -568,7 +568,7 @@
 // 		id: 1,
 // 		name: 'Dan',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{ id: 3, ownerId: 1, content: '3', createdAt: usersWithPosts[2]?.posts[2]?.createdAt }, {
 // 			id: 2,
 // 			ownerId: 1,
@@ -580,7 +580,7 @@
 // 		id: 2,
 // 		name: 'Andrew',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{
 // 			id: 5,
 // 			ownerId: 2,
@@ -592,7 +592,7 @@
 // 		id: 3,
 // 		name: 'Alex',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{
 // 			id: 7,
 // 			ownerId: 3,
@@ -631,11 +631,11 @@
 // 		id: number;
 // 		name: string;
 // 		verified: boolean;
-// 		invitedBy: number | null;
+// 		invitedBy: number | undefined;
 // 		posts: {
 // 			id: number;
 // 			content: string;
-// 			ownerId: number | null;
+// 			ownerId: number | undefined;
 // 			createdAt: Date;
 // 		}[];
 // 	}[]>();
@@ -647,7 +647,7 @@
 // 		id: 1,
 // 		name: 'Dan',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{ id: 1, ownerId: 1, content: 'Post1', createdAt: usersWithPosts[0]?.posts[0]?.createdAt }],
 // 	});
 // });
@@ -839,10 +839,10 @@
 // 	expectTypeOf(usersWithPosts).toEqualTypeOf<{
 // 		id: number;
 // 		verified: boolean;
-// 		invitedBy: number | null;
+// 		invitedBy: number | undefined;
 // 		posts: {
 // 			id: number;
-// 			ownerId: number | null;
+// 			ownerId: number | undefined;
 // 			createdAt: Date;
 // 		}[];
 // 	}[]>();
@@ -853,7 +853,7 @@
 // 	expect(usersWithPosts[0]).toEqual({
 // 		id: 1,
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{ id: 1, ownerId: 1, createdAt: usersWithPosts[0]?.posts[0]?.createdAt }],
 // 	});
 // });
@@ -865,11 +865,11 @@
 // 		id: number;
 // 		name: string;
 // 		verified: boolean;
-// 		invitedBy: number | null;
+// 		invitedBy: number | undefined;
 // 		posts: {
 // 			id: number;
 // 			content: string;
-// 			ownerId: number | null;
+// 			ownerId: number | undefined;
 // 			createdAt: Date;
 // 		}[];
 // 	}[] = [];
@@ -902,11 +902,11 @@
 // 		id: number;
 // 		name: string;
 // 		verified: boolean;
-// 		invitedBy: number | null;
+// 		invitedBy: number | undefined;
 // 		posts: {
 // 			id: number;
 // 			content: string;
-// 			ownerId: number | null;
+// 			ownerId: number | undefined;
 // 			createdAt: Date;
 // 		}[];
 // 	}[]>();
@@ -918,7 +918,7 @@
 // 		id: 1,
 // 		name: 'Dan',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{ id: 1, ownerId: 1, content: 'Post1', createdAt: usersWithPosts[0]?.posts[0]?.createdAt }],
 // 	});
 // });
@@ -930,11 +930,11 @@
 // 		id: number;
 // 		name: string;
 // 		verified: boolean;
-// 		invitedBy: number | null;
+// 		invitedBy: number | undefined;
 // 		posts: {
 // 			id: number;
 // 			content: string;
-// 			ownerId: number | null;
+// 			ownerId: number | undefined;
 // 			createdAt: Date;
 // 		}[];
 // 	}[] = [];
@@ -969,11 +969,11 @@
 // 		id: number;
 // 		name: string;
 // 		verified: boolean;
-// 		invitedBy: number | null;
+// 		invitedBy: number | undefined;
 // 		posts: {
 // 			id: number;
 // 			content: string;
-// 			ownerId: number | null;
+// 			ownerId: number | undefined;
 // 			createdAt: Date;
 // 		}[];
 // 	}[]>();
@@ -1629,11 +1629,11 @@
 // 		id: number;
 // 		name: string;
 // 		verified: boolean;
-// 		invitedBy: number | null;
+// 		invitedBy: number | undefined;
 // 		posts: {
 // 			id: number;
 // 			content: string;
-// 			ownerId: number | null;
+// 			ownerId: number | undefined;
 // 			createdAt: Date;
 // 		}[];
 // 	}[]>();
@@ -1647,21 +1647,21 @@
 // 		id: 1,
 // 		name: 'Dan',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{ id: 1, ownerId: 1, content: 'Post1', createdAt: usersWithPosts[0]?.posts[0]?.createdAt }],
 // 	});
 // 	expect(usersWithPosts).toContainEqual({
 // 		id: 2,
 // 		name: 'Andrew',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{ id: 4, ownerId: 2, content: 'Post2', createdAt: usersWithPosts[1]?.posts[0]?.createdAt }],
 // 	});
 // 	expect(usersWithPosts).toContainEqual({
 // 		id: 3,
 // 		name: 'Alex',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{ id: 6, ownerId: 3, content: 'Post3', createdAt: usersWithPosts[2]?.posts[0]?.createdAt }],
 // 	});
 // });
@@ -1701,11 +1701,11 @@
 // 		id: number;
 // 		name: string;
 // 		verified: boolean;
-// 		invitedBy: number | null;
+// 		invitedBy: number | undefined;
 // 		posts: {
 // 			id: number;
 // 			content: string;
-// 			ownerId: number | null;
+// 			ownerId: number | undefined;
 // 			createdAt: Date;
 // 		}[];
 // 	}[]>();
@@ -1718,14 +1718,14 @@
 // 		id: 2,
 // 		name: 'Andrew',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{ id: 4, ownerId: 2, content: 'Post2', createdAt: usersWithPosts[0]?.posts[0]?.createdAt }],
 // 	});
 // 	expect(usersWithPosts).toContainEqual({
 // 		id: 3,
 // 		name: 'Alex',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{ id: 6, ownerId: 3, content: 'Post3', createdAt: usersWithPosts[1]?.posts[0]?.createdAt }],
 // 	});
 // });
@@ -1761,11 +1761,11 @@
 // 		id: number;
 // 		name: string;
 // 		verified: boolean;
-// 		invitedBy: number | null;
+// 		invitedBy: number | undefined;
 // 		posts: {
 // 			id: number;
 // 			content: string;
-// 			ownerId: number | null;
+// 			ownerId: number | undefined;
 // 			createdAt: Date;
 // 		}[];
 // 	}[]>();
@@ -1777,7 +1777,7 @@
 // 		id: 1,
 // 		name: 'Dan',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{ id: 1, ownerId: 1, content: 'Post1', createdAt: usersWithPosts[0]?.posts[0]?.createdAt }],
 // 	});
 // });
@@ -1819,11 +1819,11 @@
 // 		id: number;
 // 		name: string;
 // 		verified: boolean;
-// 		invitedBy: number | null;
+// 		invitedBy: number | undefined;
 // 		posts: {
 // 			id: number;
 // 			content: string;
-// 			ownerId: number | null;
+// 			ownerId: number | undefined;
 // 			createdAt: Date;
 // 		}[];
 // 	}[]>();
@@ -1835,7 +1835,7 @@
 // 		id: 3,
 // 		name: 'Alex',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{ id: 6, ownerId: 3, content: 'Post3', createdAt: usersWithPosts[0]?.posts[0]?.createdAt }],
 // 	});
 // });
@@ -1871,11 +1871,11 @@
 // 			id: number;
 // 			name: string;
 // 			verified: boolean;
-// 			invitedBy: number | null;
+// 			invitedBy: number | undefined;
 // 			posts: {
 // 				id: number;
 // 				content: string;
-// 				ownerId: number | null;
+// 				ownerId: number | undefined;
 // 				createdAt: Date;
 // 			}[];
 // 		} | undefined
@@ -1944,11 +1944,11 @@
 // 			id: number;
 // 			name: string;
 // 			verified: boolean;
-// 			invitedBy: number | null;
+// 			invitedBy: number | undefined;
 // 			posts: {
 // 				id: number;
 // 				content: string;
-// 				ownerId: number | null;
+// 				ownerId: number | undefined;
 // 				createdAt: Date;
 // 			}[];
 // 		} | undefined
@@ -1960,7 +1960,7 @@
 // 		id: 1,
 // 		name: 'Dan',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{ id: 1, ownerId: 1, content: 'Post1', createdAt: usersWithPosts?.posts[0]?.createdAt }],
 // 	});
 // });
@@ -1981,11 +1981,11 @@
 // 			id: number;
 // 			name: string;
 // 			verified: boolean;
-// 			invitedBy: number | null;
+// 			invitedBy: number | undefined;
 // 			posts: {
 // 				id: number;
 // 				content: string;
-// 				ownerId: number | null;
+// 				ownerId: number | undefined;
 // 				createdAt: Date;
 // 			}[];
 // 		} | undefined
@@ -2026,11 +2026,11 @@
 // 			id: number;
 // 			name: string;
 // 			verified: boolean;
-// 			invitedBy: number | null;
+// 			invitedBy: number | undefined;
 // 			posts: {
 // 				id: number;
 // 				content: string;
-// 				ownerId: number | null;
+// 				ownerId: number | undefined;
 // 				createdAt: Date;
 // 			}[];
 // 		} | undefined
@@ -2042,7 +2042,7 @@
 // 		id: 1,
 // 		name: 'Dan',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{ id: 1, ownerId: 1, content: 'Post1', createdAt: usersWithPosts?.posts[0]?.createdAt }],
 // 	});
 // });
@@ -2079,12 +2079,12 @@
 // 			id: number;
 // 			name: string;
 // 			verified: boolean;
-// 			invitedBy: number | null;
+// 			invitedBy: number | undefined;
 // 			lowerName: string;
 // 			posts: {
 // 				id: number;
 // 				content: string;
-// 				ownerId: number | null;
+// 				ownerId: number | undefined;
 // 				createdAt: Date;
 // 			}[];
 // 		} | undefined
@@ -2164,12 +2164,12 @@
 // 			id: number;
 // 			name: string;
 // 			verified: boolean;
-// 			invitedBy: number | null;
+// 			invitedBy: number | undefined;
 // 			lowerName: string;
 // 			posts: {
 // 				id: number;
 // 				content: string;
-// 				ownerId: number | null;
+// 				ownerId: number | undefined;
 // 				createdAt: Date;
 // 			}[];
 // 		} | undefined
@@ -2182,7 +2182,7 @@
 // 		name: 'Dan',
 // 		lowerName: 'dan',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{ id: 1, ownerId: 1, content: 'Post1', createdAt: usersWithPosts?.posts[0]?.createdAt }],
 // 	});
 // });
@@ -2220,11 +2220,11 @@
 // 			id: number;
 // 			name: string;
 // 			verified: boolean;
-// 			invitedBy: number | null;
+// 			invitedBy: number | undefined;
 // 			posts: {
 // 				id: number;
 // 				content: string;
-// 				ownerId: number | null;
+// 				ownerId: number | undefined;
 // 				createdAt: Date;
 // 			}[];
 // 		} | undefined
@@ -2236,7 +2236,7 @@
 // 		id: 3,
 // 		name: 'Alex',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{
 // 			id: 7,
 // 			ownerId: 3,
@@ -2276,11 +2276,11 @@
 // 			id: number;
 // 			name: string;
 // 			verified: boolean;
-// 			invitedBy: number | null;
+// 			invitedBy: number | undefined;
 // 			posts: {
 // 				id: number;
 // 				content: string;
-// 				ownerId: number | null;
+// 				ownerId: number | undefined;
 // 				createdAt: Date;
 // 			}[];
 // 		} | undefined
@@ -2292,7 +2292,7 @@
 // 		id: 1,
 // 		name: 'Dan',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{ id: 1, ownerId: 1, content: 'Post1', createdAt: usersWithPosts?.posts[0]?.createdAt }],
 // 	});
 // });
@@ -2488,10 +2488,10 @@
 // 		{
 // 			id: number;
 // 			verified: boolean;
-// 			invitedBy: number | null;
+// 			invitedBy: number | undefined;
 // 			posts: {
 // 				id: number;
-// 				ownerId: number | null;
+// 				ownerId: number | undefined;
 // 				createdAt: Date;
 // 			}[];
 // 		} | undefined
@@ -2502,7 +2502,7 @@
 // 	expect(usersWithPosts).toEqual({
 // 		id: 1,
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{ id: 1, ownerId: 1, createdAt: usersWithPosts?.posts[0]?.createdAt }],
 // 	});
 // });
@@ -2532,13 +2532,13 @@
 // 			id: number;
 // 			name: string;
 // 			verified: boolean;
-// 			invitedBy: number | null;
+// 			invitedBy: number | undefined;
 // 			invitee: {
 // 				id: number;
 // 				name: string;
 // 				verified: boolean;
-// 				invitedBy: number | null;
-// 			} | null;
+// 				invitedBy: number | undefined;
+// 			} | undefined;
 // 		}[]
 // 	>();
 
@@ -2554,29 +2554,29 @@
 // 		id: 1,
 // 		name: 'Dan',
 // 		verified: false,
-// 		invitedBy: null,
-// 		invitee: null,
+// 		invitedBy: undefined,
+// 		invitee: undefined,
 // 	});
 // 	expect(usersWithInvitee[1]).toEqual({
 // 		id: 2,
 // 		name: 'Andrew',
 // 		verified: false,
-// 		invitedBy: null,
-// 		invitee: null,
+// 		invitedBy: undefined,
+// 		invitee: undefined,
 // 	});
 // 	expect(usersWithInvitee[2]).toEqual({
 // 		id: 3,
 // 		name: 'Alex',
 // 		verified: false,
 // 		invitedBy: 1,
-// 		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: null },
+// 		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: undefined },
 // 	});
 // 	expect(usersWithInvitee[3]).toEqual({
 // 		id: 4,
 // 		name: 'John',
 // 		verified: false,
 // 		invitedBy: 2,
-// 		invitee: { id: 2, name: 'Andrew', verified: false, invitedBy: null },
+// 		invitee: { id: 2, name: 'Andrew', verified: false, invitedBy: undefined },
 // 	});
 // });
 
@@ -2602,13 +2602,13 @@
 // 			id: number;
 // 			name: string;
 // 			verified: boolean;
-// 			invitedBy: number | null;
+// 			invitedBy: number | undefined;
 // 			invitee: {
 // 				id: number;
 // 				name: string;
 // 				verified: boolean;
-// 				invitedBy: number | null;
-// 			} | null;
+// 				invitedBy: number | undefined;
+// 			} | undefined;
 // 		}[]
 // 	>();
 
@@ -2622,15 +2622,15 @@
 // 		id: 1,
 // 		name: 'Dan',
 // 		verified: false,
-// 		invitedBy: null,
-// 		invitee: null,
+// 		invitedBy: undefined,
+// 		invitee: undefined,
 // 	});
 // 	expect(usersWithInvitee[1]).toEqual({
 // 		id: 2,
 // 		name: 'Andrew',
 // 		verified: false,
 // 		invitedBy: 1,
-// 		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: null },
+// 		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: undefined },
 // 	});
 // });
 
@@ -2659,14 +2659,14 @@
 // 			name: string;
 // 			verified: boolean;
 // 			lower: string;
-// 			invitedBy: number | null;
+// 			invitedBy: number | undefined;
 // 			invitee: {
 // 				id: number;
 // 				name: string;
 // 				verified: boolean;
 // 				lower: string;
-// 				invitedBy: number | null;
-// 			} | null;
+// 				invitedBy: number | undefined;
+// 			} | undefined;
 // 		}[]
 // 	>();
 
@@ -2683,16 +2683,16 @@
 // 		name: 'Dan',
 // 		lower: 'dan',
 // 		verified: false,
-// 		invitedBy: null,
-// 		invitee: null,
+// 		invitedBy: undefined,
+// 		invitee: undefined,
 // 	});
 // 	expect(usersWithInvitee[1]).toEqual({
 // 		id: 2,
 // 		name: 'Andrew',
 // 		lower: 'andrew',
 // 		verified: false,
-// 		invitedBy: null,
-// 		invitee: null,
+// 		invitedBy: undefined,
+// 		invitee: undefined,
 // 	});
 // 	expect(usersWithInvitee[2]).toEqual({
 // 		id: 3,
@@ -2700,7 +2700,7 @@
 // 		lower: 'alex',
 // 		verified: false,
 // 		invitedBy: 1,
-// 		invitee: { id: 1, name: 'Dan', lower: 'dan', verified: false, invitedBy: null },
+// 		invitee: { id: 1, name: 'Dan', lower: 'dan', verified: false, invitedBy: undefined },
 // 	});
 // 	expect(usersWithInvitee[3]).toEqual({
 // 		id: 4,
@@ -2708,7 +2708,7 @@
 // 		lower: 'john',
 // 		verified: false,
 // 		invitedBy: 2,
-// 		invitee: { id: 2, name: 'Andrew', lower: 'andrew', verified: false, invitedBy: null },
+// 		invitee: { id: 2, name: 'Andrew', lower: 'andrew', verified: false, invitedBy: undefined },
 // 	});
 // });
 
@@ -2738,14 +2738,14 @@
 // 			name: string;
 // 			verified: boolean;
 // 			lower: string;
-// 			invitedBy: number | null;
+// 			invitedBy: number | undefined;
 // 			invitee: {
 // 				id: number;
 // 				name: string;
 // 				verified: boolean;
 // 				lower: string;
-// 				invitedBy: number | null;
-// 			} | null;
+// 				invitedBy: number | undefined;
+// 			} | undefined;
 // 		}[]
 // 	>();
 
@@ -2761,16 +2761,16 @@
 // 		name: 'Dan',
 // 		lower: 'dan',
 // 		verified: false,
-// 		invitedBy: null,
-// 		invitee: null,
+// 		invitedBy: undefined,
+// 		invitee: undefined,
 // 	});
 // 	expect(usersWithInvitee[1]).toEqual({
 // 		id: 2,
 // 		name: 'Andrew',
 // 		lower: 'andrew',
 // 		verified: false,
-// 		invitedBy: null,
-// 		invitee: null,
+// 		invitedBy: undefined,
+// 		invitee: undefined,
 // 	});
 // 	expect(usersWithInvitee[2]).toEqual({
 // 		id: 3,
@@ -2778,7 +2778,7 @@
 // 		lower: 'alex',
 // 		verified: false,
 // 		invitedBy: 1,
-// 		invitee: { id: 1, name: 'Dan', lower: 'dan', verified: false, invitedBy: null },
+// 		invitee: { id: 1, name: 'Dan', lower: 'dan', verified: false, invitedBy: undefined },
 // 	});
 // });
 
@@ -2804,13 +2804,13 @@
 // 			id: number;
 // 			name: string;
 // 			verified: boolean;
-// 			invitedBy: number | null;
+// 			invitedBy: number | undefined;
 // 			invitee: {
 // 				id: number;
 // 				name: string;
 // 				verified: boolean;
-// 				invitedBy: number | null;
-// 			} | null;
+// 				invitedBy: number | undefined;
+// 			} | undefined;
 // 		}[]
 // 	>();
 
@@ -2824,29 +2824,29 @@
 // 		id: 1,
 // 		name: 'Dan',
 // 		verified: false,
-// 		invitedBy: null,
-// 		invitee: null,
+// 		invitedBy: undefined,
+// 		invitee: undefined,
 // 	});
 // 	expect(usersWithInvitee[2]).toEqual({
 // 		id: 2,
 // 		name: 'Andrew',
 // 		verified: false,
-// 		invitedBy: null,
-// 		invitee: null,
+// 		invitedBy: undefined,
+// 		invitee: undefined,
 // 	});
 // 	expect(usersWithInvitee[1]).toEqual({
 // 		id: 3,
 // 		name: 'Alex',
 // 		verified: false,
 // 		invitedBy: 1,
-// 		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: null },
+// 		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: undefined },
 // 	});
 // 	expect(usersWithInvitee[0]).toEqual({
 // 		id: 4,
 // 		name: 'John',
 // 		verified: false,
 // 		invitedBy: 2,
-// 		invitee: { id: 2, name: 'Andrew', verified: false, invitedBy: null },
+// 		invitee: { id: 2, name: 'Andrew', verified: false, invitedBy: undefined },
 // 	});
 // });
 
@@ -2872,13 +2872,13 @@
 // 			id: number;
 // 			name: string;
 // 			verified: boolean;
-// 			invitedBy: number | null;
+// 			invitedBy: number | undefined;
 // 			invitee: {
 // 				id: number;
 // 				name: string;
 // 				verified: boolean;
-// 				invitedBy: number | null;
-// 			} | null;
+// 				invitedBy: number | undefined;
+// 			} | undefined;
 // 		}[]
 // 	>();
 
@@ -2891,14 +2891,14 @@
 // 		name: 'Alex',
 // 		verified: false,
 // 		invitedBy: 1,
-// 		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: null },
+// 		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: undefined },
 // 	});
 // 	expect(usersWithInvitee).toContainEqual({
 // 		id: 4,
 // 		name: 'John',
 // 		verified: false,
 // 		invitedBy: 2,
-// 		invitee: { id: 2, name: 'Andrew', verified: false, invitedBy: null },
+// 		invitee: { id: 2, name: 'Andrew', verified: false, invitedBy: undefined },
 // 	});
 // });
 
@@ -2935,7 +2935,7 @@
 // 			invitee: {
 // 				id: number;
 // 				name: string;
-// 			} | null;
+// 			} | undefined;
 // 		}[]
 // 	>();
 
@@ -2986,7 +2986,7 @@
 // 			invitee: {
 // 				id: number;
 // 				name: string;
-// 			} | null;
+// 			} | undefined;
 // 		}[]
 // 	>();
 
@@ -3039,7 +3039,7 @@
 // 			invitee: {
 // 				id: number;
 // 				name: string;
-// 			} | null;
+// 			} | undefined;
 // 		}[]
 // 	>();
 
@@ -3087,12 +3087,12 @@
 // 		{
 // 			id: number;
 // 			name: string;
-// 			invitedBy: number | null;
+// 			invitedBy: number | undefined;
 // 			invitee: {
 // 				id: number;
 // 				verified: boolean;
-// 				invitedBy: number | null;
-// 			} | null;
+// 				invitedBy: number | undefined;
+// 			} | undefined;
 // 		}[]
 // 	>();
 
@@ -3104,13 +3104,13 @@
 // 		id: 3,
 // 		name: 'Alex',
 // 		invitedBy: 1,
-// 		invitee: { id: 1, verified: false, invitedBy: null },
+// 		invitee: { id: 1, verified: false, invitedBy: undefined },
 // 	});
 // 	expect(usersWithInvitee).toContainEqual({
 // 		id: 4,
 // 		name: 'John',
 // 		invitedBy: 2,
-// 		invitee: { id: 2, verified: false, invitedBy: null },
+// 		invitee: { id: 2, verified: false, invitedBy: undefined },
 // 	});
 // });
 
@@ -3146,14 +3146,14 @@
 // 			id: number;
 // 			name: string;
 // 			verified: boolean;
-// 			invitedBy: number | null;
-// 			posts: { id: number; ownerId: number | null; content: string; createdAt: Date }[];
+// 			invitedBy: number | undefined;
+// 			posts: { id: number; ownerId: number | undefined; content: string; createdAt: Date }[];
 // 			invitee: {
 // 				id: number;
 // 				name: string;
 // 				verified: boolean;
-// 				invitedBy: number | null;
-// 			} | null;
+// 				invitedBy: number | undefined;
+// 			} | undefined;
 // 		}[]
 // 	>();
 
@@ -3174,16 +3174,16 @@
 // 		id: 1,
 // 		name: 'Dan',
 // 		verified: false,
-// 		invitedBy: null,
-// 		invitee: null,
+// 		invitedBy: undefined,
+// 		invitee: undefined,
 // 		posts: [{ id: 1, ownerId: 1, content: 'Post1', createdAt: response[0]?.posts[0]?.createdAt }],
 // 	});
 // 	expect(response).toContainEqual({
 // 		id: 2,
 // 		name: 'Andrew',
 // 		verified: false,
-// 		invitedBy: null,
-// 		invitee: null,
+// 		invitedBy: undefined,
+// 		invitee: undefined,
 // 		posts: [{ id: 2, ownerId: 2, content: 'Post2', createdAt: response[1]?.posts[0]?.createdAt }],
 // 	});
 // 	expect(response).toContainEqual({
@@ -3191,7 +3191,7 @@
 // 		name: 'Alex',
 // 		verified: false,
 // 		invitedBy: 1,
-// 		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: null },
+// 		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: undefined },
 // 		posts: [{ id: 3, ownerId: 3, content: 'Post3', createdAt: response[2]?.posts[0]?.createdAt }],
 // 	});
 // 	expect(response).toContainEqual({
@@ -3199,7 +3199,7 @@
 // 		name: 'John',
 // 		verified: false,
 // 		invitedBy: 2,
-// 		invitee: { id: 2, name: 'Andrew', verified: false, invitedBy: null },
+// 		invitee: { id: 2, name: 'Andrew', verified: false, invitedBy: undefined },
 // 		posts: [],
 // 	});
 // });
@@ -3238,14 +3238,14 @@
 // 			id: number;
 // 			name: string;
 // 			verified: boolean;
-// 			invitedBy: number | null;
-// 			posts: { id: number; ownerId: number | null; content: string; createdAt: Date }[];
+// 			invitedBy: number | undefined;
+// 			posts: { id: number; ownerId: number | undefined; content: string; createdAt: Date }[];
 // 			invitee: {
 // 				id: number;
 // 				name: string;
 // 				verified: boolean;
-// 				invitedBy: number | null;
-// 			} | null;
+// 				invitedBy: number | undefined;
+// 			} | undefined;
 // 		}[]
 // 	>();
 
@@ -3265,16 +3265,16 @@
 // 		id: 1,
 // 		name: 'Dan',
 // 		verified: false,
-// 		invitedBy: null,
-// 		invitee: null,
+// 		invitedBy: undefined,
+// 		invitee: undefined,
 // 		posts: [{ id: 1, ownerId: 1, content: 'Post1', createdAt: response[0]?.posts[0]?.createdAt }],
 // 	});
 // 	expect(response).toContainEqual({
 // 		id: 2,
 // 		name: 'Andrew',
 // 		verified: false,
-// 		invitedBy: null,
-// 		invitee: null,
+// 		invitedBy: undefined,
+// 		invitee: undefined,
 // 		posts: [{ id: 3, ownerId: 2, content: 'Post2', createdAt: response[1]?.posts[0]?.createdAt }],
 // 	});
 // 	expect(response).toContainEqual({
@@ -3282,7 +3282,7 @@
 // 		name: 'Alex',
 // 		verified: false,
 // 		invitedBy: 1,
-// 		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: null },
+// 		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: undefined },
 // 		posts: [{ id: 5, ownerId: 3, content: 'Post3', createdAt: response[2]?.posts[0]?.createdAt }],
 // 	});
 // });
@@ -3326,15 +3326,15 @@
 // 			name: string;
 // 			verified: boolean;
 // 			lower: string;
-// 			invitedBy: number | null;
-// 			posts: { id: number; lower: string; ownerId: number | null; content: string; createdAt: Date }[];
+// 			invitedBy: number | undefined;
+// 			posts: { id: number; lower: string; ownerId: number | undefined; content: string; createdAt: Date }[];
 // 			invitee: {
 // 				id: number;
 // 				name: string;
 // 				lower: string;
 // 				verified: boolean;
-// 				invitedBy: number | null;
-// 			} | null;
+// 				invitedBy: number | undefined;
+// 			} | undefined;
 // 		}[]
 // 	>();
 
@@ -3355,8 +3355,8 @@
 // 		name: 'Dan',
 // 		lower: 'dan',
 // 		verified: false,
-// 		invitedBy: null,
-// 		invitee: null,
+// 		invitedBy: undefined,
+// 		invitee: undefined,
 // 		posts: [{ id: 1, ownerId: 1, content: 'Post1', lower: 'post1', createdAt: response[0]?.posts[0]?.createdAt }],
 // 	});
 // 	expect(response).toContainEqual({
@@ -3364,8 +3364,8 @@
 // 		name: 'Andrew',
 // 		lower: 'andrew',
 // 		verified: false,
-// 		invitedBy: null,
-// 		invitee: null,
+// 		invitedBy: undefined,
+// 		invitee: undefined,
 // 		posts: [{ id: 3, ownerId: 2, content: 'Post2', lower: 'post2', createdAt: response[1]?.posts[0]?.createdAt }],
 // 	});
 // 	expect(response).toContainEqual({
@@ -3374,7 +3374,7 @@
 // 		lower: 'alex',
 // 		verified: false,
 // 		invitedBy: 1,
-// 		invitee: { id: 1, name: 'Dan', lower: 'dan', verified: false, invitedBy: null },
+// 		invitee: { id: 1, name: 'Dan', lower: 'dan', verified: false, invitedBy: undefined },
 // 		posts: [{ id: 5, ownerId: 3, content: 'Post3', lower: 'post3', createdAt: response[2]?.posts[0]?.createdAt }],
 // 	});
 // });
@@ -3414,15 +3414,15 @@
 // 			name: string;
 // 			verified: boolean;
 // 			lower: string;
-// 			invitedBy: number | null;
-// 			posts: { id: number; lower: string; ownerId: number | null; content: string; createdAt: Date }[];
+// 			invitedBy: number | undefined;
+// 			posts: { id: number; lower: string; ownerId: number | undefined; content: string; createdAt: Date }[];
 // 			invitee: {
 // 				id: number;
 // 				name: string;
 // 				lower: string;
 // 				verified: boolean;
-// 				invitedBy: number | null;
-// 			} | null;
+// 				invitedBy: number | undefined;
+// 			} | undefined;
 // 		}[]
 // 	>();
 
@@ -3449,8 +3449,8 @@
 // 		name: 'Dan',
 // 		lower: 'dan',
 // 		verified: false,
-// 		invitedBy: null,
-// 		invitee: null,
+// 		invitedBy: undefined,
+// 		invitee: undefined,
 // 		posts: [{ id: 1, ownerId: 1, content: 'Post1', lower: 'post1', createdAt: response[0]?.posts[0]?.createdAt }, {
 // 			id: 2,
 // 			ownerId: 1,
@@ -3464,8 +3464,8 @@
 // 		name: 'Andrew',
 // 		lower: 'andrew',
 // 		verified: false,
-// 		invitedBy: null,
-// 		invitee: null,
+// 		invitedBy: undefined,
+// 		invitee: undefined,
 // 		posts: [{ id: 3, ownerId: 2, content: 'Post2', lower: 'post2', createdAt: response[1]?.posts[0]?.createdAt }, {
 // 			id: 4,
 // 			ownerId: 2,
@@ -3480,7 +3480,7 @@
 // 		lower: 'alex',
 // 		verified: false,
 // 		invitedBy: 1,
-// 		invitee: { id: 1, name: 'Dan', lower: 'dan', verified: false, invitedBy: null },
+// 		invitee: { id: 1, name: 'Dan', lower: 'dan', verified: false, invitedBy: undefined },
 // 		posts: [{ id: 5, ownerId: 3, content: 'Post3', lower: 'post3', createdAt: response[2]?.posts[0]?.createdAt }, {
 // 			id: 6,
 // 			ownerId: 3,
@@ -3495,7 +3495,7 @@
 // 		lower: 'john',
 // 		verified: false,
 // 		invitedBy: 2,
-// 		invitee: { id: 2, name: 'Andrew', lower: 'andrew', verified: false, invitedBy: null },
+// 		invitee: { id: 2, name: 'Andrew', lower: 'andrew', verified: false, invitedBy: undefined },
 // 		posts: [],
 // 	});
 // });
@@ -3533,14 +3533,14 @@
 // 			id: number;
 // 			name: string;
 // 			verified: boolean;
-// 			invitedBy: number | null;
-// 			posts: { id: number; ownerId: number | null; content: string; createdAt: Date }[];
+// 			invitedBy: number | undefined;
+// 			posts: { id: number; ownerId: number | undefined; content: string; createdAt: Date }[];
 // 			invitee: {
 // 				id: number;
 // 				name: string;
 // 				verified: boolean;
-// 				invitedBy: number | null;
-// 			} | null;
+// 				invitedBy: number | undefined;
+// 			} | undefined;
 // 		}[]
 // 	>();
 
@@ -3560,8 +3560,8 @@
 // 		id: 1,
 // 		name: 'Dan',
 // 		verified: false,
-// 		invitedBy: null,
-// 		invitee: null,
+// 		invitedBy: undefined,
+// 		invitee: undefined,
 // 		posts: [{ id: 2, ownerId: 1, content: 'Post1.1', createdAt: response[3]?.posts[0]?.createdAt }, {
 // 			id: 1,
 // 			ownerId: 1,
@@ -3573,8 +3573,8 @@
 // 		id: 2,
 // 		name: 'Andrew',
 // 		verified: false,
-// 		invitedBy: null,
-// 		invitee: null,
+// 		invitedBy: undefined,
+// 		invitee: undefined,
 // 		posts: [{ id: 4, ownerId: 2, content: 'Post2.1', createdAt: response[2]?.posts[0]?.createdAt }, {
 // 			id: 3,
 // 			ownerId: 2,
@@ -3587,7 +3587,7 @@
 // 		name: 'Alex',
 // 		verified: false,
 // 		invitedBy: 1,
-// 		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: null },
+// 		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: undefined },
 // 		posts: [{
 // 			id: 5,
 // 			ownerId: 3,
@@ -3600,7 +3600,7 @@
 // 		name: 'John',
 // 		verified: false,
 // 		invitedBy: 2,
-// 		invitee: { id: 2, name: 'Andrew', verified: false, invitedBy: null },
+// 		invitee: { id: 2, name: 'Andrew', verified: false, invitedBy: undefined },
 // 		posts: [],
 // 	});
 // });
@@ -3636,14 +3636,14 @@
 // 			id: number;
 // 			name: string;
 // 			verified: boolean;
-// 			invitedBy: number | null;
-// 			posts: { id: number; ownerId: number | null; content: string; createdAt: Date }[];
+// 			invitedBy: number | undefined;
+// 			posts: { id: number; ownerId: number | undefined; content: string; createdAt: Date }[];
 // 			invitee: {
 // 				id: number;
 // 				name: string;
 // 				verified: boolean;
-// 				invitedBy: number | null;
-// 			} | null;
+// 				invitedBy: number | undefined;
+// 			} | undefined;
 // 		}[]
 // 	>();
 
@@ -3661,8 +3661,8 @@
 // 		id: 2,
 // 		name: 'Andrew',
 // 		verified: false,
-// 		invitedBy: null,
-// 		invitee: null,
+// 		invitedBy: undefined,
+// 		invitee: undefined,
 // 		posts: [{ id: 2, ownerId: 2, content: 'Post2', createdAt: response[0]?.posts[0]?.createdAt }],
 // 	});
 // 	expect(response).toContainEqual({
@@ -3670,7 +3670,7 @@
 // 		name: 'Alex',
 // 		verified: false,
 // 		invitedBy: 1,
-// 		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: null },
+// 		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: undefined },
 // 		posts: [],
 // 	});
 // });
@@ -3711,14 +3711,14 @@
 // 			id: number;
 // 			name: string;
 // 			verified: boolean;
-// 			invitedBy: number | null;
-// 			posts: { id: number; ownerId: number | null; content: string; createdAt: Date }[];
+// 			invitedBy: number | undefined;
+// 			posts: { id: number; ownerId: number | undefined; content: string; createdAt: Date }[];
 // 			invitee: {
 // 				id: number;
 // 				name: string;
 // 				verified: boolean;
-// 				invitedBy: number | null;
-// 			} | null;
+// 				invitedBy: number | undefined;
+// 			} | undefined;
 // 		}[]
 // 	>();
 
@@ -3732,7 +3732,7 @@
 // 		name: 'Alex',
 // 		verified: false,
 // 		invitedBy: 1,
-// 		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: null },
+// 		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: undefined },
 // 		posts: [{ id: 5, ownerId: 3, content: 'Post3', createdAt: response[0]?.posts[0]?.createdAt }],
 // 	});
 // });
@@ -3778,15 +3778,15 @@
 // 			id: number;
 // 			name: string;
 // 			verified: boolean;
-// 			invitedBy: number | null;
+// 			invitedBy: number | undefined;
 // 			lower: string;
-// 			posts: { id: number; lower: string; ownerId: number | null; content: string; createdAt: Date }[];
+// 			posts: { id: number; lower: string; ownerId: number | undefined; content: string; createdAt: Date }[];
 // 			invitee: {
 // 				id: number;
 // 				name: string;
 // 				verified: boolean;
-// 				invitedBy: number | null;
-// 			} | null;
+// 				invitedBy: number | undefined;
+// 			} | undefined;
 // 		}[]
 // 	>();
 
@@ -3804,7 +3804,7 @@
 // 		lower: 'alex',
 // 		verified: false,
 // 		invitedBy: 1,
-// 		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: null },
+// 		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: undefined },
 // 		posts: [{
 // 			id: 5,
 // 			ownerId: 3,
@@ -3819,7 +3819,7 @@
 // 		lower: 'john',
 // 		verified: false,
 // 		invitedBy: 2,
-// 		invitee: { id: 2, name: 'Andrew', verified: false, invitedBy: null },
+// 		invitee: { id: 2, name: 'Andrew', verified: false, invitedBy: undefined },
 // 		posts: [],
 // 	});
 // });
@@ -3886,7 +3886,7 @@
 // 				id: number;
 // 				name: string;
 // 				lower: string;
-// 			} | null;
+// 			} | undefined;
 // 		}[]
 // 	>();
 
@@ -3958,18 +3958,18 @@
 // 			id: number;
 // 			name: string;
 // 			verified: boolean;
-// 			invitedBy: number | null;
+// 			invitedBy: number | undefined;
 // 			posts: {
 // 				id: number;
 // 				content: string;
-// 				ownerId: number | null;
+// 				ownerId: number | undefined;
 // 				createdAt: Date;
 // 				comments: {
 // 					id: number;
 // 					content: string;
 // 					createdAt: Date;
-// 					creator: number | null;
-// 					postId: number | null;
+// 					creator: number | undefined;
+// 					postId: number | undefined;
 // 				}[];
 // 			}[];
 // 		}[]
@@ -3990,7 +3990,7 @@
 // 		id: 1,
 // 		name: 'Dan',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{
 // 			id: 1,
 // 			ownerId: 1,
@@ -4011,7 +4011,7 @@
 // 		id: 2,
 // 		name: 'Andrew',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{
 // 			id: 2,
 // 			ownerId: 2,
@@ -4032,7 +4032,7 @@
 // 	// 	id: 3,
 // 	// 	name: 'Alex',
 // 	// 	verified: false,
-// 	// 	invitedBy: null,
+// 	// 	invitedBy: undefined,
 // 	// 	posts: [{
 // 	// 		id: 3,
 // 	// 		ownerId: 3,
@@ -4118,24 +4118,24 @@
 // 		id: number;
 // 		name: string;
 // 		verified: boolean;
-// 		invitedBy: number | null;
+// 		invitedBy: number | undefined;
 // 		posts: {
 // 			id: number;
 // 			content: string;
-// 			ownerId: number | null;
+// 			ownerId: number | undefined;
 // 			createdAt: Date;
 // 			comments: {
 // 				id: number;
 // 				content: string;
 // 				createdAt: Date;
-// 				creator: number | null;
-// 				postId: number | null;
+// 				creator: number | undefined;
+// 				postId: number | undefined;
 // 				author: {
 // 					id: number;
 // 					name: string;
 // 					verified: boolean;
-// 					invitedBy: number | null;
-// 				} | null;
+// 					invitedBy: number | undefined;
+// 				} | undefined;
 // 			}[];
 // 		}[];
 // 	}[]>();
@@ -4155,7 +4155,7 @@
 // 		id: 1,
 // 		name: 'Dan',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{
 // 			id: 1,
 // 			ownerId: 1,
@@ -4170,7 +4170,7 @@
 // 						id: 2,
 // 						name: 'Andrew',
 // 						verified: false,
-// 						invitedBy: null,
+// 						invitedBy: undefined,
 // 					},
 // 					postId: 1,
 // 					createdAt: response[0]?.posts[0]?.comments[0]?.createdAt,
@@ -4182,7 +4182,7 @@
 // 		id: 2,
 // 		name: 'Andrew',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{
 // 			id: 2,
 // 			ownerId: 2,
@@ -4197,7 +4197,7 @@
 // 						id: 2,
 // 						name: 'Andrew',
 // 						verified: false,
-// 						invitedBy: null,
+// 						invitedBy: undefined,
 // 					},
 // 					postId: 2,
 // 					createdAt: response[1]?.posts[0]?.comments[0]?.createdAt,
@@ -4245,24 +4245,24 @@
 // 		id: number;
 // 		name: string;
 // 		verified: boolean;
-// 		invitedBy: number | null;
+// 		invitedBy: number | undefined;
 // 		posts: {
 // 			id: number;
 // 			content: string;
-// 			ownerId: number | null;
+// 			ownerId: number | undefined;
 // 			createdAt: Date;
 // 			comments: {
 // 				id: number;
 // 				content: string;
 // 				createdAt: Date;
-// 				creator: number | null;
-// 				postId: number | null;
+// 				creator: number | undefined;
+// 				postId: number | undefined;
 // 				author: {
 // 					id: number;
 // 					name: string;
 // 					verified: boolean;
-// 					invitedBy: number | null;
-// 				} | null;
+// 					invitedBy: number | undefined;
+// 				} | undefined;
 // 			}[];
 // 		}[];
 // 	}[]>();
@@ -4276,7 +4276,7 @@
 // 		id: 1,
 // 		name: 'Dan',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		posts: [{
 // 			id: 1,
 // 			ownerId: 1,
@@ -4291,7 +4291,7 @@
 // 						id: 2,
 // 						name: 'Andrew',
 // 						verified: false,
-// 						invitedBy: null,
+// 						invitedBy: undefined,
 // 					},
 // 					postId: 1,
 // 					createdAt: response[0]?.posts[0]?.comments[0]?.createdAt,
@@ -4354,12 +4354,12 @@
 // 		id: number;
 // 		name: string;
 // 		verified: boolean;
-// 		invitedBy: number | null;
+// 		invitedBy: number | undefined;
 // 		usersToGroups: {
 // 			group: {
 // 				id: number;
 // 				name: string;
-// 				description: string | null;
+// 				description: string | undefined;
 // 			};
 // 		}[];
 // 	}[]>();
@@ -4376,12 +4376,12 @@
 // 		id: 1,
 // 		name: 'Dan',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		usersToGroups: [{
 // 			group: {
 // 				id: 1,
 // 				name: 'Group1',
-// 				description: null,
+// 				description: undefined,
 // 			},
 // 		}],
 // 	});
@@ -4390,12 +4390,12 @@
 // 		id: 2,
 // 		name: 'Andrew',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		usersToGroups: [{
 // 			group: {
 // 				id: 2,
 // 				name: 'Group2',
-// 				description: null,
+// 				description: undefined,
 // 			},
 // 		}],
 // 	});
@@ -4404,18 +4404,18 @@
 // 		id: 3,
 // 		name: 'Alex',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		usersToGroups: [{
 // 			group: {
 // 				id: 3,
 // 				name: 'Group3',
-// 				description: null,
+// 				description: undefined,
 // 			},
 // 		}, {
 // 			group: {
 // 				id: 2,
 // 				name: 'Group2',
-// 				description: null,
+// 				description: undefined,
 // 			},
 // 		}],
 // 	});
@@ -4457,13 +4457,13 @@
 // 	expectTypeOf(response).toEqualTypeOf<{
 // 		id: number;
 // 		name: string;
-// 		description: string | null;
+// 		description: string | undefined;
 // 		usersToGroups: {
 // 			user: {
 // 				id: number;
 // 				name: string;
 // 				verified: boolean;
-// 				invitedBy: number | null;
+// 				invitedBy: number | undefined;
 // 			};
 // 		}[];
 // 	}[]>();
@@ -4479,13 +4479,13 @@
 // 	expect(response).toContainEqual({
 // 		id: 1,
 // 		name: 'Group1',
-// 		description: null,
+// 		description: undefined,
 // 		usersToGroups: [{
 // 			user: {
 // 				id: 1,
 // 				name: 'Dan',
 // 				verified: false,
-// 				invitedBy: null,
+// 				invitedBy: undefined,
 // 			},
 // 		}],
 // 	});
@@ -4493,20 +4493,20 @@
 // 	expect(response).toContainEqual({
 // 		id: 2,
 // 		name: 'Group2',
-// 		description: null,
+// 		description: undefined,
 // 		usersToGroups: [{
 // 			user: {
 // 				id: 2,
 // 				name: 'Andrew',
 // 				verified: false,
-// 				invitedBy: null,
+// 				invitedBy: undefined,
 // 			},
 // 		}, {
 // 			user: {
 // 				id: 3,
 // 				name: 'Alex',
 // 				verified: false,
-// 				invitedBy: null,
+// 				invitedBy: undefined,
 // 			},
 // 		}],
 // 	});
@@ -4514,13 +4514,13 @@
 // 	expect(response).toContainEqual({
 // 		id: 3,
 // 		name: 'Group3',
-// 		description: null,
+// 		description: undefined,
 // 		usersToGroups: [{
 // 			user: {
 // 				id: 3,
 // 				name: 'Alex',
 // 				verified: false,
-// 				invitedBy: null,
+// 				invitedBy: undefined,
 // 			},
 // 		}],
 // 	});
@@ -4565,12 +4565,12 @@
 // 		id: number;
 // 		name: string;
 // 		verified: boolean;
-// 		invitedBy: number | null;
+// 		invitedBy: number | undefined;
 // 		usersToGroups: {
 // 			group: {
 // 				id: number;
 // 				name: string;
-// 				description: string | null;
+// 				description: string | undefined;
 // 			};
 // 		}[];
 // 	}[]>();
@@ -4586,12 +4586,12 @@
 // 		id: 1,
 // 		name: 'Dan',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		usersToGroups: [{
 // 			group: {
 // 				id: 1,
 // 				name: 'Group1',
-// 				description: null,
+// 				description: undefined,
 // 			},
 // 		}],
 // 	});
@@ -4600,12 +4600,12 @@
 // 		id: 2,
 // 		name: 'Andrew',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		usersToGroups: [{
 // 			group: {
 // 				id: 2,
 // 				name: 'Group2',
-// 				description: null,
+// 				description: undefined,
 // 			},
 // 		}],
 // 	});
@@ -4649,13 +4649,13 @@
 // 	expectTypeOf(response).toEqualTypeOf<{
 // 		id: number;
 // 		name: string;
-// 		description: string | null;
+// 		description: string | undefined;
 // 		usersToGroups: {
 // 			user: {
 // 				id: number;
 // 				name: string;
 // 				verified: boolean;
-// 				invitedBy: number | null;
+// 				invitedBy: number | undefined;
 // 			};
 // 		}[];
 // 	}[]>();
@@ -4670,13 +4670,13 @@
 // 	expect(response).toContainEqual({
 // 		id: 1,
 // 		name: 'Group1',
-// 		description: null,
+// 		description: undefined,
 // 		usersToGroups: [{
 // 			user: {
 // 				id: 1,
 // 				name: 'Dan',
 // 				verified: false,
-// 				invitedBy: null,
+// 				invitedBy: undefined,
 // 			},
 // 		}],
 // 	});
@@ -4684,13 +4684,13 @@
 // 	expect(response).toContainEqual({
 // 		id: 2,
 // 		name: 'Group2',
-// 		description: null,
+// 		description: undefined,
 // 		usersToGroups: [{
 // 			user: {
 // 				id: 2,
 // 				name: 'Andrew',
 // 				verified: false,
-// 				invitedBy: null,
+// 				invitedBy: undefined,
 // 			},
 // 		}],
 // 	});
@@ -4736,12 +4736,12 @@
 // 		id: number;
 // 		name: string;
 // 		verified: boolean;
-// 		invitedBy: number | null;
+// 		invitedBy: number | undefined;
 // 		usersToGroups: {
 // 			group: {
 // 				id: number;
 // 				name: string;
-// 				description: string | null;
+// 				description: string | undefined;
 // 			};
 // 		}[];
 // 	}[]>();
@@ -4756,12 +4756,12 @@
 // 		id: 1,
 // 		name: 'Dan',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		usersToGroups: [{
 // 			group: {
 // 				id: 1,
 // 				name: 'Group1',
-// 				description: null,
+// 				description: undefined,
 // 			},
 // 		}],
 // 	});
@@ -4807,13 +4807,13 @@
 // 	expectTypeOf(response).toEqualTypeOf<{
 // 		id: number;
 // 		name: string;
-// 		description: string | null;
+// 		description: string | undefined;
 // 		usersToGroups: {
 // 			user: {
 // 				id: number;
 // 				name: string;
 // 				verified: boolean;
-// 				invitedBy: number | null;
+// 				invitedBy: number | undefined;
 // 			};
 // 		}[];
 // 	}[]>();
@@ -4827,13 +4827,13 @@
 // 	expect(response).toContainEqual({
 // 		id: 2,
 // 		name: 'Group2',
-// 		description: null,
+// 		description: undefined,
 // 		usersToGroups: [{
 // 			user: {
 // 				id: 2,
 // 				name: 'Andrew',
 // 				verified: false,
-// 				invitedBy: null,
+// 				invitedBy: undefined,
 // 			},
 // 		}],
 // 	});
@@ -4878,12 +4878,12 @@
 // 		id: number;
 // 		name: string;
 // 		verified: boolean;
-// 		invitedBy: number | null;
+// 		invitedBy: number | undefined;
 // 		usersToGroups: {
 // 			group: {
 // 				id: number;
 // 				name: string;
-// 				description: string | null;
+// 				description: string | undefined;
 // 			};
 // 		}[];
 // 	}[]>();
@@ -4899,7 +4899,7 @@
 // 		id: 1,
 // 		name: 'Dan',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		usersToGroups: [],
 // 	});
 
@@ -4907,12 +4907,12 @@
 // 		id: 2,
 // 		name: 'Andrew',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		usersToGroups: [{
 // 			group: {
 // 				id: 2,
 // 				name: 'Group2',
-// 				description: null,
+// 				description: undefined,
 // 			},
 // 		}],
 // 	});
@@ -4956,13 +4956,13 @@
 // 	expectTypeOf(response).toEqualTypeOf<{
 // 		id: number;
 // 		name: string;
-// 		description: string | null;
+// 		description: string | undefined;
 // 		usersToGroups: {
 // 			user: {
 // 				id: number;
 // 				name: string;
 // 				verified: boolean;
-// 				invitedBy: number | null;
+// 				invitedBy: number | undefined;
 // 			};
 // 		}[];
 // 	}[]>();
@@ -4977,13 +4977,13 @@
 // 	expect(response).toContainEqual({
 // 		id: 2,
 // 		name: 'Group2',
-// 		description: null,
+// 		description: undefined,
 // 		usersToGroups: [{
 // 			user: {
 // 				id: 2,
 // 				name: 'Andrew',
 // 				verified: false,
-// 				invitedBy: null,
+// 				invitedBy: undefined,
 // 			},
 // 		}],
 // 	});
@@ -4991,7 +4991,7 @@
 // 	expect(response).toContainEqual({
 // 		id: 3,
 // 		name: 'Group3',
-// 		description: null,
+// 		description: undefined,
 // 		usersToGroups: [],
 // 	});
 // });
@@ -5035,12 +5035,12 @@
 // 		id: number;
 // 		name: string;
 // 		verified: boolean;
-// 		invitedBy: number | null;
+// 		invitedBy: number | undefined;
 // 		usersToGroups: {
 // 			group: {
 // 				id: number;
 // 				name: string;
-// 				description: string | null;
+// 				description: string | undefined;
 // 			};
 // 		}[];
 // 	}[]>();
@@ -5055,12 +5055,12 @@
 // 		id: 1,
 // 		name: 'Dan',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		usersToGroups: [{
 // 			group: {
 // 				id: 1,
 // 				name: 'Group1',
-// 				description: null,
+// 				description: undefined,
 // 			},
 // 		}],
 // 	});
@@ -5069,12 +5069,12 @@
 // 		id: 2,
 // 		name: 'Andrew',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		usersToGroups: [{
 // 			group: {
 // 				id: 2,
 // 				name: 'Group2',
-// 				description: null,
+// 				description: undefined,
 // 			},
 // 		}],
 // 	});
@@ -5083,18 +5083,18 @@
 // 		id: 3,
 // 		name: 'Alex',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		usersToGroups: [{
 // 			group: {
 // 				id: 3,
 // 				name: 'Group3',
-// 				description: null,
+// 				description: undefined,
 // 			},
 // 		}, {
 // 			group: {
 // 				id: 2,
 // 				name: 'Group2',
-// 				description: null,
+// 				description: undefined,
 // 			},
 // 		}],
 // 	});
@@ -5138,13 +5138,13 @@
 // 	expectTypeOf(response).toEqualTypeOf<{
 // 		id: number;
 // 		name: string;
-// 		description: string | null;
+// 		description: string | undefined;
 // 		usersToGroups: {
 // 			user: {
 // 				id: number;
 // 				name: string;
 // 				verified: boolean;
-// 				invitedBy: number | null;
+// 				invitedBy: number | undefined;
 // 			};
 // 		}[];
 // 	}[]>();
@@ -5158,13 +5158,13 @@
 // 	expect(response[2]).toEqual({
 // 		id: 1,
 // 		name: 'Group1',
-// 		description: null,
+// 		description: undefined,
 // 		usersToGroups: [{
 // 			user: {
 // 				id: 1,
 // 				name: 'Dan',
 // 				verified: false,
-// 				invitedBy: null,
+// 				invitedBy: undefined,
 // 			},
 // 		}],
 // 	});
@@ -5172,20 +5172,20 @@
 // 	expect(response[1]).toEqual({
 // 		id: 2,
 // 		name: 'Group2',
-// 		description: null,
+// 		description: undefined,
 // 		usersToGroups: [{
 // 			user: {
 // 				id: 3,
 // 				name: 'Alex',
 // 				verified: false,
-// 				invitedBy: null,
+// 				invitedBy: undefined,
 // 			},
 // 		}, {
 // 			user: {
 // 				id: 2,
 // 				name: 'Andrew',
 // 				verified: false,
-// 				invitedBy: null,
+// 				invitedBy: undefined,
 // 			},
 // 		}],
 // 	});
@@ -5193,13 +5193,13 @@
 // 	expect(response[0]).toEqual({
 // 		id: 3,
 // 		name: 'Group3',
-// 		description: null,
+// 		description: undefined,
 // 		usersToGroups: [{
 // 			user: {
 // 				id: 3,
 // 				name: 'Alex',
 // 				verified: false,
-// 				invitedBy: null,
+// 				invitedBy: undefined,
 // 			},
 // 		}],
 // 	});
@@ -5246,12 +5246,12 @@
 // 		id: number;
 // 		name: string;
 // 		verified: boolean;
-// 		invitedBy: number | null;
+// 		invitedBy: number | undefined;
 // 		usersToGroups: {
 // 			group: {
 // 				id: number;
 // 				name: string;
-// 				description: string | null;
+// 				description: string | undefined;
 // 			};
 // 		}[];
 // 	}[]>();
@@ -5265,12 +5265,12 @@
 // 		id: 2,
 // 		name: 'Andrew',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		usersToGroups: [{
 // 			group: {
 // 				id: 2,
 // 				name: 'Group2',
-// 				description: null,
+// 				description: undefined,
 // 			},
 // 		}],
 // 	});
@@ -5279,12 +5279,12 @@
 // 		id: 3,
 // 		name: 'Alex',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		usersToGroups: [{
 // 			group: {
 // 				id: 3,
 // 				name: 'Group3',
-// 				description: null,
+// 				description: undefined,
 // 			},
 // 		}],
 // 	});
@@ -5334,12 +5334,12 @@
 // 			id: number;
 // 			name: string;
 // 			verified: boolean;
-// 			invitedBy: number | null;
+// 			invitedBy: number | undefined;
 // 			usersToGroups: {
 // 				group: {
 // 					id: number;
 // 					name: string;
-// 					description: string | null;
+// 					description: string | undefined;
 // 				};
 // 			}[];
 // 		} | undefined
@@ -5351,12 +5351,12 @@
 // 		id: 1,
 // 		name: 'Dan',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		usersToGroups: [{
 // 			group: {
 // 				id: 1,
 // 				name: 'Group1',
-// 				description: null,
+// 				description: undefined,
 // 			},
 // 		}],
 // 	});
@@ -5399,13 +5399,13 @@
 // 		{
 // 			id: number;
 // 			name: string;
-// 			description: string | null;
+// 			description: string | undefined;
 // 			usersToGroups: {
 // 				user: {
 // 					id: number;
 // 					name: string;
 // 					verified: boolean;
-// 					invitedBy: number | null;
+// 					invitedBy: number | undefined;
 // 				};
 // 			}[];
 // 		} | undefined
@@ -5416,13 +5416,13 @@
 // 	expect(response).toEqual({
 // 		id: 1,
 // 		name: 'Group1',
-// 		description: null,
+// 		description: undefined,
 // 		usersToGroups: [{
 // 			user: {
 // 				id: 1,
 // 				name: 'Dan',
 // 				verified: false,
-// 				invitedBy: null,
+// 				invitedBy: undefined,
 // 			},
 // 		}],
 // 	});
@@ -5467,12 +5467,12 @@
 // 			id: number;
 // 			name: string;
 // 			verified: boolean;
-// 			invitedBy: number | null;
+// 			invitedBy: number | undefined;
 // 			usersToGroups: {
 // 				group: {
 // 					id: number;
 // 					name: string;
-// 					description: string | null;
+// 					description: string | undefined;
 // 				};
 // 			}[];
 // 		} | undefined
@@ -5484,12 +5484,12 @@
 // 		id: 1,
 // 		name: 'Dan',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		usersToGroups: [{
 // 			group: {
 // 				id: 1,
 // 				name: 'Group1',
-// 				description: null,
+// 				description: undefined,
 // 			},
 // 		}],
 // 	});
@@ -5533,13 +5533,13 @@
 // 		{
 // 			id: number;
 // 			name: string;
-// 			description: string | null;
+// 			description: string | undefined;
 // 			usersToGroups: {
 // 				user: {
 // 					id: number;
 // 					name: string;
 // 					verified: boolean;
-// 					invitedBy: number | null;
+// 					invitedBy: number | undefined;
 // 				};
 // 			}[];
 // 		} | undefined
@@ -5550,13 +5550,13 @@
 // 	expect(response).toEqual({
 // 		id: 1,
 // 		name: 'Group1',
-// 		description: null,
+// 		description: undefined,
 // 		usersToGroups: [{
 // 			user: {
 // 				id: 1,
 // 				name: 'Dan',
 // 				verified: false,
-// 				invitedBy: null,
+// 				invitedBy: undefined,
 // 			},
 // 		}],
 // 	});
@@ -5602,12 +5602,12 @@
 // 			id: number;
 // 			name: string;
 // 			verified: boolean;
-// 			invitedBy: number | null;
+// 			invitedBy: number | undefined;
 // 			usersToGroups: {
 // 				group: {
 // 					id: number;
 // 					name: string;
-// 					description: string | null;
+// 					description: string | undefined;
 // 				};
 // 			}[];
 // 		} | undefined
@@ -5619,12 +5619,12 @@
 // 		id: 1,
 // 		name: 'Dan',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		usersToGroups: [{
 // 			group: {
 // 				id: 1,
 // 				name: 'Group1',
-// 				description: null,
+// 				description: undefined,
 // 			},
 // 		}],
 // 	});
@@ -5670,13 +5670,13 @@
 // 		{
 // 			id: number;
 // 			name: string;
-// 			description: string | null;
+// 			description: string | undefined;
 // 			usersToGroups: {
 // 				user: {
 // 					id: number;
 // 					name: string;
 // 					verified: boolean;
-// 					invitedBy: number | null;
+// 					invitedBy: number | undefined;
 // 				};
 // 			}[];
 // 		} | undefined
@@ -5687,13 +5687,13 @@
 // 	expect(response).toEqual({
 // 		id: 2,
 // 		name: 'Group2',
-// 		description: null,
+// 		description: undefined,
 // 		usersToGroups: [{
 // 			user: {
 // 				id: 2,
 // 				name: 'Andrew',
 // 				verified: false,
-// 				invitedBy: null,
+// 				invitedBy: undefined,
 // 			},
 // 		}],
 // 	});
@@ -5739,12 +5739,12 @@
 // 			id: number;
 // 			name: string;
 // 			verified: boolean;
-// 			invitedBy: number | null;
+// 			invitedBy: number | undefined;
 // 			usersToGroups: {
 // 				group: {
 // 					id: number;
 // 					name: string;
-// 					description: string | null;
+// 					description: string | undefined;
 // 				};
 // 			}[];
 // 		} | undefined
@@ -5756,7 +5756,7 @@
 // 		id: 1,
 // 		name: 'Dan',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		usersToGroups: [],
 // 	});
 // });
@@ -5800,13 +5800,13 @@
 // 		{
 // 			id: number;
 // 			name: string;
-// 			description: string | null;
+// 			description: string | undefined;
 // 			usersToGroups: {
 // 				user: {
 // 					id: number;
 // 					name: string;
 // 					verified: boolean;
-// 					invitedBy: number | null;
+// 					invitedBy: number | undefined;
 // 				};
 // 			}[];
 // 		} | undefined
@@ -5817,13 +5817,13 @@
 // 	expect(response).toEqual({
 // 		id: 2,
 // 		name: 'Group2',
-// 		description: null,
+// 		description: undefined,
 // 		usersToGroups: [{
 // 			user: {
 // 				id: 2,
 // 				name: 'Andrew',
 // 				verified: false,
-// 				invitedBy: null,
+// 				invitedBy: undefined,
 // 			},
 // 		}],
 // 	});
@@ -5869,12 +5869,12 @@
 // 			id: number;
 // 			name: string;
 // 			verified: boolean;
-// 			invitedBy: number | null;
+// 			invitedBy: number | undefined;
 // 			usersToGroups: {
 // 				group: {
 // 					id: number;
 // 					name: string;
-// 					description: string | null;
+// 					description: string | undefined;
 // 				};
 // 			}[];
 // 		} | undefined
@@ -5886,18 +5886,18 @@
 // 		id: 3,
 // 		name: 'Alex',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		usersToGroups: [{
 // 			group: {
 // 				id: 3,
 // 				name: 'Group3',
-// 				description: null,
+// 				description: undefined,
 // 			},
 // 		}, {
 // 			group: {
 // 				id: 2,
 // 				name: 'Group2',
-// 				description: null,
+// 				description: undefined,
 // 			},
 // 		}],
 // 	});
@@ -5942,13 +5942,13 @@
 // 		{
 // 			id: number;
 // 			name: string;
-// 			description: string | null;
+// 			description: string | undefined;
 // 			usersToGroups: {
 // 				user: {
 // 					id: number;
 // 					name: string;
 // 					verified: boolean;
-// 					invitedBy: number | null;
+// 					invitedBy: number | undefined;
 // 				};
 // 			}[];
 // 		} | undefined
@@ -5959,13 +5959,13 @@
 // 	expect(response).toEqual({
 // 		id: 3,
 // 		name: 'Group3',
-// 		description: null,
+// 		description: undefined,
 // 		usersToGroups: [{
 // 			user: {
 // 				id: 3,
 // 				name: 'Alex',
 // 				verified: false,
-// 				invitedBy: null,
+// 				invitedBy: undefined,
 // 			},
 // 		}],
 // 	});
@@ -6012,12 +6012,12 @@
 // 			id: number;
 // 			name: string;
 // 			verified: boolean;
-// 			invitedBy: number | null;
+// 			invitedBy: number | undefined;
 // 			usersToGroups: {
 // 				group: {
 // 					id: number;
 // 					name: string;
-// 					description: string | null;
+// 					description: string | undefined;
 // 				};
 // 			}[];
 // 		} | undefined
@@ -6029,12 +6029,12 @@
 // 		id: 3,
 // 		name: 'Alex',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		usersToGroups: [{
 // 			group: {
 // 				id: 3,
 // 				name: 'Group3',
-// 				description: null,
+// 				description: undefined,
 // 			},
 // 		}],
 // 	});
@@ -6081,13 +6081,13 @@
 // 		{
 // 			id: number;
 // 			name: string;
-// 			description: string | null;
+// 			description: string | undefined;
 // 			usersToGroups: {
 // 				user: {
 // 					id: number;
 // 					name: string;
 // 					verified: boolean;
-// 					invitedBy: number | null;
+// 					invitedBy: number | undefined;
 // 				};
 // 			}[];
 // 		}[]
@@ -6101,13 +6101,13 @@
 // 	expect(response[1]).toEqual({
 // 		id: 2,
 // 		name: 'Group2',
-// 		description: null,
+// 		description: undefined,
 // 		usersToGroups: [{
 // 			user: {
 // 				id: 3,
 // 				name: 'Alex',
 // 				verified: false,
-// 				invitedBy: null,
+// 				invitedBy: undefined,
 // 			},
 // 		}],
 // 	});
@@ -6115,13 +6115,13 @@
 // 	expect(response[0]).toEqual({
 // 		id: 3,
 // 		name: 'Group3',
-// 		description: null,
+// 		description: undefined,
 // 		usersToGroups: [{
 // 			user: {
 // 				id: 3,
 // 				name: 'Alex',
 // 				verified: false,
-// 				invitedBy: null,
+// 				invitedBy: undefined,
 // 			},
 // 		}],
 // 	});
@@ -6172,13 +6172,13 @@
 // 			id: number;
 // 			name: string;
 // 			verified: boolean;
-// 			invitedBy: number | null;
+// 			invitedBy: number | undefined;
 // 			lower: string;
 // 			usersToGroups: {
 // 				group: {
 // 					id: number;
 // 					name: string;
-// 					description: string | null;
+// 					description: string | undefined;
 // 					lower: string;
 // 				};
 // 			}[];
@@ -6198,13 +6198,13 @@
 // 		name: 'Dan',
 // 		lower: 'dan',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		usersToGroups: [{
 // 			group: {
 // 				id: 1,
 // 				name: 'Group1',
 // 				lower: 'group1',
-// 				description: null,
+// 				description: undefined,
 // 			},
 // 		}],
 // 	});
@@ -6214,13 +6214,13 @@
 // 		name: 'Andrew',
 // 		lower: 'andrew',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		usersToGroups: [{
 // 			group: {
 // 				id: 2,
 // 				name: 'Group2',
 // 				lower: 'group2',
-// 				description: null,
+// 				description: undefined,
 // 			},
 // 		}],
 // 	});
@@ -6230,20 +6230,20 @@
 // 		name: 'Alex',
 // 		lower: 'alex',
 // 		verified: false,
-// 		invitedBy: null,
+// 		invitedBy: undefined,
 // 		usersToGroups: [{
 // 			group: {
 // 				id: 3,
 // 				name: 'Group3',
 // 				lower: 'group3',
-// 				description: null,
+// 				description: undefined,
 // 			},
 // 		}, {
 // 			group: {
 // 				id: 2,
 // 				name: 'Group2',
 // 				lower: 'group2',
-// 				description: null,
+// 				description: undefined,
 // 			},
 // 		}],
 // 	});
@@ -6293,14 +6293,14 @@
 // 		{
 // 			id: number;
 // 			name: string;
-// 			description: string | null;
+// 			description: string | undefined;
 // 			lower: string;
 // 			usersToGroups: {
 // 				user: {
 // 					id: number;
 // 					name: string;
 // 					verified: boolean;
-// 					invitedBy: number | null;
+// 					invitedBy: number | undefined;
 // 					lower: string;
 // 				};
 // 			}[];
@@ -6319,14 +6319,14 @@
 // 		id: 1,
 // 		name: 'Group1',
 // 		lower: 'group1',
-// 		description: null,
+// 		description: undefined,
 // 		usersToGroups: [{
 // 			user: {
 // 				id: 1,
 // 				name: 'Dan',
 // 				lower: 'dan',
 // 				verified: false,
-// 				invitedBy: null,
+// 				invitedBy: undefined,
 // 			},
 // 		}],
 // 	});
@@ -6335,14 +6335,14 @@
 // 		id: 2,
 // 		name: 'Group2',
 // 		lower: 'group2',
-// 		description: null,
+// 		description: undefined,
 // 		usersToGroups: [{
 // 			user: {
 // 				id: 2,
 // 				name: 'Andrew',
 // 				lower: 'andrew',
 // 				verified: false,
-// 				invitedBy: null,
+// 				invitedBy: undefined,
 // 			},
 // 		}, {
 // 			user: {
@@ -6350,7 +6350,7 @@
 // 				name: 'Alex',
 // 				lower: 'alex',
 // 				verified: false,
-// 				invitedBy: null,
+// 				invitedBy: undefined,
 // 			},
 // 		}],
 // 	});
@@ -6359,14 +6359,14 @@
 // 		id: 3,
 // 		name: 'Group3',
 // 		lower: 'group3',
-// 		description: null,
+// 		description: undefined,
 // 		usersToGroups: [{
 // 			user: {
 // 				id: 3,
 // 				name: 'Alex',
 // 				lower: 'alex',
 // 				verified: false,
-// 				invitedBy: null,
+// 				invitedBy: undefined,
 // 			},
 // 		}],
 // 	});

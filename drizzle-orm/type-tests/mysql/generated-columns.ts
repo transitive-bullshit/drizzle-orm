@@ -14,7 +14,7 @@ const users = mysqlTable(
 		fullName: text('full_name').generatedAlwaysAs(sql`concat_ws(first_name, ' ', last_name)`),
 		upperName: text('upper_name').generatedAlwaysAs(
 			sql` case when first_name is null then null else upper(first_name) end `,
-		).$type<string | null>(), // There is no way for drizzle to detect nullability in these cases. This is how the user can work around it
+		).$type<string | undefined>(), // There is no way for drizzle to detect nullability in these cases. This is how the user can work around it
 	},
 );
 
@@ -26,11 +26,11 @@ const users = mysqlTable(
 		Equal<
 			{
 				id: number;
-				firstName: string | null;
-				lastName: string | null;
+				firstName: string | undefined;
+				lastName: string | undefined;
 				email: string;
-				fullName: string | null;
-				upperName: string | null;
+				fullName: string | undefined;
+				upperName: string | undefined;
 			},
 			User
 		>
@@ -41,8 +41,8 @@ const users = mysqlTable(
 			{
 				email: string;
 				id?: number | undefined;
-				firstName?: string | null | undefined;
-				lastName?: string | null | undefined;
+				firstName?: string | undefined;
+				lastName?: string | undefined;
 			},
 			NewUser
 		>
@@ -57,11 +57,11 @@ const users = mysqlTable(
 		Equal<
 			{
 				id: number;
-				firstName: string | null;
-				lastName: string | null;
+				firstName: string | undefined;
+				lastName: string | undefined;
 				email: string;
-				fullName: string | null;
-				upperName: string | null;
+				fullName: string | undefined;
+				upperName: string | undefined;
 			},
 			User
 		>
@@ -72,8 +72,8 @@ const users = mysqlTable(
 			{
 				email: string;
 				id?: number | undefined;
-				firstName?: string | null | undefined;
-				lastName?: string | null | undefined;
+				firstName?: string | undefined;
+				lastName?: string | undefined;
 			},
 			NewUser
 		>
@@ -87,11 +87,11 @@ const users = mysqlTable(
 		Equal<
 			{
 				id: number;
-				firstName: string | null;
-				lastName: string | null;
+				firstName: string | undefined;
+				lastName: string | undefined;
 				email: string;
-				fullName: string | null;
-				upperName: string | null;
+				fullName: string | undefined;
+				upperName: string | undefined;
 			}[],
 			typeof dbUsers
 		>
@@ -107,11 +107,11 @@ const users = mysqlTable(
 		Equal<
 			{
 				id: number;
-				firstName: string | null;
-				lastName: string | null;
+				firstName: string | undefined;
+				lastName: string | undefined;
 				email: string;
-				fullName: string | null;
-				upperName: string | null;
+				fullName: string | undefined;
+				upperName: string | undefined;
 			} | undefined,
 			typeof dbUser
 		>
@@ -127,11 +127,11 @@ const users = mysqlTable(
 		Equal<
 			{
 				id: number;
-				firstName: string | null;
-				lastName: string | null;
+				firstName: string | undefined;
+				lastName: string | undefined;
 				email: string;
-				fullName: string | null;
-				upperName: string | null;
+				fullName: string | undefined;
+				upperName: string | undefined;
 			}[],
 			typeof dbUser
 		>

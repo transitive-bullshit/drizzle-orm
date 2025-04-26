@@ -119,7 +119,7 @@ beforeEach(async () => {
 			create table users (
 				id serial primary key,
 				name text not null,
-				verified boolean not null default false, 
+				verified boolean not null default false,
 				jsonb jsonb,
 				best_texts text[] not null default '{}',
 				created_at timestamptz not null default now()
@@ -172,7 +172,7 @@ test('select all fields', async () => {
 			id: 1,
 			name: 'John',
 			verified: false,
-			jsonb: null,
+			jsonb: undefined,
 			createdAt: result[0]!.createdAt,
 		},
 	]);
@@ -333,7 +333,7 @@ test('update with returning all fields', async () => {
 			bestTexts: [],
 			name: 'Jane',
 			verified: false,
-			jsonb: null,
+			jsonb: undefined,
 			createdAt: users[0]!.createdAt,
 		},
 	]);
@@ -368,7 +368,7 @@ test('delete with returning all fields', async () => {
 			id: 1,
 			name: 'John',
 			verified: false,
-			jsonb: null,
+			jsonb: undefined,
 			createdAt: users[0]!.createdAt,
 		},
 	]);
@@ -396,7 +396,7 @@ test('insert + select', async () => {
 			id: 1,
 			name: 'John',
 			verified: false,
-			jsonb: null,
+			jsonb: undefined,
 			createdAt: result[0]!.createdAt,
 		},
 	]);
@@ -409,7 +409,7 @@ test('insert + select', async () => {
 			id: 1,
 			name: 'John',
 			verified: false,
-			jsonb: null,
+			jsonb: undefined,
 			createdAt: result2[0]!.createdAt,
 		},
 		{
@@ -417,7 +417,7 @@ test('insert + select', async () => {
 			id: 2,
 			name: 'Jane',
 			verified: false,
-			jsonb: null,
+			jsonb: undefined,
 			createdAt: result2[1]!.createdAt,
 		},
 	]);
@@ -446,7 +446,7 @@ test('insert with overridden default values', async () => {
 			id: 1,
 			name: 'John',
 			verified: true,
-			jsonb: null,
+			jsonb: undefined,
 			createdAt: result[0]!.createdAt,
 		},
 	]);
@@ -471,10 +471,10 @@ test('insert many', async () => {
 		.from(usersTable);
 
 	expect(result).toEqual([
-		{ id: 1, name: 'John', jsonb: null, verified: false },
+		{ id: 1, name: 'John', jsonb: undefined, verified: false },
 		{ id: 2, name: 'Bruce', jsonb: ['foo', 'bar'], verified: false },
-		{ id: 3, name: 'Jane', jsonb: null, verified: false },
-		{ id: 4, name: 'Austin', jsonb: null, verified: true },
+		{ id: 3, name: 'Jane', jsonb: undefined, verified: false },
+		{ id: 4, name: 'Austin', jsonb: undefined, verified: true },
 	]);
 });
 
@@ -495,10 +495,10 @@ test('insert many with returning', async () => {
 		});
 
 	expect(result).toEqual([
-		{ id: 1, name: 'John', jsonb: null, verified: false },
+		{ id: 1, name: 'John', jsonb: undefined, verified: false },
 		{ id: 2, name: 'Bruce', jsonb: ['foo', 'bar'], verified: false },
-		{ id: 3, name: 'Jane', jsonb: null, verified: false },
-		{ id: 4, name: 'Austin', jsonb: null, verified: true },
+		{ id: 3, name: 'Jane', jsonb: undefined, verified: false },
+		{ id: 4, name: 'Austin', jsonb: undefined, verified: true },
 	]);
 });
 
@@ -650,7 +650,7 @@ test('full join with alias', async () => {
 				bestTexts: [],
 				name: 'Ivan',
 				verified: false,
-				jsonb: null,
+				jsonb: undefined,
 				createdAt: result[0]!.users.createdAt,
 			},
 			customer: {
@@ -658,7 +658,7 @@ test('full join with alias', async () => {
 				id: 11,
 				name: 'Hans',
 				verified: false,
-				jsonb: null,
+				jsonb: undefined,
 				createdAt: result[0]!.customer!.createdAt,
 			},
 		},

@@ -67,12 +67,12 @@ Expect<
 	Equal<User, {
 		id: number;
 		homeCity: number;
-		currentCity: number | null;
-		serialNullable: number | null;
+		currentCity: number | undefined;
+		serialNullable: number | undefined;
 		serialNotNull: number;
 		class: 'A' | 'C';
-		subClass: 'B' | 'D' | null;
-		name: string | null;
+		subClass: 'B' | 'D' | undefined;
+		name: string | undefined;
 		age1: number;
 		createdAt: Date;
 		enumCol: 'a' | 'b' | 'c';
@@ -84,12 +84,12 @@ Expect<
 	Equal<NewUser, {
 		id?: number;
 		homeCity: number;
-		currentCity?: number | null;
-		serialNullable?: number | null;
+		currentCity?: number | undefined;
+		serialNullable?: number | undefined;
 		serialNotNull: number;
 		class: 'A' | 'C';
-		subClass?: 'B' | 'D' | null;
-		name?: string | null;
+		subClass?: 'B' | 'D' | undefined;
+		name?: string | undefined;
 		age1: number;
 		createdAt?: Date;
 		enumCol: 'a' | 'b' | 'c';
@@ -107,7 +107,7 @@ Expect<
 	Equal<City, {
 		id: number;
 		name: string;
-		population: number | null;
+		population: number | undefined;
 	}>
 >;
 
@@ -116,7 +116,7 @@ Expect<
 	Equal<NewCity, {
 		id?: number;
 		name: string;
-		population?: number | null;
+		population?: number | undefined;
 	}>
 >;
 
@@ -130,7 +130,7 @@ export type Class = typeof classes.$inferSelect;
 Expect<
 	Equal<Class, {
 		id: number;
-		class: 'A' | 'C' | null;
+		class: 'A' | 'C' | undefined;
 		subClass: 'B' | 'D';
 	}>
 >;
@@ -139,7 +139,7 @@ export type NewClass = typeof classes.$inferInsert;
 Expect<
 	Equal<NewClass, {
 		id?: number;
-		class?: 'A' | 'C' | null;
+		class?: 'A' | 'C' | undefined;
 		subClass: 'B' | 'D';
 	}>
 >;
@@ -347,9 +347,9 @@ Expect<
 					userId: number;
 				};
 				custom_user: {
-					id: number | null;
+					id: number | undefined;
 				};
-			} | null;
+			} | undefined;
 			ticket: {
 				staffId: number;
 			};
@@ -379,12 +379,12 @@ Expect<
 		Equal<{
 			new_yorkers: {
 				userId: number;
-				cityId: number | null;
+				cityId: number | undefined;
 			};
 			ny1: {
 				userId: number;
-				cityId: number | null;
-			} | null;
+				cityId: number | undefined;
+			} | undefined;
 		}[], typeof result>
 	>;
 }

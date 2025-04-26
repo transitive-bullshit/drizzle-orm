@@ -209,7 +209,7 @@ test('select all fields', async (ctx) => {
 	expect(result[0]!.createdAt).toBeInstanceOf(Date);
 	// not timezone based timestamp, thats why it should not work here
 	// t.assert(Math.abs(result[0]!.createdAt.getTime() - now) < 2000);
-	expect(result).toEqual([{ id: 1, name: 'John', verified: false, jsonb: null, createdAt: result[0]!.createdAt }]);
+	expect(result).toEqual([{ id: 1, name: 'John', verified: false, jsonb: undefined, createdAt: result[0]!.createdAt }]);
 });
 
 test('select sql', async (ctx) => {
@@ -273,7 +273,7 @@ test('update with returning all fields', async (ctx) => {
 	expect(users[0]!.createdAt).toBeInstanceOf(Date);
 	// not timezone based timestamp, thats why it should not work here
 	// t.assert(Math.abs(users[0]!.createdAt.getTime() - now) < 2000);
-	expect(users).toEqual([{ id: 1, name: 'Jane', verified: false, jsonb: null, createdAt: users[0]!.createdAt }]);
+	expect(users).toEqual([{ id: 1, name: 'Jane', verified: false, jsonb: undefined, createdAt: users[0]!.createdAt }]);
 });
 
 test('update with returning partial', async (ctx) => {
@@ -314,13 +314,13 @@ test('insert + select', async (ctx) => {
 
 	await db.insert(usersTable).values({ name: 'John' });
 	const result = await db.select().from(usersTable);
-	expect(result).toEqual([{ id: 1, name: 'John', verified: false, jsonb: null, createdAt: result[0]!.createdAt }]);
+	expect(result).toEqual([{ id: 1, name: 'John', verified: false, jsonb: undefined, createdAt: result[0]!.createdAt }]);
 
 	await db.insert(usersTable).values({ name: 'Jane' });
 	const result2 = await db.select().from(usersTable);
 	expect(result2).toEqual([
-		{ id: 1, name: 'John', verified: false, jsonb: null, createdAt: result2[0]!.createdAt },
-		{ id: 2, name: 'Jane', verified: false, jsonb: null, createdAt: result2[1]!.createdAt },
+		{ id: 1, name: 'John', verified: false, jsonb: undefined, createdAt: result2[0]!.createdAt },
+		{ id: 2, name: 'Jane', verified: false, jsonb: undefined, createdAt: result2[1]!.createdAt },
 	]);
 });
 
@@ -343,7 +343,7 @@ test('insert with overridden default values', async (ctx) => {
 	await db.insert(usersTable).values({ name: 'John', verified: true });
 	const result = await db.select().from(usersTable);
 
-	expect(result).toEqual([{ id: 1, name: 'John', verified: true, jsonb: null, createdAt: result[0]!.createdAt }]);
+	expect(result).toEqual([{ id: 1, name: 'John', verified: true, jsonb: undefined, createdAt: result[0]!.createdAt }]);
 });
 
 test('insert many', async (ctx) => {
@@ -363,10 +363,10 @@ test('insert many', async (ctx) => {
 	}).from(usersTable);
 
 	expect(result).toEqual([
-		{ id: 1, name: 'John', jsonb: null, verified: false },
+		{ id: 1, name: 'John', jsonb: undefined, verified: false },
 		{ id: 2, name: 'Bruce', jsonb: ['foo', 'bar'], verified: false },
-		{ id: 3, name: 'Jane', jsonb: null, verified: false },
-		{ id: 4, name: 'Austin', jsonb: null, verified: true },
+		{ id: 3, name: 'Jane', jsonb: undefined, verified: false },
+		{ id: 4, name: 'Austin', jsonb: undefined, verified: true },
 	]);
 });
 

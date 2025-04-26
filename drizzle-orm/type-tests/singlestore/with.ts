@@ -74,7 +74,7 @@ const orders = singlestoreTable('orders', {
 			product: string;
 			amount: number;
 			quantity: number;
-			/* generated: string | null; */
+			/* generated: string | undefined; */
 		}[], typeof allFromWith>
 	>;
 }

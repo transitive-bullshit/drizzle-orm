@@ -60,7 +60,14 @@ test('select all fields', () => {
 
 	expect(result.createdAt).toBeInstanceOf(Date);
 	expect(Math.abs(result.createdAt.getTime() - now)).toBeLessThan(100);
-	expect(result).toEqual({ id: 1, name: 'John', verified: 0, json: null, createdAt: result.createdAt, bigInt: null });
+	expect(result).toEqual({
+		id: 1,
+		name: 'John',
+		verified: 0,
+		json: undefined,
+		createdAt: result.createdAt,
+		bigInt: undefined,
+	});
 });
 
 test('select bigint', () => {
@@ -134,7 +141,7 @@ test('select bigint', () => {
 
 // 	t.assert(users[0]!.createdAt instanceof Date);
 // 	t.assert(Math.abs(users[0]!.createdAt.getTime() - now) < 100);
-// 	t.deepEqual(users, [{ id: 1, name: 'Jane', verified: 0, json: null, createdAt: users[0]!.createdAt }]);
+// 	t.deepEqual(users, [{ id: 1, name: 'Jane', verified: 0, json: undefined, createdAt: users[0]!.createdAt }]);
 // });
 
 // test.serial('update with returning partial', (t) => {
@@ -159,7 +166,7 @@ test('select bigint', () => {
 
 // 	t.assert(users[0]!.createdAt instanceof Date);
 // 	t.assert(Math.abs(users[0]!.createdAt.getTime() - now) < 100);
-// 	t.deepEqual(users, [{ id: 1, name: 'John', verified: 0, json: null, createdAt: users[0]!.createdAt }]);
+// 	t.deepEqual(users, [{ id: 1, name: 'John', verified: 0, json: undefined, createdAt: users[0]!.createdAt }]);
 // });
 
 // test.serial('delete with returning partial', (t) => {
@@ -218,10 +225,10 @@ test('select bigint', () => {
 // 	}).from(usersTable).execute();
 
 // 	t.deepEqual(result, [
-// 		{ id: 1, name: 'John', json: null, verified: 0 },
+// 		{ id: 1, name: 'John', json: undefined, verified: 0 },
 // 		{ id: 2, name: 'Bruce', json: ['foo', 'bar'], verified: 0 },
-// 		{ id: 3, name: 'Jane', json: null, verified: 0 },
-// 		{ id: 4, name: 'Austin', json: null, verified: 1 },
+// 		{ id: 3, name: 'Jane', json: undefined, verified: 0 },
+// 		{ id: 4, name: 'Austin', json: undefined, verified: 1 },
 // 	]);
 // });
 
@@ -243,10 +250,10 @@ test('select bigint', () => {
 // 		.execute();
 
 // 	t.deepEqual(result, [
-// 		{ id: 1, name: 'John', json: null, verified: 0 },
+// 		{ id: 1, name: 'John', json: undefined, verified: 0 },
 // 		{ id: 2, name: 'Bruce', json: ['foo', 'bar'], verified: 0 },
-// 		{ id: 3, name: 'Jane', json: null, verified: 0 },
-// 		{ id: 4, name: 'Austin', json: null, verified: 1 },
+// 		{ id: 3, name: 'Jane', json: undefined, verified: 0 },
+// 		{ id: 4, name: 'Austin', json: undefined, verified: 1 },
 // 	]);
 // });
 

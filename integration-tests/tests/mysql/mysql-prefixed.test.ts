@@ -132,7 +132,7 @@ test('select all fields', async () => {
 	expect(result[0]!.createdAt).toBeInstanceOf(Date);
 	// not timezone based timestamp, thats why it should not work here
 	// t.assert(Math.abs(result[0]!.createdAt.getTime() - now) < 2000);
-	expect(result).toEqual([{ id: 1, name: 'John', verified: false, jsonb: null, createdAt: result[0]!.createdAt }]);
+	expect(result).toEqual([{ id: 1, name: 'John', verified: false, jsonb: undefined, createdAt: result[0]!.createdAt }]);
 });
 
 test('select sql', async () => {
@@ -209,7 +209,7 @@ test('update with returning all fields', async () => {
 	expect(users[0]!.createdAt).toBeInstanceOf(Date);
 	// not timezone based timestamp, thats why it should not work here
 	// t.assert(Math.abs(users[0]!.createdAt.getTime() - now) < 2000);
-	expect(users).toEqual([{ id: 1, name: 'Jane', verified: false, jsonb: null, createdAt: users[0]!.createdAt }]);
+	expect(users).toEqual([{ id: 1, name: 'Jane', verified: false, jsonb: undefined, createdAt: users[0]!.createdAt }]);
 });
 
 test('update with returning partial', async () => {
@@ -242,13 +242,13 @@ test('delete with returning partial', async () => {
 test('insert + select', async () => {
 	await db.insert(usersTable).values({ name: 'John' });
 	const result = await db.select().from(usersTable);
-	expect(result).toEqual([{ id: 1, name: 'John', verified: false, jsonb: null, createdAt: result[0]!.createdAt }]);
+	expect(result).toEqual([{ id: 1, name: 'John', verified: false, jsonb: undefined, createdAt: result[0]!.createdAt }]);
 
 	await db.insert(usersTable).values({ name: 'Jane' });
 	const result2 = await db.select().from(usersTable);
 	expect(result2).toEqual([
-		{ id: 1, name: 'John', verified: false, jsonb: null, createdAt: result2[0]!.createdAt },
-		{ id: 2, name: 'Jane', verified: false, jsonb: null, createdAt: result2[1]!.createdAt },
+		{ id: 1, name: 'John', verified: false, jsonb: undefined, createdAt: result2[0]!.createdAt },
+		{ id: 2, name: 'Jane', verified: false, jsonb: undefined, createdAt: result2[1]!.createdAt },
 	]);
 });
 
@@ -267,7 +267,7 @@ test('insert with overridden default values', async () => {
 	await db.insert(usersTable).values({ name: 'John', verified: true });
 	const result = await db.select().from(usersTable);
 
-	expect(result).toEqual([{ id: 1, name: 'John', verified: true, jsonb: null, createdAt: result[0]!.createdAt }]);
+	expect(result).toEqual([{ id: 1, name: 'John', verified: true, jsonb: undefined, createdAt: result[0]!.createdAt }]);
 });
 
 test('insert many', async () => {
@@ -285,10 +285,10 @@ test('insert many', async () => {
 	}).from(usersTable);
 
 	expect(result).toEqual([
-		{ id: 1, name: 'John', jsonb: null, verified: false },
+		{ id: 1, name: 'John', jsonb: undefined, verified: false },
 		{ id: 2, name: 'Bruce', jsonb: ['foo', 'bar'], verified: false },
-		{ id: 3, name: 'Jane', jsonb: null, verified: false },
-		{ id: 4, name: 'Austin', jsonb: null, verified: true },
+		{ id: 3, name: 'Jane', jsonb: undefined, verified: false },
+		{ id: 4, name: 'Austin', jsonb: undefined, verified: true },
 	]);
 });
 
@@ -726,7 +726,7 @@ test('left join (flat object fields)', async () => {
 
 	expect(res).toEqual([
 		{ userId: 1, userName: 'John', cityId: 1, cityName: 'Paris' },
-		{ userId: 2, userName: 'Jane', cityId: null, cityName: null },
+		{ userId: 2, userName: 'Jane', cityId: undefined, cityName: undefined },
 	]);
 });
 
@@ -759,7 +759,7 @@ test('left join (grouped fields)', async () => {
 		{
 			id: 2,
 			user: { name: 'Jane', nameUpper: 'JANE' },
-			city: null,
+			city: undefined,
 		},
 	]);
 });
@@ -789,9 +789,9 @@ test('left join (all fields)', async () => {
 			users2: {
 				id: 2,
 				name: 'Jane',
-				cityId: null,
+				cityId: undefined,
 			},
-			cities: null,
+			cities: undefined,
 		},
 	]);
 });
@@ -1497,7 +1497,7 @@ test('join view as subquery', async () => {
 		},
 		{
 			users_join_view: { id: 2, name: 'Jane', cityId: 2 },
-			new_yorkers_sq: null,
+			new_yorkers_sq: undefined,
 		},
 		{
 			users_join_view: { id: 3, name: 'Jack', cityId: 1 },
@@ -1505,7 +1505,7 @@ test('join view as subquery', async () => {
 		},
 		{
 			users_join_view: { id: 4, name: 'Jill', cityId: 2 },
-			new_yorkers_sq: null,
+			new_yorkers_sq: undefined,
 		},
 	]);
 

@@ -90,7 +90,7 @@ Expect<
 		{
 			id: number;
 			homeCity: number;
-			mySubclass: 'B' | 'D' | null;
+			mySubclass: 'B' | 'D' | undefined;
 		}[],
 		typeof insertAllReturningPartial
 	>
@@ -106,7 +106,7 @@ Expect<
 		{
 			id: number;
 			homeCity: number;
-			mySubclass: 'B' | 'D' | null;
+			mySubclass: 'B' | 'D' | undefined;
 		}[],
 		typeof insertAllReturningPartialBun
 	>

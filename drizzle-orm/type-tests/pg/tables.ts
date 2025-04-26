@@ -145,7 +145,7 @@ Expect<
 	Equal<{
 		id?: number;
 		name: string;
-		population?: number | null;
+		population?: number | undefined;
 	}, typeof smallSerialTest.$inferInsert>
 >;
 
@@ -158,7 +158,7 @@ export const classes = pgTable('classes_table', {
 Expect<
 	Equal<{
 		id?: number;
-		class?: 'A' | 'C' | null;
+		class?: 'A' | 'C' | undefined;
 		subClass: 'B' | 'D';
 	}, typeof classes.$inferInsert>
 >;
@@ -1132,9 +1132,9 @@ await db.refreshMaterializedView(newYorkers2).withNoData().concurrently();
 					userId: number;
 				};
 				custom_user: {
-					id: number | null;
+					id: number | undefined;
 				};
-			} | null;
+			} | undefined;
 			ticket: {
 				staffId: number;
 			};
@@ -1454,7 +1454,7 @@ await db.refreshMaterializedView(newYorkers2).withNoData().concurrently();
 
 	const res = await db.select().from(table);
 
-	Expect<Equal<{ enum: Role | null }[], typeof res>>;
+	Expect<Equal<{ enum: Role | undefined }[], typeof res>>;
 
 	const mySchema = pgSchema('my_schema');
 
@@ -1472,5 +1472,5 @@ await db.refreshMaterializedView(newYorkers2).withNoData().concurrently();
 
 	const schemaRes = await db.select().from(schemaTable);
 
-	Expect<Equal<{ enum: Role | null }[], typeof schemaRes>>;
+	Expect<Equal<{ enum: Role | undefined }[], typeof schemaRes>>;
 }

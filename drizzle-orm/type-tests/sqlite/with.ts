@@ -75,7 +75,7 @@ const orders = sqliteTable('orders', {
 			product: string;
 			amount: number;
 			quantity: number;
-			generated: string | null;
+			generated: string | undefined;
 		}[], typeof allFromWith>
 	>;
 

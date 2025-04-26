@@ -120,8 +120,8 @@ const usersOnUpdate = gelTable('users_on_update', {
 		.$onUpdateFn(() => sql`update_counter + 1`),
 	updatedAt: timestamptz('updated_at').$onUpdate(() => new Date()),
 	alwaysNull: text('always_null')
-		.$type<string | null>()
-		.$onUpdate(() => null),
+		.$type<string | undefined>()
+		.$onUpdate(() => undefined),
 });
 
 const citiesTable = gelTable('cities', {
@@ -433,7 +433,7 @@ describe('some', async () => {
     create property local_datetimeColumn -> cal::local_datetime;
     create property local_dateColumn -> cal::local_date;
     create property local_timeColumn -> cal::local_time;
-    
+
     create property durationColumn -> duration;
     create property relative_durationColumn -> cal::relative_duration;
     create property dateDurationColumn -> cal::date_duration;
@@ -598,10 +598,10 @@ describe('some', async () => {
 			{ id1: 1, name: 'value 1', a: 5, b: 10, c: 20 },
 			{ id1: 2, name: 'value 1', a: 5, b: 20, c: 30 },
 			{ id1: 3, name: 'value 2', a: 10, b: 50, c: 60 },
-			{ id1: 4, name: 'value 3', a: 20, b: 20, c: null },
-			{ id1: 5, name: 'value 4', a: null, b: 90, c: 120 },
-			{ id1: 6, name: 'value 5', a: 80, b: 10, c: null },
-			{ id1: 7, name: 'value 6', a: null, b: null, c: 150 },
+			{ id1: 4, name: 'value 3', a: 20, b: 20, c: undefined },
+			{ id1: 5, name: 'value 4', a: undefined, b: 90, c: 120 },
+			{ id1: 6, name: 'value 5', a: 80, b: 10, c: undefined },
+			{ id1: 7, name: 'value 6', a: undefined, b: undefined, c: 150 },
 		]);
 	}
 
@@ -713,7 +713,7 @@ describe('some', async () => {
 				id1: 1,
 				name: 'John',
 				verified: false,
-				json: null,
+				json: undefined,
 				createdAt: result[0]!.createdAt,
 			},
 		]);
@@ -937,7 +937,7 @@ describe('some', async () => {
 				id1: 1,
 				name: 'Jane',
 				verified: false,
-				json: null,
+				json: undefined,
 				createdAt: users[0]!.createdAt,
 			},
 		]);
@@ -971,7 +971,7 @@ describe('some', async () => {
 				id1: 1,
 				id: undefined,
 				verified: false,
-				json: null,
+				json: undefined,
 				createdAt: users[0]!.createdAt,
 			},
 		]);
@@ -999,7 +999,7 @@ describe('some', async () => {
 				name: 'John',
 				id1: 1,
 				verified: false,
-				json: null,
+				json: undefined,
 				createdAt: result[0]!.createdAt,
 			},
 		]);
@@ -1007,8 +1007,8 @@ describe('some', async () => {
 		await db.insert(usersTable).values({ id1: 2, name: 'Jane' });
 		const result2 = await db.select().from(usersTable);
 		expect(result2).toEqual([
-			{ id1: 1, name: 'John', verified: false, json: null, createdAt: result2[0]!.createdAt },
-			{ id1: 2, name: 'Jane', verified: false, json: null, createdAt: result2[1]!.createdAt },
+			{ id1: 1, name: 'John', verified: false, json: undefined, createdAt: result2[0]!.createdAt },
+			{ id1: 2, name: 'Jane', verified: false, json: undefined, createdAt: result2[1]!.createdAt },
 		]);
 	});
 
@@ -1044,7 +1044,7 @@ describe('some', async () => {
 				id1: 1,
 				name: 'John',
 				verified: true,
-				json: null,
+				json: undefined,
 				createdAt: result[0]!.createdAt,
 			},
 		]);
@@ -1068,10 +1068,10 @@ describe('some', async () => {
 			.from(usersTable);
 
 		expect(result).toEqual([
-			{ name: 'John', json: null, verified: false },
+			{ name: 'John', json: undefined, verified: false },
 			{ name: 'Bruce', json: ['foo', 'bar'], verified: true },
-			{ name: 'Jane', json: null, verified: false },
-			{ name: 'Austin', json: null, verified: true },
+			{ name: 'Jane', json: undefined, verified: false },
+			{ name: 'Austin', json: undefined, verified: true },
 		]);
 	});
 
@@ -1097,10 +1097,10 @@ describe('some', async () => {
 			});
 
 		expect(result).toEqual([
-			{ name: 'John', json: null, verified: false },
+			{ name: 'John', json: undefined, verified: false },
 			{ name: 'Bruce', json: ['foo', 'bar'], verified: false },
-			{ name: 'Jane', json: null, verified: false },
-			{ name: 'Austin', json: null, verified: true },
+			{ name: 'Jane', json: undefined, verified: false },
+			{ name: 'Austin', json: undefined, verified: true },
 		]);
 	});
 
@@ -1567,7 +1567,7 @@ describe('some', async () => {
 
 		const res = await db.select().from(users);
 
-		expect(res).toEqual([{ id1: null, name: 'Dan', state: null }]);
+		expect(res).toEqual([{ id1: undefined, name: 'Dan', state: undefined }]);
 	});
 
 	test('Insert all defaults in multiple rows', async (ctx) => {
@@ -1584,8 +1584,8 @@ describe('some', async () => {
 		const res = await db.select().from(users);
 
 		expect(res.map((it) => ({ ...it, id: undefined }))).toEqual([
-			{ id: undefined, name: 'Dan', state: null },
-			{ id: undefined, name: 'Dan', state: null },
+			{ id: undefined, name: 'Dan', state: undefined },
+			{ id: undefined, name: 'Dan', state: undefined },
 		]);
 	});
 
@@ -1816,7 +1816,7 @@ describe('some', async () => {
 				cities: {
 					id1: cityId,
 					name: 'Paris',
-					state: null,
+					state: undefined,
 				},
 			},
 			{
@@ -1828,7 +1828,7 @@ describe('some', async () => {
 				cities: {
 					id1: cityId,
 					name: 'Paris',
-					state: null,
+					state: undefined,
 				},
 			},
 		]);
@@ -2619,13 +2619,13 @@ describe('some', async () => {
 	test('set null to json field', async (ctx) => {
 		const { db } = ctx.gel;
 
-		const result = await db.insert(usersTable).values({ id1: 1, name: 'Alex', json: null }).returning();
+		const result = await db.insert(usersTable).values({ id1: 1, name: 'Alex', json: undefined }).returning();
 
 		expect(result.map((it) => ({ ...it, verified: undefined, createdAt: undefined }))).toEqual([
 			{
 				id1: 1,
 				name: 'Alex',
-				json: null,
+				json: undefined,
 				verified: undefined,
 				createdAt: undefined,
 			},
@@ -3348,10 +3348,10 @@ describe('some', async () => {
 		);
 
 		expect(response.map((it) => ({ ...it, updatedAt: undefined }))).toEqual([
-			{ name: 'John', id1: 1, updateCounter: 1, alwaysNull: null, updatedAt: undefined },
-			{ name: 'Jane', id1: 2, updateCounter: 1, alwaysNull: null, updatedAt: undefined },
-			{ name: 'Jack', id1: 3, updateCounter: 1, alwaysNull: null, updatedAt: undefined },
-			{ name: 'Jill', id1: 4, updateCounter: 1, alwaysNull: null, updatedAt: undefined },
+			{ name: 'John', id1: 1, updateCounter: 1, alwaysNull: undefined, updatedAt: undefined },
+			{ name: 'Jane', id1: 2, updateCounter: 1, alwaysNull: undefined, updatedAt: undefined },
+			{ name: 'Jack', id1: 3, updateCounter: 1, alwaysNull: undefined, updatedAt: undefined },
+			{ name: 'Jill', id1: 4, updateCounter: 1, alwaysNull: undefined, updatedAt: undefined },
 		]);
 
 		// const msDelay = 250;
@@ -3375,7 +3375,7 @@ describe('some', async () => {
 		await db.select({ updatedAt }).from(usersOnUpdate).orderBy(asc(usersOnUpdate.id1));
 
 		await db.update(usersOnUpdate).set({ name: 'Angel' }).where(eq(usersOnUpdate.id1, 1));
-		await db.update(usersOnUpdate).set({ updateCounter: null }).where(eq(usersOnUpdate.id1, 2));
+		await db.update(usersOnUpdate).set({ updateCounter: undefined }).where(eq(usersOnUpdate.id1, 2));
 
 		// const justDates = await db.select({ updatedAt: usersOnUpdate.updatedAt }).from(usersOnUpdate).orderBy(
 		// 	asc(usersOnUpdate.id1),
@@ -3386,10 +3386,10 @@ describe('some', async () => {
 		);
 
 		expect(response).toEqual([
-			{ name: 'Angel', id1: 1, updateCounter: 2, alwaysNull: null },
-			{ name: 'Jane', id1: 2, updateCounter: null, alwaysNull: null },
-			{ name: 'Jack', id1: 3, updateCounter: 1, alwaysNull: null },
-			{ name: 'Jill', id1: 4, updateCounter: 1, alwaysNull: null },
+			{ name: 'Angel', id1: 1, updateCounter: 2, alwaysNull: undefined },
+			{ name: 'Jane', id1: 2, updateCounter: undefined, alwaysNull: undefined },
+			{ name: 'Jack', id1: 3, updateCounter: 1, alwaysNull: undefined },
+			{ name: 'Jill', id1: 4, updateCounter: 1, alwaysNull: undefined },
 		]);
 		// const msDelay = 500;
 
@@ -3639,7 +3639,7 @@ describe('some', async () => {
 				id1: 1,
 				name: 'John',
 				verified: false,
-				json: null,
+				json: undefined,
 				createdAt: result[0]!.createdAt,
 			},
 		]);
@@ -3692,9 +3692,9 @@ describe('some', async () => {
 		).orderBy(usersMySchemaTable.name);
 
 		expect(users1.map((it) => ({ ...it, id: undefined, createdAt: undefined }))).toEqual([
-			{ id1: 1, name: 'Jane', id: undefined, verified: false, json: null, createdAt: undefined },
-			{ id1: 1, name: 'John', id: undefined, verified: false, json: null, createdAt: undefined },
-			{ id1: 2, name: 'John', id: undefined, verified: false, json: null, createdAt: undefined },
+			{ id1: 1, name: 'Jane', id: undefined, verified: false, json: undefined, createdAt: undefined },
+			{ id1: 1, name: 'John', id: undefined, verified: false, json: undefined, createdAt: undefined },
+			{ id1: 2, name: 'John', id: undefined, verified: false, json: undefined, createdAt: undefined },
 		]);
 
 		expect(users2).toHaveLength(2);
@@ -3763,7 +3763,7 @@ describe('some', async () => {
 				id1: 1,
 				name: 'John',
 				verified: false,
-				json: null,
+				json: undefined,
 				createdAt: users[0]!.createdAt,
 			},
 		]);
@@ -3779,7 +3779,7 @@ describe('some', async () => {
 				id1: 1,
 				name: 'John',
 				verified: false,
-				json: null,
+				json: undefined,
 				createdAt: result[0]!.createdAt,
 			},
 		]);
@@ -3787,8 +3787,8 @@ describe('some', async () => {
 		await db.insert(usersMySchemaTable).values({ id1: 2, name: 'Jane' });
 		const result2 = await db.select().from(usersMySchemaTable);
 		expect(result2).toEqual([
-			{ id1: 1, name: 'John', verified: false, json: null, createdAt: result2[0]!.createdAt },
-			{ id1: 2, name: 'Jane', verified: false, json: null, createdAt: result2[1]!.createdAt },
+			{ id1: 1, name: 'John', verified: false, json: undefined, createdAt: result2[0]!.createdAt },
+			{ id1: 2, name: 'Jane', verified: false, json: undefined, createdAt: result2[1]!.createdAt },
 		]);
 	});
 
@@ -3803,7 +3803,7 @@ describe('some', async () => {
 				id1: 1,
 				name: 'John',
 				verified: true,
-				json: null,
+				json: undefined,
 				createdAt: result[0]!.createdAt,
 			},
 		]);
@@ -3835,10 +3835,10 @@ describe('some', async () => {
 			.from(usersMySchemaTable);
 
 		expect(result).toEqual([
-			{ id1: 1, name: 'John', json: null, verified: false },
+			{ id1: 1, name: 'John', json: undefined, verified: false },
 			{ id1: 2, name: 'Bruce', json: ['foo', 'bar'], verified: false },
-			{ id1: 3, name: 'Jane', json: null, verified: false },
-			{ id1: 4, name: 'Austin', json: null, verified: true },
+			{ id1: 3, name: 'Jane', json: undefined, verified: false },
+			{ id1: 4, name: 'Austin', json: undefined, verified: true },
 		]);
 	});
 
@@ -4013,14 +4013,14 @@ describe('some', async () => {
 					id1: 10,
 					name: 'Ivan',
 					verified: false,
-					json: null,
+					json: undefined,
 					createdAt: result[0]!.users.createdAt,
 				},
 				customer: {
 					id1: 11,
 					name: 'Hans',
 					verified: false,
-					json: null,
+					json: undefined,
 					createdAt: result[0]!.customer!.createdAt,
 				},
 			},
@@ -4244,7 +4244,7 @@ describe('some', async () => {
 
 		expect(res).toStrictEqual([
 			{ cityId: 1, cityName: 'Paris', userId: 1, userName: 'John' },
-			{ cityId: 2, cityName: 'London', userId: null, userName: null },
+			{ cityId: 2, cityName: 'London', userId: undefined, userName: undefined },
 		]);
 	});
 
@@ -4531,9 +4531,9 @@ describe('some', async () => {
 	// 			cities: {
 	// 				id: 3,
 	// 				name: 'London',
-	// 				stateId: null,
+	// 				stateId: undefined,
 	// 			},
-	// 			states: null,
+	// 			states: undefined,
 	// 		},
 	// 	]);
 	// });

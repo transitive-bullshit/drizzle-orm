@@ -220,11 +220,11 @@ test('[Find Many] Get users with posts', async (t) => {
 		id: number;
 		name: string;
 		verified: boolean;
-		invitedBy: number | null;
+		invitedBy: number | undefined;
 		posts: {
 			id: number;
 			content: string;
-			ownerId: number | null;
+			ownerId: number | undefined;
 			createdAt: Date;
 		}[];
 	}[]>();
@@ -240,21 +240,21 @@ test('[Find Many] Get users with posts', async (t) => {
 		id: 1,
 		name: 'Dan',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{ id: 1, ownerId: 1, content: 'Post1', createdAt: usersWithPosts[0]?.posts[0]?.createdAt }],
 	});
 	expect(usersWithPosts[1]).toEqual({
 		id: 2,
 		name: 'Andrew',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{ id: 2, ownerId: 2, content: 'Post2', createdAt: usersWithPosts[1]?.posts[0]?.createdAt }],
 	});
 	expect(usersWithPosts[2]).toEqual({
 		id: 3,
 		name: 'Alex',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{ id: 3, ownerId: 3, content: 'Post3', createdAt: usersWithPosts[2]?.posts[0]?.createdAt }],
 	});
 });
@@ -290,11 +290,11 @@ test('[Find Many] Get users with posts + limit posts', async (t) => {
 		id: number;
 		name: string;
 		verified: boolean;
-		invitedBy: number | null;
+		invitedBy: number | undefined;
 		posts: {
 			id: number;
 			content: string;
-			ownerId: number | null;
+			ownerId: number | undefined;
 			createdAt: Date;
 		}[];
 	}[]>();
@@ -313,21 +313,21 @@ test('[Find Many] Get users with posts + limit posts', async (t) => {
 		id: 1,
 		name: 'Dan',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{ id: 1, ownerId: 1, content: 'Post1', createdAt: usersWithPosts[0]?.posts[0]?.createdAt }],
 	});
 	expect(usersWithPosts[1]).toEqual({
 		id: 2,
 		name: 'Andrew',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{ id: 4, ownerId: 2, content: 'Post2', createdAt: usersWithPosts[1]?.posts[0]?.createdAt }],
 	});
 	expect(usersWithPosts[2]).toEqual({
 		id: 3,
 		name: 'Alex',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{ id: 6, ownerId: 3, content: 'Post3', createdAt: usersWithPosts[2]?.posts[0]?.createdAt }],
 	});
 });
@@ -364,11 +364,11 @@ test('[Find Many] Get users with posts + limit posts and users', async (t) => {
 		id: number;
 		name: string;
 		verified: boolean;
-		invitedBy: number | null;
+		invitedBy: number | undefined;
 		posts: {
 			id: number;
 			content: string;
-			ownerId: number | null;
+			ownerId: number | undefined;
 			createdAt: Date;
 		}[];
 	}[]>();
@@ -385,14 +385,14 @@ test('[Find Many] Get users with posts + limit posts and users', async (t) => {
 		id: 1,
 		name: 'Dan',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{ id: 1, ownerId: 1, content: 'Post1', createdAt: usersWithPosts[0]?.posts[0]?.createdAt }],
 	});
 	expect(usersWithPosts[1]).toEqual({
 		id: 2,
 		name: 'Andrew',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{ id: 4, ownerId: 2, content: 'Post2', createdAt: usersWithPosts[1]?.posts[0]?.createdAt }],
 	});
 });
@@ -429,12 +429,12 @@ test('[Find Many] Get users with posts + custom fields', async (t) => {
 		id: number;
 		name: string;
 		verified: boolean;
-		invitedBy: number | null;
+		invitedBy: number | undefined;
 		lowerName: string;
 		posts: {
 			id: number;
 			content: string;
-			ownerId: number | null;
+			ownerId: number | undefined;
 			createdAt: Date;
 		}[];
 	}[]>();
@@ -453,7 +453,7 @@ test('[Find Many] Get users with posts + custom fields', async (t) => {
 		id: 1,
 		name: 'Dan',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		lowerName: 'dan',
 		posts: [{ id: 1, ownerId: 1, content: 'Post1', createdAt: usersWithPosts[0]?.posts[0]?.createdAt }, {
 			id: 2,
@@ -467,7 +467,7 @@ test('[Find Many] Get users with posts + custom fields', async (t) => {
 		name: 'Andrew',
 		lowerName: 'andrew',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{ id: 4, ownerId: 2, content: 'Post2', createdAt: usersWithPosts[1]?.posts[0]?.createdAt }, {
 			id: 5,
 			ownerId: 2,
@@ -480,7 +480,7 @@ test('[Find Many] Get users with posts + custom fields', async (t) => {
 		name: 'Alex',
 		lowerName: 'alex',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{ id: 6, ownerId: 3, content: 'Post3', createdAt: usersWithPosts[2]?.posts[0]?.createdAt }, {
 			id: 7,
 			ownerId: 3,
@@ -525,12 +525,12 @@ test('[Find Many] Get users with posts + custom fields + limits', async (t) => {
 		id: number;
 		name: string;
 		verified: boolean;
-		invitedBy: number | null;
+		invitedBy: number | undefined;
 		lowerName: string;
 		posts: {
 			id: number;
 			content: string;
-			ownerId: number | null;
+			ownerId: number | undefined;
 			createdAt: Date;
 		}[];
 	}[]>();
@@ -543,7 +543,7 @@ test('[Find Many] Get users with posts + custom fields + limits', async (t) => {
 		name: 'Dan',
 		lowerName: 'dan',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{ id: 1, ownerId: 1, content: 'Post1', createdAt: usersWithPosts[0]?.posts[0]?.createdAt }],
 	});
 });
@@ -580,11 +580,11 @@ test('[Find Many] Get users with posts + orderBy', async (t) => {
 		id: number;
 		name: string;
 		verified: boolean;
-		invitedBy: number | null;
+		invitedBy: number | undefined;
 		posts: {
 			id: number;
 			content: string;
-			ownerId: number | null;
+			ownerId: number | undefined;
 			createdAt: Date;
 		}[];
 	}[]>();
@@ -598,7 +598,7 @@ test('[Find Many] Get users with posts + orderBy', async (t) => {
 		id: 1,
 		name: 'Dan',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{ id: 3, ownerId: 1, content: '3', createdAt: usersWithPosts[2]?.posts[2]?.createdAt }, {
 			id: 2,
 			ownerId: 1,
@@ -610,7 +610,7 @@ test('[Find Many] Get users with posts + orderBy', async (t) => {
 		id: 2,
 		name: 'Andrew',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{
 			id: 5,
 			ownerId: 2,
@@ -622,7 +622,7 @@ test('[Find Many] Get users with posts + orderBy', async (t) => {
 		id: 3,
 		name: 'Alex',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{
 			id: 7,
 			ownerId: 3,
@@ -661,11 +661,11 @@ test('[Find Many] Get users with posts + where', async (t) => {
 		id: number;
 		name: string;
 		verified: boolean;
-		invitedBy: number | null;
+		invitedBy: number | undefined;
 		posts: {
 			id: number;
 			content: string;
-			ownerId: number | null;
+			ownerId: number | undefined;
 			createdAt: Date;
 		}[];
 	}[]>();
@@ -677,7 +677,7 @@ test('[Find Many] Get users with posts + where', async (t) => {
 		id: 1,
 		name: 'Dan',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{ id: 1, ownerId: 1, content: 'Post1', createdAt: usersWithPosts[0]?.posts[0]?.createdAt }],
 	});
 });
@@ -869,10 +869,10 @@ test('[Find Many] Get users with posts + where + partial(false)', async (t) => {
 	expectTypeOf(usersWithPosts).toEqualTypeOf<{
 		id: number;
 		verified: boolean;
-		invitedBy: number | null;
+		invitedBy: number | undefined;
 		posts: {
 			id: number;
-			ownerId: number | null;
+			ownerId: number | undefined;
 			createdAt: Date;
 		}[];
 	}[]>();
@@ -883,7 +883,7 @@ test('[Find Many] Get users with posts + where + partial(false)', async (t) => {
 	expect(usersWithPosts[0]).toEqual({
 		id: 1,
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{ id: 1, ownerId: 1, createdAt: usersWithPosts[0]?.posts[0]?.createdAt }],
 	});
 });
@@ -895,11 +895,11 @@ test('[Find Many] Get users with posts in transaction', async (t) => {
 		id: number;
 		name: string;
 		verified: boolean;
-		invitedBy: number | null;
+		invitedBy: number | undefined;
 		posts: {
 			id: number;
 			content: string;
-			ownerId: number | null;
+			ownerId: number | undefined;
 			createdAt: Date;
 		}[];
 	}[] = [];
@@ -932,11 +932,11 @@ test('[Find Many] Get users with posts in transaction', async (t) => {
 		id: number;
 		name: string;
 		verified: boolean;
-		invitedBy: number | null;
+		invitedBy: number | undefined;
 		posts: {
 			id: number;
 			content: string;
-			ownerId: number | null;
+			ownerId: number | undefined;
 			createdAt: Date;
 		}[];
 	}[]>();
@@ -948,7 +948,7 @@ test('[Find Many] Get users with posts in transaction', async (t) => {
 		id: 1,
 		name: 'Dan',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{ id: 1, ownerId: 1, content: 'Post1', createdAt: usersWithPosts[0]?.posts[0]?.createdAt }],
 	});
 });
@@ -960,11 +960,11 @@ test('[Find Many] Get users with posts in rollbacked transaction', async (t) => 
 		id: number;
 		name: string;
 		verified: boolean;
-		invitedBy: number | null;
+		invitedBy: number | undefined;
 		posts: {
 			id: number;
 			content: string;
-			ownerId: number | null;
+			ownerId: number | undefined;
 			createdAt: Date;
 		}[];
 	}[] = [];
@@ -999,11 +999,11 @@ test('[Find Many] Get users with posts in rollbacked transaction', async (t) => 
 		id: number;
 		name: string;
 		verified: boolean;
-		invitedBy: number | null;
+		invitedBy: number | undefined;
 		posts: {
 			id: number;
 			content: string;
-			ownerId: number | null;
+			ownerId: number | undefined;
 			createdAt: Date;
 		}[];
 	}[]>();
@@ -1577,11 +1577,11 @@ test('[Find Many] Get users with posts + prepared limit', async (t) => {
 		id: number;
 		name: string;
 		verified: boolean;
-		invitedBy: number | null;
+		invitedBy: number | undefined;
 		posts: {
 			id: number;
 			content: string;
-			ownerId: number | null;
+			ownerId: number | undefined;
 			createdAt: Date;
 		}[];
 	}[]>();
@@ -1595,21 +1595,21 @@ test('[Find Many] Get users with posts + prepared limit', async (t) => {
 		id: 1,
 		name: 'Dan',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{ id: 1, ownerId: 1, content: 'Post1', createdAt: usersWithPosts[0]?.posts[0]?.createdAt }],
 	});
 	expect(usersWithPosts).toContainEqual({
 		id: 2,
 		name: 'Andrew',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{ id: 4, ownerId: 2, content: 'Post2', createdAt: usersWithPosts[1]?.posts[0]?.createdAt }],
 	});
 	expect(usersWithPosts).toContainEqual({
 		id: 3,
 		name: 'Alex',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{ id: 6, ownerId: 3, content: 'Post3', createdAt: usersWithPosts[2]?.posts[0]?.createdAt }],
 	});
 });
@@ -1649,11 +1649,11 @@ test('[Find Many] Get users with posts + prepared limit + offset', async (t) => 
 		id: number;
 		name: string;
 		verified: boolean;
-		invitedBy: number | null;
+		invitedBy: number | undefined;
 		posts: {
 			id: number;
 			content: string;
-			ownerId: number | null;
+			ownerId: number | undefined;
 			createdAt: Date;
 		}[];
 	}[]>();
@@ -1666,14 +1666,14 @@ test('[Find Many] Get users with posts + prepared limit + offset', async (t) => 
 		id: 2,
 		name: 'Andrew',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{ id: 4, ownerId: 2, content: 'Post2', createdAt: usersWithPosts[0]?.posts[0]?.createdAt }],
 	});
 	expect(usersWithPosts).toContainEqual({
 		id: 3,
 		name: 'Alex',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{ id: 6, ownerId: 3, content: 'Post3', createdAt: usersWithPosts[1]?.posts[0]?.createdAt }],
 	});
 });
@@ -1709,11 +1709,11 @@ test('[Find Many] Get users with posts + prepared where', async (t) => {
 		id: number;
 		name: string;
 		verified: boolean;
-		invitedBy: number | null;
+		invitedBy: number | undefined;
 		posts: {
 			id: number;
 			content: string;
-			ownerId: number | null;
+			ownerId: number | undefined;
 			createdAt: Date;
 		}[];
 	}[]>();
@@ -1725,7 +1725,7 @@ test('[Find Many] Get users with posts + prepared where', async (t) => {
 		id: 1,
 		name: 'Dan',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{ id: 1, ownerId: 1, content: 'Post1', createdAt: usersWithPosts[0]?.posts[0]?.createdAt }],
 	});
 });
@@ -1767,11 +1767,11 @@ test('[Find Many] Get users with posts + prepared + limit + offset + where', asy
 		id: number;
 		name: string;
 		verified: boolean;
-		invitedBy: number | null;
+		invitedBy: number | undefined;
 		posts: {
 			id: number;
 			content: string;
-			ownerId: number | null;
+			ownerId: number | undefined;
 			createdAt: Date;
 		}[];
 	}[]>();
@@ -1783,7 +1783,7 @@ test('[Find Many] Get users with posts + prepared + limit + offset + where', asy
 		id: 3,
 		name: 'Alex',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{ id: 6, ownerId: 3, content: 'Post3', createdAt: usersWithPosts[0]?.posts[0]?.createdAt }],
 	});
 });
@@ -1818,11 +1818,11 @@ test('[Find One] Get users with posts', async (t) => {
 			id: number;
 			name: string;
 			verified: boolean;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 			posts: {
 				id: number;
 				content: string;
-				ownerId: number | null;
+				ownerId: number | undefined;
 				createdAt: Date;
 			}[];
 		} | undefined
@@ -1834,7 +1834,7 @@ test('[Find One] Get users with posts', async (t) => {
 		id: 1,
 		name: 'Dan',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{ id: 1, ownerId: 1, content: 'Post1', createdAt: usersWithPosts?.posts[0]?.createdAt }],
 	});
 });
@@ -1871,11 +1871,11 @@ test('[Find One] Get users with posts + limit posts', async (t) => {
 			id: number;
 			name: string;
 			verified: boolean;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 			posts: {
 				id: number;
 				content: string;
-				ownerId: number | null;
+				ownerId: number | undefined;
 				createdAt: Date;
 			}[];
 		} | undefined
@@ -1887,7 +1887,7 @@ test('[Find One] Get users with posts + limit posts', async (t) => {
 		id: 1,
 		name: 'Dan',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{ id: 1, ownerId: 1, content: 'Post1', createdAt: usersWithPosts?.posts[0]?.createdAt }],
 	});
 });
@@ -1908,11 +1908,11 @@ test('[Find One] Get users with posts no results found', async (t) => {
 			id: number;
 			name: string;
 			verified: boolean;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 			posts: {
 				id: number;
 				content: string;
-				ownerId: number | null;
+				ownerId: number | undefined;
 				createdAt: Date;
 			}[];
 		} | undefined
@@ -1953,11 +1953,11 @@ test('[Find One] Get users with posts + limit posts and users', async (t) => {
 			id: number;
 			name: string;
 			verified: boolean;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 			posts: {
 				id: number;
 				content: string;
-				ownerId: number | null;
+				ownerId: number | undefined;
 				createdAt: Date;
 			}[];
 		} | undefined
@@ -1969,7 +1969,7 @@ test('[Find One] Get users with posts + limit posts and users', async (t) => {
 		id: 1,
 		name: 'Dan',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{ id: 1, ownerId: 1, content: 'Post1', createdAt: usersWithPosts?.posts[0]?.createdAt }],
 	});
 });
@@ -2007,12 +2007,12 @@ test('[Find One] Get users with posts + custom fields', async (t) => {
 			id: number;
 			name: string;
 			verified: boolean;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 			lowerName: string;
 			posts: {
 				id: number;
 				content: string;
-				ownerId: number | null;
+				ownerId: number | undefined;
 				createdAt: Date;
 			}[];
 		} | undefined
@@ -2024,7 +2024,7 @@ test('[Find One] Get users with posts + custom fields', async (t) => {
 		id: 1,
 		name: 'Dan',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		lowerName: 'dan',
 		posts: [{ id: 1, ownerId: 1, content: 'Post1', createdAt: usersWithPosts?.posts[0]?.createdAt }, {
 			id: 2,
@@ -2070,12 +2070,12 @@ test('[Find One] Get users with posts + custom fields + limits', async (t) => {
 			id: number;
 			name: string;
 			verified: boolean;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 			lowerName: string;
 			posts: {
 				id: number;
 				content: string;
-				ownerId: number | null;
+				ownerId: number | undefined;
 				createdAt: Date;
 			}[];
 		} | undefined
@@ -2088,7 +2088,7 @@ test('[Find One] Get users with posts + custom fields + limits', async (t) => {
 		name: 'Dan',
 		lowerName: 'dan',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{ id: 1, ownerId: 1, content: 'Post1', createdAt: usersWithPosts?.posts[0]?.createdAt }],
 	});
 });
@@ -2126,11 +2126,11 @@ test('[Find One] Get users with posts + orderBy', async (t) => {
 			id: number;
 			name: string;
 			verified: boolean;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 			posts: {
 				id: number;
 				content: string;
-				ownerId: number | null;
+				ownerId: number | undefined;
 				createdAt: Date;
 			}[];
 		} | undefined
@@ -2142,7 +2142,7 @@ test('[Find One] Get users with posts + orderBy', async (t) => {
 		id: 3,
 		name: 'Alex',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{
 			id: 7,
 			ownerId: 3,
@@ -2182,11 +2182,11 @@ test('[Find One] Get users with posts + where', async (t) => {
 			id: number;
 			name: string;
 			verified: boolean;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 			posts: {
 				id: number;
 				content: string;
-				ownerId: number | null;
+				ownerId: number | undefined;
 				createdAt: Date;
 			}[];
 		} | undefined
@@ -2198,7 +2198,7 @@ test('[Find One] Get users with posts + where', async (t) => {
 		id: 1,
 		name: 'Dan',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{ id: 1, ownerId: 1, content: 'Post1', createdAt: usersWithPosts?.posts[0]?.createdAt }],
 	});
 });
@@ -2394,10 +2394,10 @@ test('[Find One] Get users with posts + where + partial(false)', async (t) => {
 		{
 			id: number;
 			verified: boolean;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 			posts: {
 				id: number;
-				ownerId: number | null;
+				ownerId: number | undefined;
 				createdAt: Date;
 			}[];
 		} | undefined
@@ -2408,7 +2408,7 @@ test('[Find One] Get users with posts + where + partial(false)', async (t) => {
 	expect(usersWithPosts).toEqual({
 		id: 1,
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{ id: 1, ownerId: 1, createdAt: usersWithPosts?.posts[0]?.createdAt }],
 	});
 });
@@ -2438,13 +2438,13 @@ test('Get user with invitee', async (t) => {
 			id: number;
 			name: string;
 			verified: boolean;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 			invitee: {
 				id: number;
 				name: string;
 				verified: boolean;
-				invitedBy: number | null;
-			} | null;
+				invitedBy: number | undefined;
+			} | undefined;
 		}[]
 	>();
 
@@ -2460,29 +2460,29 @@ test('Get user with invitee', async (t) => {
 		id: 1,
 		name: 'Dan',
 		verified: false,
-		invitedBy: null,
-		invitee: null,
+		invitedBy: undefined,
+		invitee: undefined,
 	});
 	expect(usersWithInvitee[1]).toEqual({
 		id: 2,
 		name: 'Andrew',
 		verified: false,
-		invitedBy: null,
-		invitee: null,
+		invitedBy: undefined,
+		invitee: undefined,
 	});
 	expect(usersWithInvitee[2]).toEqual({
 		id: 3,
 		name: 'Alex',
 		verified: false,
 		invitedBy: 1,
-		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: null },
+		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: undefined },
 	});
 	expect(usersWithInvitee[3]).toEqual({
 		id: 4,
 		name: 'John',
 		verified: false,
 		invitedBy: 2,
-		invitee: { id: 2, name: 'Andrew', verified: false, invitedBy: null },
+		invitee: { id: 2, name: 'Andrew', verified: false, invitedBy: undefined },
 	});
 });
 
@@ -2508,13 +2508,13 @@ test('Get user + limit with invitee', async (t) => {
 			id: number;
 			name: string;
 			verified: boolean;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 			invitee: {
 				id: number;
 				name: string;
 				verified: boolean;
-				invitedBy: number | null;
-			} | null;
+				invitedBy: number | undefined;
+			} | undefined;
 		}[]
 	>();
 
@@ -2528,15 +2528,15 @@ test('Get user + limit with invitee', async (t) => {
 		id: 1,
 		name: 'Dan',
 		verified: false,
-		invitedBy: null,
-		invitee: null,
+		invitedBy: undefined,
+		invitee: undefined,
 	});
 	expect(usersWithInvitee[1]).toEqual({
 		id: 2,
 		name: 'Andrew',
 		verified: false,
 		invitedBy: 1,
-		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: null },
+		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: undefined },
 	});
 });
 
@@ -2565,14 +2565,14 @@ test('Get user with invitee and custom fields', async (t) => {
 			name: string;
 			verified: boolean;
 			lower: string;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 			invitee: {
 				id: number;
 				name: string;
 				verified: boolean;
 				lower: string;
-				invitedBy: number | null;
-			} | null;
+				invitedBy: number | undefined;
+			} | undefined;
 		}[]
 	>();
 
@@ -2589,16 +2589,16 @@ test('Get user with invitee and custom fields', async (t) => {
 		name: 'Dan',
 		lower: 'dan',
 		verified: false,
-		invitedBy: null,
-		invitee: null,
+		invitedBy: undefined,
+		invitee: undefined,
 	});
 	expect(usersWithInvitee[1]).toEqual({
 		id: 2,
 		name: 'Andrew',
 		lower: 'andrew',
 		verified: false,
-		invitedBy: null,
-		invitee: null,
+		invitedBy: undefined,
+		invitee: undefined,
 	});
 	expect(usersWithInvitee[2]).toEqual({
 		id: 3,
@@ -2606,7 +2606,7 @@ test('Get user with invitee and custom fields', async (t) => {
 		lower: 'alex',
 		verified: false,
 		invitedBy: 1,
-		invitee: { id: 1, name: 'Dan', lower: 'dan', verified: false, invitedBy: null },
+		invitee: { id: 1, name: 'Dan', lower: 'dan', verified: false, invitedBy: undefined },
 	});
 	expect(usersWithInvitee[3]).toEqual({
 		id: 4,
@@ -2614,7 +2614,7 @@ test('Get user with invitee and custom fields', async (t) => {
 		lower: 'john',
 		verified: false,
 		invitedBy: 2,
-		invitee: { id: 2, name: 'Andrew', lower: 'andrew', verified: false, invitedBy: null },
+		invitee: { id: 2, name: 'Andrew', lower: 'andrew', verified: false, invitedBy: undefined },
 	});
 });
 
@@ -2644,14 +2644,14 @@ test('Get user with invitee and custom fields + limits', async (t) => {
 			name: string;
 			verified: boolean;
 			lower: string;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 			invitee: {
 				id: number;
 				name: string;
 				verified: boolean;
 				lower: string;
-				invitedBy: number | null;
-			} | null;
+				invitedBy: number | undefined;
+			} | undefined;
 		}[]
 	>();
 
@@ -2667,16 +2667,16 @@ test('Get user with invitee and custom fields + limits', async (t) => {
 		name: 'Dan',
 		lower: 'dan',
 		verified: false,
-		invitedBy: null,
-		invitee: null,
+		invitedBy: undefined,
+		invitee: undefined,
 	});
 	expect(usersWithInvitee[1]).toEqual({
 		id: 2,
 		name: 'Andrew',
 		lower: 'andrew',
 		verified: false,
-		invitedBy: null,
-		invitee: null,
+		invitedBy: undefined,
+		invitee: undefined,
 	});
 	expect(usersWithInvitee[2]).toEqual({
 		id: 3,
@@ -2684,7 +2684,7 @@ test('Get user with invitee and custom fields + limits', async (t) => {
 		lower: 'alex',
 		verified: false,
 		invitedBy: 1,
-		invitee: { id: 1, name: 'Dan', lower: 'dan', verified: false, invitedBy: null },
+		invitee: { id: 1, name: 'Dan', lower: 'dan', verified: false, invitedBy: undefined },
 	});
 });
 
@@ -2710,13 +2710,13 @@ test('Get user with invitee + order by', async (t) => {
 			id: number;
 			name: string;
 			verified: boolean;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 			invitee: {
 				id: number;
 				name: string;
 				verified: boolean;
-				invitedBy: number | null;
-			} | null;
+				invitedBy: number | undefined;
+			} | undefined;
 		}[]
 	>();
 
@@ -2730,29 +2730,29 @@ test('Get user with invitee + order by', async (t) => {
 		id: 1,
 		name: 'Dan',
 		verified: false,
-		invitedBy: null,
-		invitee: null,
+		invitedBy: undefined,
+		invitee: undefined,
 	});
 	expect(usersWithInvitee[2]).toEqual({
 		id: 2,
 		name: 'Andrew',
 		verified: false,
-		invitedBy: null,
-		invitee: null,
+		invitedBy: undefined,
+		invitee: undefined,
 	});
 	expect(usersWithInvitee[1]).toEqual({
 		id: 3,
 		name: 'Alex',
 		verified: false,
 		invitedBy: 1,
-		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: null },
+		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: undefined },
 	});
 	expect(usersWithInvitee[0]).toEqual({
 		id: 4,
 		name: 'John',
 		verified: false,
 		invitedBy: 2,
-		invitee: { id: 2, name: 'Andrew', verified: false, invitedBy: null },
+		invitee: { id: 2, name: 'Andrew', verified: false, invitedBy: undefined },
 	});
 });
 
@@ -2778,13 +2778,13 @@ test('Get user with invitee + where', async (t) => {
 			id: number;
 			name: string;
 			verified: boolean;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 			invitee: {
 				id: number;
 				name: string;
 				verified: boolean;
-				invitedBy: number | null;
-			} | null;
+				invitedBy: number | undefined;
+			} | undefined;
 		}[]
 	>();
 
@@ -2797,14 +2797,14 @@ test('Get user with invitee + where', async (t) => {
 		name: 'Alex',
 		verified: false,
 		invitedBy: 1,
-		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: null },
+		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: undefined },
 	});
 	expect(usersWithInvitee).toContainEqual({
 		id: 4,
 		name: 'John',
 		verified: false,
 		invitedBy: 2,
-		invitee: { id: 2, name: 'Andrew', verified: false, invitedBy: null },
+		invitee: { id: 2, name: 'Andrew', verified: false, invitedBy: undefined },
 	});
 });
 
@@ -2841,7 +2841,7 @@ test('Get user with invitee + where + partial', async (t) => {
 			invitee: {
 				id: number;
 				name: string;
-			} | null;
+			} | undefined;
 		}[]
 	>();
 
@@ -2892,7 +2892,7 @@ test('Get user with invitee + where + partial.  Did not select users id, but use
 			invitee: {
 				id: number;
 				name: string;
-			} | null;
+			} | undefined;
 		}[]
 	>();
 
@@ -2945,7 +2945,7 @@ test('Get user with invitee + where + partial(true+false)', async (t) => {
 			invitee: {
 				id: number;
 				name: string;
-			} | null;
+			} | undefined;
 		}[]
 	>();
 
@@ -2993,12 +2993,12 @@ test('Get user with invitee + where + partial(false)', async (t) => {
 		{
 			id: number;
 			name: string;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 			invitee: {
 				id: number;
 				verified: boolean;
-				invitedBy: number | null;
-			} | null;
+				invitedBy: number | undefined;
+			} | undefined;
 		}[]
 	>();
 
@@ -3010,13 +3010,13 @@ test('Get user with invitee + where + partial(false)', async (t) => {
 		id: 3,
 		name: 'Alex',
 		invitedBy: 1,
-		invitee: { id: 1, verified: false, invitedBy: null },
+		invitee: { id: 1, verified: false, invitedBy: undefined },
 	});
 	expect(usersWithInvitee).toContainEqual({
 		id: 4,
 		name: 'John',
 		invitedBy: 2,
-		invitee: { id: 2, verified: false, invitedBy: null },
+		invitee: { id: 2, verified: false, invitedBy: undefined },
 	});
 });
 
@@ -3052,14 +3052,14 @@ test('Get user with invitee and posts', async (t) => {
 			id: number;
 			name: string;
 			verified: boolean;
-			invitedBy: number | null;
-			posts: { id: number; ownerId: number | null; content: string; createdAt: Date }[];
+			invitedBy: number | undefined;
+			posts: { id: number; ownerId: number | undefined; content: string; createdAt: Date }[];
 			invitee: {
 				id: number;
 				name: string;
 				verified: boolean;
-				invitedBy: number | null;
-			} | null;
+				invitedBy: number | undefined;
+			} | undefined;
 		}[]
 	>();
 
@@ -3080,16 +3080,16 @@ test('Get user with invitee and posts', async (t) => {
 		id: 1,
 		name: 'Dan',
 		verified: false,
-		invitedBy: null,
-		invitee: null,
+		invitedBy: undefined,
+		invitee: undefined,
 		posts: [{ id: 1, ownerId: 1, content: 'Post1', createdAt: response[0]?.posts[0]?.createdAt }],
 	});
 	expect(response).toContainEqual({
 		id: 2,
 		name: 'Andrew',
 		verified: false,
-		invitedBy: null,
-		invitee: null,
+		invitedBy: undefined,
+		invitee: undefined,
 		posts: [{ id: 2, ownerId: 2, content: 'Post2', createdAt: response[1]?.posts[0]?.createdAt }],
 	});
 	expect(response).toContainEqual({
@@ -3097,7 +3097,7 @@ test('Get user with invitee and posts', async (t) => {
 		name: 'Alex',
 		verified: false,
 		invitedBy: 1,
-		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: null },
+		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: undefined },
 		posts: [{ id: 3, ownerId: 3, content: 'Post3', createdAt: response[2]?.posts[0]?.createdAt }],
 	});
 	expect(response).toContainEqual({
@@ -3105,7 +3105,7 @@ test('Get user with invitee and posts', async (t) => {
 		name: 'John',
 		verified: false,
 		invitedBy: 2,
-		invitee: { id: 2, name: 'Andrew', verified: false, invitedBy: null },
+		invitee: { id: 2, name: 'Andrew', verified: false, invitedBy: undefined },
 		posts: [],
 	});
 });
@@ -3144,14 +3144,14 @@ test('Get user with invitee and posts + limit posts and users', async (t) => {
 			id: number;
 			name: string;
 			verified: boolean;
-			invitedBy: number | null;
-			posts: { id: number; ownerId: number | null; content: string; createdAt: Date }[];
+			invitedBy: number | undefined;
+			posts: { id: number; ownerId: number | undefined; content: string; createdAt: Date }[];
 			invitee: {
 				id: number;
 				name: string;
 				verified: boolean;
-				invitedBy: number | null;
-			} | null;
+				invitedBy: number | undefined;
+			} | undefined;
 		}[]
 	>();
 
@@ -3171,16 +3171,16 @@ test('Get user with invitee and posts + limit posts and users', async (t) => {
 		id: 1,
 		name: 'Dan',
 		verified: false,
-		invitedBy: null,
-		invitee: null,
+		invitedBy: undefined,
+		invitee: undefined,
 		posts: [{ id: 1, ownerId: 1, content: 'Post1', createdAt: response[0]?.posts[0]?.createdAt }],
 	});
 	expect(response).toContainEqual({
 		id: 2,
 		name: 'Andrew',
 		verified: false,
-		invitedBy: null,
-		invitee: null,
+		invitedBy: undefined,
+		invitee: undefined,
 		posts: [{ id: 3, ownerId: 2, content: 'Post2', createdAt: response[1]?.posts[0]?.createdAt }],
 	});
 	expect(response).toContainEqual({
@@ -3188,7 +3188,7 @@ test('Get user with invitee and posts + limit posts and users', async (t) => {
 		name: 'Alex',
 		verified: false,
 		invitedBy: 1,
-		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: null },
+		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: undefined },
 		posts: [{ id: 5, ownerId: 3, content: 'Post3', createdAt: response[2]?.posts[0]?.createdAt }],
 	});
 });
@@ -3232,15 +3232,15 @@ test('Get user with invitee and posts + limits + custom fields in each', async (
 			name: string;
 			verified: boolean;
 			lower: string;
-			invitedBy: number | null;
-			posts: { id: number; lower: string; ownerId: number | null; content: string; createdAt: Date }[];
+			invitedBy: number | undefined;
+			posts: { id: number; lower: string; ownerId: number | undefined; content: string; createdAt: Date }[];
 			invitee: {
 				id: number;
 				name: string;
 				lower: string;
 				verified: boolean;
-				invitedBy: number | null;
-			} | null;
+				invitedBy: number | undefined;
+			} | undefined;
 		}[]
 	>();
 
@@ -3261,8 +3261,8 @@ test('Get user with invitee and posts + limits + custom fields in each', async (
 		name: 'Dan',
 		lower: 'dan',
 		verified: false,
-		invitedBy: null,
-		invitee: null,
+		invitedBy: undefined,
+		invitee: undefined,
 		posts: [{ id: 1, ownerId: 1, content: 'Post1', lower: 'post1', createdAt: response[0]?.posts[0]?.createdAt }],
 	});
 	expect(response).toContainEqual({
@@ -3270,8 +3270,8 @@ test('Get user with invitee and posts + limits + custom fields in each', async (
 		name: 'Andrew',
 		lower: 'andrew',
 		verified: false,
-		invitedBy: null,
-		invitee: null,
+		invitedBy: undefined,
+		invitee: undefined,
 		posts: [{ id: 3, ownerId: 2, content: 'Post2', lower: 'post2', createdAt: response[1]?.posts[0]?.createdAt }],
 	});
 	expect(response).toContainEqual({
@@ -3280,7 +3280,7 @@ test('Get user with invitee and posts + limits + custom fields in each', async (
 		lower: 'alex',
 		verified: false,
 		invitedBy: 1,
-		invitee: { id: 1, name: 'Dan', lower: 'dan', verified: false, invitedBy: null },
+		invitee: { id: 1, name: 'Dan', lower: 'dan', verified: false, invitedBy: undefined },
 		posts: [{ id: 5, ownerId: 3, content: 'Post3', lower: 'post3', createdAt: response[2]?.posts[0]?.createdAt }],
 	});
 });
@@ -3322,15 +3322,15 @@ test('Get user with invitee and posts + custom fields in each', async (t) => {
 			name: string;
 			verified: boolean;
 			lower: string;
-			invitedBy: number | null;
-			posts: { id: number; lower: string; ownerId: number | null; content: string; createdAt: Date }[];
+			invitedBy: number | undefined;
+			posts: { id: number; lower: string; ownerId: number | undefined; content: string; createdAt: Date }[];
 			invitee: {
 				id: number;
 				name: string;
 				lower: string;
 				verified: boolean;
-				invitedBy: number | null;
-			} | null;
+				invitedBy: number | undefined;
+			} | undefined;
 		}[]
 	>();
 
@@ -3353,8 +3353,8 @@ test('Get user with invitee and posts + custom fields in each', async (t) => {
 		name: 'Dan',
 		lower: 'dan',
 		verified: false,
-		invitedBy: null,
-		invitee: null,
+		invitedBy: undefined,
+		invitee: undefined,
 		posts: [{ id: 1, ownerId: 1, content: 'Post1', lower: 'post1', createdAt: response[0]?.posts[0]?.createdAt }, {
 			id: 2,
 			ownerId: 1,
@@ -3368,8 +3368,8 @@ test('Get user with invitee and posts + custom fields in each', async (t) => {
 		name: 'Andrew',
 		lower: 'andrew',
 		verified: false,
-		invitedBy: null,
-		invitee: null,
+		invitedBy: undefined,
+		invitee: undefined,
 		posts: [{ id: 3, ownerId: 2, content: 'Post2', lower: 'post2', createdAt: response[1]?.posts[0]?.createdAt }, {
 			id: 4,
 			ownerId: 2,
@@ -3384,7 +3384,7 @@ test('Get user with invitee and posts + custom fields in each', async (t) => {
 		lower: 'alex',
 		verified: false,
 		invitedBy: 1,
-		invitee: { id: 1, name: 'Dan', lower: 'dan', verified: false, invitedBy: null },
+		invitee: { id: 1, name: 'Dan', lower: 'dan', verified: false, invitedBy: undefined },
 		posts: [{ id: 5, ownerId: 3, content: 'Post3', lower: 'post3', createdAt: response[2]?.posts[0]?.createdAt }, {
 			id: 6,
 			ownerId: 3,
@@ -3399,7 +3399,7 @@ test('Get user with invitee and posts + custom fields in each', async (t) => {
 		lower: 'john',
 		verified: false,
 		invitedBy: 2,
-		invitee: { id: 2, name: 'Andrew', lower: 'andrew', verified: false, invitedBy: null },
+		invitee: { id: 2, name: 'Andrew', lower: 'andrew', verified: false, invitedBy: undefined },
 		posts: [],
 	});
 });
@@ -3437,14 +3437,14 @@ test('Get user with invitee and posts + orderBy', async (t) => {
 			id: number;
 			name: string;
 			verified: boolean;
-			invitedBy: number | null;
-			posts: { id: number; ownerId: number | null; content: string; createdAt: Date }[];
+			invitedBy: number | undefined;
+			posts: { id: number; ownerId: number | undefined; content: string; createdAt: Date }[];
 			invitee: {
 				id: number;
 				name: string;
 				verified: boolean;
-				invitedBy: number | null;
-			} | null;
+				invitedBy: number | undefined;
+			} | undefined;
 		}[]
 	>();
 
@@ -3464,8 +3464,8 @@ test('Get user with invitee and posts + orderBy', async (t) => {
 		id: 1,
 		name: 'Dan',
 		verified: false,
-		invitedBy: null,
-		invitee: null,
+		invitedBy: undefined,
+		invitee: undefined,
 		posts: [{ id: 2, ownerId: 1, content: 'Post1.1', createdAt: response[3]?.posts[0]?.createdAt }, {
 			id: 1,
 			ownerId: 1,
@@ -3477,8 +3477,8 @@ test('Get user with invitee and posts + orderBy', async (t) => {
 		id: 2,
 		name: 'Andrew',
 		verified: false,
-		invitedBy: null,
-		invitee: null,
+		invitedBy: undefined,
+		invitee: undefined,
 		posts: [{ id: 4, ownerId: 2, content: 'Post2.1', createdAt: response[2]?.posts[0]?.createdAt }, {
 			id: 3,
 			ownerId: 2,
@@ -3491,7 +3491,7 @@ test('Get user with invitee and posts + orderBy', async (t) => {
 		name: 'Alex',
 		verified: false,
 		invitedBy: 1,
-		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: null },
+		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: undefined },
 		posts: [{
 			id: 5,
 			ownerId: 3,
@@ -3504,7 +3504,7 @@ test('Get user with invitee and posts + orderBy', async (t) => {
 		name: 'John',
 		verified: false,
 		invitedBy: 2,
-		invitee: { id: 2, name: 'Andrew', verified: false, invitedBy: null },
+		invitee: { id: 2, name: 'Andrew', verified: false, invitedBy: undefined },
 		posts: [],
 	});
 });
@@ -3540,14 +3540,14 @@ test('Get user with invitee and posts + where', async (t) => {
 			id: number;
 			name: string;
 			verified: boolean;
-			invitedBy: number | null;
-			posts: { id: number; ownerId: number | null; content: string; createdAt: Date }[];
+			invitedBy: number | undefined;
+			posts: { id: number; ownerId: number | undefined; content: string; createdAt: Date }[];
 			invitee: {
 				id: number;
 				name: string;
 				verified: boolean;
-				invitedBy: number | null;
-			} | null;
+				invitedBy: number | undefined;
+			} | undefined;
 		}[]
 	>();
 
@@ -3565,8 +3565,8 @@ test('Get user with invitee and posts + where', async (t) => {
 		id: 2,
 		name: 'Andrew',
 		verified: false,
-		invitedBy: null,
-		invitee: null,
+		invitedBy: undefined,
+		invitee: undefined,
 		posts: [{ id: 2, ownerId: 2, content: 'Post2', createdAt: response[0]?.posts[0]?.createdAt }],
 	});
 	expect(response).toContainEqual({
@@ -3574,7 +3574,7 @@ test('Get user with invitee and posts + where', async (t) => {
 		name: 'Alex',
 		verified: false,
 		invitedBy: 1,
-		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: null },
+		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: undefined },
 		posts: [],
 	});
 });
@@ -3615,14 +3615,14 @@ test('Get user with invitee and posts + limit posts and users + where', async (t
 			id: number;
 			name: string;
 			verified: boolean;
-			invitedBy: number | null;
-			posts: { id: number; ownerId: number | null; content: string; createdAt: Date }[];
+			invitedBy: number | undefined;
+			posts: { id: number; ownerId: number | undefined; content: string; createdAt: Date }[];
 			invitee: {
 				id: number;
 				name: string;
 				verified: boolean;
-				invitedBy: number | null;
-			} | null;
+				invitedBy: number | undefined;
+			} | undefined;
 		}[]
 	>();
 
@@ -3636,7 +3636,7 @@ test('Get user with invitee and posts + limit posts and users + where', async (t
 		name: 'Alex',
 		verified: false,
 		invitedBy: 1,
-		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: null },
+		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: undefined },
 		posts: [{ id: 5, ownerId: 3, content: 'Post3', createdAt: response[0]?.posts[0]?.createdAt }],
 	});
 });
@@ -3682,15 +3682,15 @@ test('Get user with invitee and posts + orderBy + where + custom', async (t) => 
 			id: number;
 			name: string;
 			verified: boolean;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 			lower: string;
-			posts: { id: number; lower: string; ownerId: number | null; content: string; createdAt: Date }[];
+			posts: { id: number; lower: string; ownerId: number | undefined; content: string; createdAt: Date }[];
 			invitee: {
 				id: number;
 				name: string;
 				verified: boolean;
-				invitedBy: number | null;
-			} | null;
+				invitedBy: number | undefined;
+			} | undefined;
 		}[]
 	>();
 
@@ -3708,7 +3708,7 @@ test('Get user with invitee and posts + orderBy + where + custom', async (t) => 
 		lower: 'alex',
 		verified: false,
 		invitedBy: 1,
-		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: null },
+		invitee: { id: 1, name: 'Dan', verified: false, invitedBy: undefined },
 		posts: [{
 			id: 5,
 			ownerId: 3,
@@ -3723,7 +3723,7 @@ test('Get user with invitee and posts + orderBy + where + custom', async (t) => 
 		lower: 'john',
 		verified: false,
 		invitedBy: 2,
-		invitee: { id: 2, name: 'Andrew', verified: false, invitedBy: null },
+		invitee: { id: 2, name: 'Andrew', verified: false, invitedBy: undefined },
 		posts: [],
 	});
 });
@@ -3790,7 +3790,7 @@ test('Get user with invitee and posts + orderBy + where + partial + custom', asy
 				id: number;
 				name: string;
 				lower: string;
-			} | null;
+			} | undefined;
 		}[]
 	>();
 
@@ -3862,18 +3862,18 @@ test('Get user with posts and posts with comments', async (t) => {
 			id: number;
 			name: string;
 			verified: boolean;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 			posts: {
 				id: number;
 				content: string;
-				ownerId: number | null;
+				ownerId: number | undefined;
 				createdAt: Date;
 				comments: {
 					id: number;
 					content: string;
 					createdAt: Date;
-					creator: number | null;
-					postId: number | null;
+					creator: number | undefined;
+					postId: number | undefined;
 				}[];
 			}[];
 		}[]
@@ -3894,7 +3894,7 @@ test('Get user with posts and posts with comments', async (t) => {
 		id: 1,
 		name: 'Dan',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{
 			id: 1,
 			ownerId: 1,
@@ -3915,7 +3915,7 @@ test('Get user with posts and posts with comments', async (t) => {
 		id: 2,
 		name: 'Andrew',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{
 			id: 2,
 			ownerId: 2,
@@ -3936,7 +3936,7 @@ test('Get user with posts and posts with comments', async (t) => {
 	// 	id: 3,
 	// 	name: 'Alex',
 	// 	verified: false,
-	// 	invitedBy: null,
+	// 	invitedBy: undefined,
 	// 	posts: [{
 	// 		id: 3,
 	// 		ownerId: 3,
@@ -4022,24 +4022,24 @@ test('Get user with posts and posts with comments and comments with owner', asyn
 		id: number;
 		name: string;
 		verified: boolean;
-		invitedBy: number | null;
+		invitedBy: number | undefined;
 		posts: {
 			id: number;
 			content: string;
-			ownerId: number | null;
+			ownerId: number | undefined;
 			createdAt: Date;
 			comments: {
 				id: number;
 				content: string;
 				createdAt: Date;
-				creator: number | null;
-				postId: number | null;
+				creator: number | undefined;
+				postId: number | undefined;
 				author: {
 					id: number;
 					name: string;
 					verified: boolean;
-					invitedBy: number | null;
-				} | null;
+					invitedBy: number | undefined;
+				} | undefined;
 			}[];
 		}[];
 	}[]>();
@@ -4059,7 +4059,7 @@ test('Get user with posts and posts with comments and comments with owner', asyn
 		id: 1,
 		name: 'Dan',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{
 			id: 1,
 			ownerId: 1,
@@ -4074,7 +4074,7 @@ test('Get user with posts and posts with comments and comments with owner', asyn
 						id: 2,
 						name: 'Andrew',
 						verified: false,
-						invitedBy: null,
+						invitedBy: undefined,
 					},
 					postId: 1,
 					createdAt: response[0]?.posts[0]?.comments[0]?.createdAt,
@@ -4086,7 +4086,7 @@ test('Get user with posts and posts with comments and comments with owner', asyn
 		id: 2,
 		name: 'Andrew',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{
 			id: 2,
 			ownerId: 2,
@@ -4101,7 +4101,7 @@ test('Get user with posts and posts with comments and comments with owner', asyn
 						id: 2,
 						name: 'Andrew',
 						verified: false,
-						invitedBy: null,
+						invitedBy: undefined,
 					},
 					postId: 2,
 					createdAt: response[1]?.posts[0]?.comments[0]?.createdAt,
@@ -4150,24 +4150,24 @@ test('Get user with posts and posts with comments and comments with owner where 
 		id: number;
 		name: string;
 		verified: boolean;
-		invitedBy: number | null;
+		invitedBy: number | undefined;
 		posts: {
 			id: number;
 			content: string;
-			ownerId: number | null;
+			ownerId: number | undefined;
 			createdAt: Date;
 			comments: {
 				id: number;
 				content: string;
 				createdAt: Date;
-				creator: number | null;
-				postId: number | null;
+				creator: number | undefined;
+				postId: number | undefined;
 				author: {
 					id: number;
 					name: string;
 					verified: boolean;
-					invitedBy: number | null;
-				} | null;
+					invitedBy: number | undefined;
+				} | undefined;
 			}[];
 		}[];
 	}[]>();
@@ -4181,7 +4181,7 @@ test('Get user with posts and posts with comments and comments with owner where 
 		id: 2,
 		name: 'Andrew',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		posts: [{
 			id: 2,
 			ownerId: 2,
@@ -4196,7 +4196,7 @@ test('Get user with posts and posts with comments and comments with owner where 
 						id: 2,
 						name: 'Andrew',
 						verified: false,
-						invitedBy: null,
+						invitedBy: undefined,
 					},
 					postId: 2,
 					createdAt: response[0]?.posts[0]?.comments[0]?.createdAt,
@@ -4260,12 +4260,12 @@ test('[Find Many] Get users with groups', async (t) => {
 		id: number;
 		name: string;
 		verified: boolean;
-		invitedBy: number | null;
+		invitedBy: number | undefined;
 		usersToGroups: {
 			group: {
 				id: number;
 				name: string;
-				description: string | null;
+				description: string | undefined;
 			};
 		}[];
 	}[]>();
@@ -4282,12 +4282,12 @@ test('[Find Many] Get users with groups', async (t) => {
 		id: 1,
 		name: 'Dan',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		usersToGroups: [{
 			group: {
 				id: 1,
 				name: 'Group1',
-				description: null,
+				description: undefined,
 			},
 		}],
 	});
@@ -4296,12 +4296,12 @@ test('[Find Many] Get users with groups', async (t) => {
 		id: 2,
 		name: 'Andrew',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		usersToGroups: [{
 			group: {
 				id: 2,
 				name: 'Group2',
-				description: null,
+				description: undefined,
 			},
 		}],
 	});
@@ -4310,20 +4310,20 @@ test('[Find Many] Get users with groups', async (t) => {
 		id: 3,
 		name: 'Alex',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		usersToGroups: expect.arrayContaining([
 			{
 				group: {
 					id: 2,
 					name: 'Group2',
-					description: null,
+					description: undefined,
 				},
 			},
 			{
 				group: {
 					id: 3,
 					name: 'Group3',
-					description: null,
+					description: undefined,
 				},
 			},
 		]),
@@ -4366,13 +4366,13 @@ test('[Find Many] Get groups with users', async (t) => {
 	expectTypeOf(response).toEqualTypeOf<{
 		id: number;
 		name: string;
-		description: string | null;
+		description: string | undefined;
 		usersToGroups: {
 			user: {
 				id: number;
 				name: string;
 				verified: boolean;
-				invitedBy: number | null;
+				invitedBy: number | undefined;
 			};
 		}[];
 	}[]>();
@@ -4388,13 +4388,13 @@ test('[Find Many] Get groups with users', async (t) => {
 	expect(response).toContainEqual({
 		id: 1,
 		name: 'Group1',
-		description: null,
+		description: undefined,
 		usersToGroups: [{
 			user: {
 				id: 1,
 				name: 'Dan',
 				verified: false,
-				invitedBy: null,
+				invitedBy: undefined,
 			},
 		}],
 	});
@@ -4402,20 +4402,20 @@ test('[Find Many] Get groups with users', async (t) => {
 	expect(response).toContainEqual({
 		id: 2,
 		name: 'Group2',
-		description: null,
+		description: undefined,
 		usersToGroups: [{
 			user: {
 				id: 2,
 				name: 'Andrew',
 				verified: false,
-				invitedBy: null,
+				invitedBy: undefined,
 			},
 		}, {
 			user: {
 				id: 3,
 				name: 'Alex',
 				verified: false,
-				invitedBy: null,
+				invitedBy: undefined,
 			},
 		}],
 	});
@@ -4423,13 +4423,13 @@ test('[Find Many] Get groups with users', async (t) => {
 	expect(response).toContainEqual({
 		id: 3,
 		name: 'Group3',
-		description: null,
+		description: undefined,
 		usersToGroups: [{
 			user: {
 				id: 3,
 				name: 'Alex',
 				verified: false,
-				invitedBy: null,
+				invitedBy: undefined,
 			},
 		}],
 	});
@@ -4474,12 +4474,12 @@ test('[Find Many] Get users with groups + limit', async (t) => {
 		id: number;
 		name: string;
 		verified: boolean;
-		invitedBy: number | null;
+		invitedBy: number | undefined;
 		usersToGroups: {
 			group: {
 				id: number;
 				name: string;
-				description: string | null;
+				description: string | undefined;
 			};
 		}[];
 	}[]>();
@@ -4495,12 +4495,12 @@ test('[Find Many] Get users with groups + limit', async (t) => {
 		id: 1,
 		name: 'Dan',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		usersToGroups: [{
 			group: {
 				id: 1,
 				name: 'Group1',
-				description: null,
+				description: undefined,
 			},
 		}],
 	});
@@ -4509,12 +4509,12 @@ test('[Find Many] Get users with groups + limit', async (t) => {
 		id: 2,
 		name: 'Andrew',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		usersToGroups: [{
 			group: {
 				id: 2,
 				name: 'Group2',
-				description: null,
+				description: undefined,
 			},
 		}],
 	});
@@ -4558,13 +4558,13 @@ test('[Find Many] Get groups with users + limit', async (t) => {
 	expectTypeOf(response).toEqualTypeOf<{
 		id: number;
 		name: string;
-		description: string | null;
+		description: string | undefined;
 		usersToGroups: {
 			user: {
 				id: number;
 				name: string;
 				verified: boolean;
-				invitedBy: number | null;
+				invitedBy: number | undefined;
 			};
 		}[];
 	}[]>();
@@ -4579,13 +4579,13 @@ test('[Find Many] Get groups with users + limit', async (t) => {
 	expect(response).toContainEqual({
 		id: 1,
 		name: 'Group1',
-		description: null,
+		description: undefined,
 		usersToGroups: [{
 			user: {
 				id: 1,
 				name: 'Dan',
 				verified: false,
-				invitedBy: null,
+				invitedBy: undefined,
 			},
 		}],
 	});
@@ -4593,13 +4593,13 @@ test('[Find Many] Get groups with users + limit', async (t) => {
 	expect(response).toContainEqual({
 		id: 2,
 		name: 'Group2',
-		description: null,
+		description: undefined,
 		usersToGroups: [{
 			user: {
 				id: 2,
 				name: 'Andrew',
 				verified: false,
-				invitedBy: null,
+				invitedBy: undefined,
 			},
 		}],
 	});
@@ -4645,12 +4645,12 @@ test('[Find Many] Get users with groups + limit + where', async (t) => {
 		id: number;
 		name: string;
 		verified: boolean;
-		invitedBy: number | null;
+		invitedBy: number | undefined;
 		usersToGroups: {
 			group: {
 				id: number;
 				name: string;
-				description: string | null;
+				description: string | undefined;
 			};
 		}[];
 	}[]>();
@@ -4665,12 +4665,12 @@ test('[Find Many] Get users with groups + limit + where', async (t) => {
 		id: 1,
 		name: 'Dan',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		usersToGroups: [{
 			group: {
 				id: 1,
 				name: 'Group1',
-				description: null,
+				description: undefined,
 			},
 		}],
 	});
@@ -4716,13 +4716,13 @@ test('[Find Many] Get groups with users + limit + where', async (t) => {
 	expectTypeOf(response).toEqualTypeOf<{
 		id: number;
 		name: string;
-		description: string | null;
+		description: string | undefined;
 		usersToGroups: {
 			user: {
 				id: number;
 				name: string;
 				verified: boolean;
-				invitedBy: number | null;
+				invitedBy: number | undefined;
 			};
 		}[];
 	}[]>();
@@ -4736,13 +4736,13 @@ test('[Find Many] Get groups with users + limit + where', async (t) => {
 	expect(response).toContainEqual({
 		id: 2,
 		name: 'Group2',
-		description: null,
+		description: undefined,
 		usersToGroups: [{
 			user: {
 				id: 2,
 				name: 'Andrew',
 				verified: false,
-				invitedBy: null,
+				invitedBy: undefined,
 			},
 		}],
 	});
@@ -4787,12 +4787,12 @@ test('[Find Many] Get users with groups + where', async (t) => {
 		id: number;
 		name: string;
 		verified: boolean;
-		invitedBy: number | null;
+		invitedBy: number | undefined;
 		usersToGroups: {
 			group: {
 				id: number;
 				name: string;
-				description: string | null;
+				description: string | undefined;
 			};
 		}[];
 	}[]>();
@@ -4808,7 +4808,7 @@ test('[Find Many] Get users with groups + where', async (t) => {
 		id: 1,
 		name: 'Dan',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		usersToGroups: [],
 	});
 
@@ -4816,12 +4816,12 @@ test('[Find Many] Get users with groups + where', async (t) => {
 		id: 2,
 		name: 'Andrew',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		usersToGroups: [{
 			group: {
 				id: 2,
 				name: 'Group2',
-				description: null,
+				description: undefined,
 			},
 		}],
 	});
@@ -4865,13 +4865,13 @@ test('[Find Many] Get groups with users + where', async (t) => {
 	expectTypeOf(response).toEqualTypeOf<{
 		id: number;
 		name: string;
-		description: string | null;
+		description: string | undefined;
 		usersToGroups: {
 			user: {
 				id: number;
 				name: string;
 				verified: boolean;
-				invitedBy: number | null;
+				invitedBy: number | undefined;
 			};
 		}[];
 	}[]>();
@@ -4886,13 +4886,13 @@ test('[Find Many] Get groups with users + where', async (t) => {
 	expect(response).toContainEqual({
 		id: 2,
 		name: 'Group2',
-		description: null,
+		description: undefined,
 		usersToGroups: [{
 			user: {
 				id: 2,
 				name: 'Andrew',
 				verified: false,
-				invitedBy: null,
+				invitedBy: undefined,
 			},
 		}],
 	});
@@ -4900,7 +4900,7 @@ test('[Find Many] Get groups with users + where', async (t) => {
 	expect(response).toContainEqual({
 		id: 3,
 		name: 'Group3',
-		description: null,
+		description: undefined,
 		usersToGroups: [],
 	});
 });
@@ -4944,12 +4944,12 @@ test('[Find Many] Get users with groups + orderBy', async (t) => {
 		id: number;
 		name: string;
 		verified: boolean;
-		invitedBy: number | null;
+		invitedBy: number | undefined;
 		usersToGroups: {
 			group: {
 				id: number;
 				name: string;
-				description: string | null;
+				description: string | undefined;
 			};
 		}[];
 	}[]>();
@@ -4964,12 +4964,12 @@ test('[Find Many] Get users with groups + orderBy', async (t) => {
 		id: 1,
 		name: 'Dan',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		usersToGroups: [{
 			group: {
 				id: 1,
 				name: 'Group1',
-				description: null,
+				description: undefined,
 			},
 		}],
 	});
@@ -4978,12 +4978,12 @@ test('[Find Many] Get users with groups + orderBy', async (t) => {
 		id: 2,
 		name: 'Andrew',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		usersToGroups: [{
 			group: {
 				id: 2,
 				name: 'Group2',
-				description: null,
+				description: undefined,
 			},
 		}],
 	});
@@ -4992,18 +4992,18 @@ test('[Find Many] Get users with groups + orderBy', async (t) => {
 		id: 3,
 		name: 'Alex',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		usersToGroups: [{
 			group: {
 				id: 3,
 				name: 'Group3',
-				description: null,
+				description: undefined,
 			},
 		}, {
 			group: {
 				id: 2,
 				name: 'Group2',
-				description: null,
+				description: undefined,
 			},
 		}],
 	});
@@ -5047,13 +5047,13 @@ test('[Find Many] Get groups with users + orderBy', async (t) => {
 	expectTypeOf(response).toEqualTypeOf<{
 		id: number;
 		name: string;
-		description: string | null;
+		description: string | undefined;
 		usersToGroups: {
 			user: {
 				id: number;
 				name: string;
 				verified: boolean;
-				invitedBy: number | null;
+				invitedBy: number | undefined;
 			};
 		}[];
 	}[]>();
@@ -5067,13 +5067,13 @@ test('[Find Many] Get groups with users + orderBy', async (t) => {
 	expect(response[2]).toEqual({
 		id: 1,
 		name: 'Group1',
-		description: null,
+		description: undefined,
 		usersToGroups: [{
 			user: {
 				id: 1,
 				name: 'Dan',
 				verified: false,
-				invitedBy: null,
+				invitedBy: undefined,
 			},
 		}],
 	});
@@ -5081,20 +5081,20 @@ test('[Find Many] Get groups with users + orderBy', async (t) => {
 	expect(response[1]).toEqual({
 		id: 2,
 		name: 'Group2',
-		description: null,
+		description: undefined,
 		usersToGroups: [{
 			user: {
 				id: 3,
 				name: 'Alex',
 				verified: false,
-				invitedBy: null,
+				invitedBy: undefined,
 			},
 		}, {
 			user: {
 				id: 2,
 				name: 'Andrew',
 				verified: false,
-				invitedBy: null,
+				invitedBy: undefined,
 			},
 		}],
 	});
@@ -5102,13 +5102,13 @@ test('[Find Many] Get groups with users + orderBy', async (t) => {
 	expect(response[0]).toEqual({
 		id: 3,
 		name: 'Group3',
-		description: null,
+		description: undefined,
 		usersToGroups: [{
 			user: {
 				id: 3,
 				name: 'Alex',
 				verified: false,
-				invitedBy: null,
+				invitedBy: undefined,
 			},
 		}],
 	});
@@ -5155,12 +5155,12 @@ test('[Find Many] Get users with groups + orderBy + limit', async (t) => {
 		id: number;
 		name: string;
 		verified: boolean;
-		invitedBy: number | null;
+		invitedBy: number | undefined;
 		usersToGroups: {
 			group: {
 				id: number;
 				name: string;
-				description: string | null;
+				description: string | undefined;
 			};
 		}[];
 	}[]>();
@@ -5174,12 +5174,12 @@ test('[Find Many] Get users with groups + orderBy + limit', async (t) => {
 		id: 2,
 		name: 'Andrew',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		usersToGroups: [{
 			group: {
 				id: 2,
 				name: 'Group2',
-				description: null,
+				description: undefined,
 			},
 		}],
 	});
@@ -5188,12 +5188,12 @@ test('[Find Many] Get users with groups + orderBy + limit', async (t) => {
 		id: 3,
 		name: 'Alex',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		usersToGroups: [{
 			group: {
 				id: 3,
 				name: 'Group3',
-				description: null,
+				description: undefined,
 			},
 		}],
 	});
@@ -5243,12 +5243,12 @@ test('[Find One] Get users with groups', async (t) => {
 			id: number;
 			name: string;
 			verified: boolean;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 			usersToGroups: {
 				group: {
 					id: number;
 					name: string;
-					description: string | null;
+					description: string | undefined;
 				};
 			}[];
 		} | undefined
@@ -5260,12 +5260,12 @@ test('[Find One] Get users with groups', async (t) => {
 		id: 1,
 		name: 'Dan',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		usersToGroups: [{
 			group: {
 				id: 1,
 				name: 'Group1',
-				description: null,
+				description: undefined,
 			},
 		}],
 	});
@@ -5308,13 +5308,13 @@ test('[Find One] Get groups with users', async (t) => {
 		{
 			id: number;
 			name: string;
-			description: string | null;
+			description: string | undefined;
 			usersToGroups: {
 				user: {
 					id: number;
 					name: string;
 					verified: boolean;
-					invitedBy: number | null;
+					invitedBy: number | undefined;
 				};
 			}[];
 		} | undefined
@@ -5325,13 +5325,13 @@ test('[Find One] Get groups with users', async (t) => {
 	expect(response).toEqual({
 		id: 1,
 		name: 'Group1',
-		description: null,
+		description: undefined,
 		usersToGroups: [{
 			user: {
 				id: 1,
 				name: 'Dan',
 				verified: false,
-				invitedBy: null,
+				invitedBy: undefined,
 			},
 		}],
 	});
@@ -5376,12 +5376,12 @@ test('[Find One] Get users with groups + limit', async (t) => {
 			id: number;
 			name: string;
 			verified: boolean;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 			usersToGroups: {
 				group: {
 					id: number;
 					name: string;
-					description: string | null;
+					description: string | undefined;
 				};
 			}[];
 		} | undefined
@@ -5393,12 +5393,12 @@ test('[Find One] Get users with groups + limit', async (t) => {
 		id: 1,
 		name: 'Dan',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		usersToGroups: [{
 			group: {
 				id: 1,
 				name: 'Group1',
-				description: null,
+				description: undefined,
 			},
 		}],
 	});
@@ -5442,13 +5442,13 @@ test('[Find One] Get groups with users + limit', async (t) => {
 		{
 			id: number;
 			name: string;
-			description: string | null;
+			description: string | undefined;
 			usersToGroups: {
 				user: {
 					id: number;
 					name: string;
 					verified: boolean;
-					invitedBy: number | null;
+					invitedBy: number | undefined;
 				};
 			}[];
 		} | undefined
@@ -5459,13 +5459,13 @@ test('[Find One] Get groups with users + limit', async (t) => {
 	expect(response).toEqual({
 		id: 1,
 		name: 'Group1',
-		description: null,
+		description: undefined,
 		usersToGroups: [{
 			user: {
 				id: 1,
 				name: 'Dan',
 				verified: false,
-				invitedBy: null,
+				invitedBy: undefined,
 			},
 		}],
 	});
@@ -5511,12 +5511,12 @@ test('[Find One] Get users with groups + limit + where', async (t) => {
 			id: number;
 			name: string;
 			verified: boolean;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 			usersToGroups: {
 				group: {
 					id: number;
 					name: string;
-					description: string | null;
+					description: string | undefined;
 				};
 			}[];
 		} | undefined
@@ -5528,12 +5528,12 @@ test('[Find One] Get users with groups + limit + where', async (t) => {
 		id: 1,
 		name: 'Dan',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		usersToGroups: [{
 			group: {
 				id: 1,
 				name: 'Group1',
-				description: null,
+				description: undefined,
 			},
 		}],
 	});
@@ -5579,13 +5579,13 @@ test('[Find One] Get groups with users + limit + where', async (t) => {
 		{
 			id: number;
 			name: string;
-			description: string | null;
+			description: string | undefined;
 			usersToGroups: {
 				user: {
 					id: number;
 					name: string;
 					verified: boolean;
-					invitedBy: number | null;
+					invitedBy: number | undefined;
 				};
 			}[];
 		} | undefined
@@ -5596,13 +5596,13 @@ test('[Find One] Get groups with users + limit + where', async (t) => {
 	expect(response).toEqual({
 		id: 2,
 		name: 'Group2',
-		description: null,
+		description: undefined,
 		usersToGroups: [{
 			user: {
 				id: 2,
 				name: 'Andrew',
 				verified: false,
-				invitedBy: null,
+				invitedBy: undefined,
 			},
 		}],
 	});
@@ -5648,12 +5648,12 @@ test('[Find One] Get users with groups + where', async (t) => {
 			id: number;
 			name: string;
 			verified: boolean;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 			usersToGroups: {
 				group: {
 					id: number;
 					name: string;
-					description: string | null;
+					description: string | undefined;
 				};
 			}[];
 		} | undefined
@@ -5665,7 +5665,7 @@ test('[Find One] Get users with groups + where', async (t) => {
 		id: 1,
 		name: 'Dan',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		usersToGroups: [],
 	});
 });
@@ -5709,13 +5709,13 @@ test('[Find One] Get groups with users + where', async (t) => {
 		{
 			id: number;
 			name: string;
-			description: string | null;
+			description: string | undefined;
 			usersToGroups: {
 				user: {
 					id: number;
 					name: string;
 					verified: boolean;
-					invitedBy: number | null;
+					invitedBy: number | undefined;
 				};
 			}[];
 		} | undefined
@@ -5726,13 +5726,13 @@ test('[Find One] Get groups with users + where', async (t) => {
 	expect(response).toEqual({
 		id: 2,
 		name: 'Group2',
-		description: null,
+		description: undefined,
 		usersToGroups: [{
 			user: {
 				id: 2,
 				name: 'Andrew',
 				verified: false,
-				invitedBy: null,
+				invitedBy: undefined,
 			},
 		}],
 	});
@@ -5778,12 +5778,12 @@ test('[Find One] Get users with groups + orderBy', async (t) => {
 			id: number;
 			name: string;
 			verified: boolean;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 			usersToGroups: {
 				group: {
 					id: number;
 					name: string;
-					description: string | null;
+					description: string | undefined;
 				};
 			}[];
 		} | undefined
@@ -5795,18 +5795,18 @@ test('[Find One] Get users with groups + orderBy', async (t) => {
 		id: 3,
 		name: 'Alex',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		usersToGroups: [{
 			group: {
 				id: 3,
 				name: 'Group3',
-				description: null,
+				description: undefined,
 			},
 		}, {
 			group: {
 				id: 2,
 				name: 'Group2',
-				description: null,
+				description: undefined,
 			},
 		}],
 	});
@@ -5851,13 +5851,13 @@ test('[Find One] Get groups with users + orderBy', async (t) => {
 		{
 			id: number;
 			name: string;
-			description: string | null;
+			description: string | undefined;
 			usersToGroups: {
 				user: {
 					id: number;
 					name: string;
 					verified: boolean;
-					invitedBy: number | null;
+					invitedBy: number | undefined;
 				};
 			}[];
 		} | undefined
@@ -5868,13 +5868,13 @@ test('[Find One] Get groups with users + orderBy', async (t) => {
 	expect(response).toEqual({
 		id: 3,
 		name: 'Group3',
-		description: null,
+		description: undefined,
 		usersToGroups: [{
 			user: {
 				id: 3,
 				name: 'Alex',
 				verified: false,
-				invitedBy: null,
+				invitedBy: undefined,
 			},
 		}],
 	});
@@ -5921,12 +5921,12 @@ test('[Find One] Get users with groups + orderBy + limit', async (t) => {
 			id: number;
 			name: string;
 			verified: boolean;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 			usersToGroups: {
 				group: {
 					id: number;
 					name: string;
-					description: string | null;
+					description: string | undefined;
 				};
 			}[];
 		} | undefined
@@ -5938,12 +5938,12 @@ test('[Find One] Get users with groups + orderBy + limit', async (t) => {
 		id: 3,
 		name: 'Alex',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		usersToGroups: [{
 			group: {
 				id: 3,
 				name: 'Group3',
-				description: null,
+				description: undefined,
 			},
 		}],
 	});
@@ -5990,13 +5990,13 @@ test('Get groups with users + orderBy + limit', async (t) => {
 		{
 			id: number;
 			name: string;
-			description: string | null;
+			description: string | undefined;
 			usersToGroups: {
 				user: {
 					id: number;
 					name: string;
 					verified: boolean;
-					invitedBy: number | null;
+					invitedBy: number | undefined;
 				};
 			}[];
 		}[]
@@ -6010,13 +6010,13 @@ test('Get groups with users + orderBy + limit', async (t) => {
 	expect(response[1]).toEqual({
 		id: 2,
 		name: 'Group2',
-		description: null,
+		description: undefined,
 		usersToGroups: [{
 			user: {
 				id: 3,
 				name: 'Alex',
 				verified: false,
-				invitedBy: null,
+				invitedBy: undefined,
 			},
 		}],
 	});
@@ -6024,13 +6024,13 @@ test('Get groups with users + orderBy + limit', async (t) => {
 	expect(response[0]).toEqual({
 		id: 3,
 		name: 'Group3',
-		description: null,
+		description: undefined,
 		usersToGroups: [{
 			user: {
 				id: 3,
 				name: 'Alex',
 				verified: false,
-				invitedBy: null,
+				invitedBy: undefined,
 			},
 		}],
 	});
@@ -6082,13 +6082,13 @@ test('Get users with groups + custom', async (t) => {
 			id: number;
 			name: string;
 			verified: boolean;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 			lower: string;
 			usersToGroups: {
 				group: {
 					id: number;
 					name: string;
-					description: string | null;
+					description: string | undefined;
 					lower: string;
 				};
 			}[];
@@ -6108,13 +6108,13 @@ test('Get users with groups + custom', async (t) => {
 		name: 'Dan',
 		lower: 'dan',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		usersToGroups: [{
 			group: {
 				id: 1,
 				name: 'Group1',
 				lower: 'group1',
-				description: null,
+				description: undefined,
 			},
 		}],
 	});
@@ -6124,13 +6124,13 @@ test('Get users with groups + custom', async (t) => {
 		name: 'Andrew',
 		lower: 'andrew',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		usersToGroups: [{
 			group: {
 				id: 2,
 				name: 'Group2',
 				lower: 'group2',
-				description: null,
+				description: undefined,
 			},
 		}],
 	});
@@ -6140,14 +6140,14 @@ test('Get users with groups + custom', async (t) => {
 		name: 'Alex',
 		lower: 'alex',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 		usersToGroups: [
 			{
 				group: {
 					id: 2,
 					name: 'Group2',
 					lower: 'group2',
-					description: null,
+					description: undefined,
 				},
 			},
 			{
@@ -6155,7 +6155,7 @@ test('Get users with groups + custom', async (t) => {
 					id: 3,
 					name: 'Group3',
 					lower: 'group3',
-					description: null,
+					description: undefined,
 				},
 			},
 		],
@@ -6206,14 +6206,14 @@ test('Get groups with users + custom', async (t) => {
 		{
 			id: number;
 			name: string;
-			description: string | null;
+			description: string | undefined;
 			lower: string;
 			usersToGroups: {
 				user: {
 					id: number;
 					name: string;
 					verified: boolean;
-					invitedBy: number | null;
+					invitedBy: number | undefined;
 					lower: string;
 				};
 			}[];
@@ -6232,14 +6232,14 @@ test('Get groups with users + custom', async (t) => {
 		id: 1,
 		name: 'Group1',
 		lower: 'group1',
-		description: null,
+		description: undefined,
 		usersToGroups: [{
 			user: {
 				id: 1,
 				name: 'Dan',
 				lower: 'dan',
 				verified: false,
-				invitedBy: null,
+				invitedBy: undefined,
 			},
 		}],
 	});
@@ -6248,14 +6248,14 @@ test('Get groups with users + custom', async (t) => {
 		id: 2,
 		name: 'Group2',
 		lower: 'group2',
-		description: null,
+		description: undefined,
 		usersToGroups: [{
 			user: {
 				id: 2,
 				name: 'Andrew',
 				lower: 'andrew',
 				verified: false,
-				invitedBy: null,
+				invitedBy: undefined,
 			},
 		}, {
 			user: {
@@ -6263,7 +6263,7 @@ test('Get groups with users + custom', async (t) => {
 				name: 'Alex',
 				lower: 'alex',
 				verified: false,
-				invitedBy: null,
+				invitedBy: undefined,
 			},
 		}],
 	});
@@ -6272,14 +6272,14 @@ test('Get groups with users + custom', async (t) => {
 		id: 3,
 		name: 'Group3',
 		lower: 'group3',
-		description: null,
+		description: undefined,
 		usersToGroups: [{
 			user: {
 				id: 3,
 				name: 'Alex',
 				lower: 'alex',
 				verified: false,
-				invitedBy: null,
+				invitedBy: undefined,
 			},
 		}],
 	});
@@ -6300,7 +6300,7 @@ test('[Find Many] Get schema users - dbName & tsName match', async (t) => {
 		id: number;
 		name: string;
 		verified: boolean;
-		invitedBy: number | null;
+		invitedBy: number | undefined;
 	}[]>();
 
 	schemaUsers.sort((a, b) => (a.id > b.id) ? 1 : -1);
@@ -6310,19 +6310,19 @@ test('[Find Many] Get schema users - dbName & tsName match', async (t) => {
 		id: 1,
 		name: 'Dan',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 	});
 	expect(schemaUsers[1]).toEqual({
 		id: 2,
 		name: 'Andrew',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 	});
 	expect(schemaUsers[2]).toEqual({
 		id: 3,
 		name: 'Alex',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 	});
 });
 
@@ -6341,7 +6341,7 @@ test('[Find Many] Get schema users - dbName & tsName mismatch', async (t) => {
 		id: number;
 		name: string;
 		verified: boolean;
-		invitedBy: number | null;
+		invitedBy: number | undefined;
 	}[]>();
 
 	schemaUsers.sort((a, b) => (a.id > b.id) ? 1 : -1);
@@ -6351,19 +6351,19 @@ test('[Find Many] Get schema users - dbName & tsName mismatch', async (t) => {
 		id: 1,
 		name: 'Dan',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 	});
 	expect(schemaUsers[1]).toEqual({
 		id: 2,
 		name: 'Andrew',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 	});
 	expect(schemaUsers[2]).toEqual({
 		id: 3,
 		name: 'Alex',
 		verified: false,
-		invitedBy: null,
+		invitedBy: undefined,
 	});
 });
 

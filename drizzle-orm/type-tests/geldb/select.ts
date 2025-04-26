@@ -57,7 +57,7 @@ Expect<
 	Equal<
 		{
 			users_table: typeof users.$inferSelect;
-			city: typeof cities.$inferSelect | null;
+			city: typeof cities.$inferSelect | undefined;
 		}[],
 		typeof leftJoinFull
 	>
@@ -68,7 +68,7 @@ const rightJoinFull = await db.select().from(users).rightJoin(city, eq(users.id,
 Expect<
 	Equal<
 		{
-			users_table: typeof users.$inferSelect | null;
+			users_table: typeof users.$inferSelect | undefined;
 			city: typeof city.$inferSelect;
 		}[],
 		typeof rightJoinFull
@@ -92,8 +92,8 @@ const fullJoinFull = await db.select().from(users).fullJoin(city, eq(users.id, c
 Expect<
 	Equal<
 		{
-			users_table: typeof users.$inferSelect | null;
-			city: typeof city.$inferSelect | null;
+			users_table: typeof users.$inferSelect | undefined;
+			city: typeof city.$inferSelect | undefined;
 		}[],
 		typeof fullJoinFull
 	>
@@ -124,9 +124,9 @@ const leftJoinFlat = await db
 Expect<
 	Equal<{
 		userId: number;
-		userText: string | null;
-		cityId: number | null;
-		cityName: string | null;
+		userText: string | undefined;
+		cityId: number | undefined;
+		cityName: string | undefined;
 	}[], typeof leftJoinFlat>
 >;
 
@@ -142,8 +142,8 @@ const rightJoinFlat = await db
 
 Expect<
 	Equal<{
-		userId: number | null;
-		userText: string | null;
+		userId: number | undefined;
+		userText: string | undefined;
 		cityId: number;
 		cityName: string;
 	}[], typeof rightJoinFlat>
@@ -162,7 +162,7 @@ const innerJoinFlat = await db
 Expect<
 	Equal<{
 		userId: number;
-		userText: string | null;
+		userText: string | undefined;
 		cityId: number;
 		cityName: string;
 	}[], typeof innerJoinFlat>
@@ -180,10 +180,10 @@ const fullJoinFlat = await db
 
 Expect<
 	Equal<{
-		userId: number | null;
-		userText: string | null;
-		cityId: number | null;
-		cityName: string | null;
+		userId: number | undefined;
+		userText: string | undefined;
+		cityId: number | undefined;
+		cityName: string | undefined;
 	}[], typeof fullJoinFlat>
 >;
 
@@ -200,7 +200,7 @@ const crossJoinFlat = await db
 Expect<
 	Equal<{
 		userId: number;
-		userText: string | null;
+		userText: string | undefined;
 		cityId: number;
 		cityName: string;
 	}[], typeof crossJoinFlat>
@@ -210,8 +210,8 @@ const leftJoinMixed = await db
 	.select({
 		id: users.id,
 		text: users.text,
-		textUpper: sql<string | null>`upper(${users.text})`,
-		idComplex: sql<string | null>`${users.id}::text || ${city.id}::text`,
+		textUpper: sql<string | undefined>`upper(${users.text})`,
+		idComplex: sql<string | undefined>`${users.id}::text || ${city.id}::text`,
 		city: {
 			id: city.id,
 			name: city.name,
@@ -224,13 +224,13 @@ Expect<
 	Equal<
 		{
 			id: number;
-			text: string | null;
-			textUpper: string | null;
-			idComplex: string | null;
+			text: string | undefined;
+			textUpper: string | undefined;
+			idComplex: string | undefined;
 			city: {
 				id: number;
 				name: string;
-			} | null;
+			} | undefined;
 		}[],
 		typeof leftJoinMixed
 	>
@@ -252,10 +252,10 @@ Expect<
 	Equal<
 		{
 			id: number;
-			text: string | null;
+			text: string | undefined;
 			foo: {
 				bar: string;
-				baz: number | null;
+				baz: number | undefined;
 			};
 		}[],
 		typeof leftJoinMixed2
@@ -281,13 +281,13 @@ Expect<
 	Equal<{
 		user: {
 			id: number;
-			text: string | null;
+			text: string | undefined;
 		};
 		city: {
 			id: number;
 			name: string;
 			nameUpper: string;
-		} | null;
+		} | undefined;
 	}[], typeof join1>
 >;
 
@@ -312,24 +312,24 @@ Expect<
 				id: number;
 				uuid: string;
 				homeCity: number;
-				currentCity: number | null;
+				currentCity: number | undefined;
 				class: string;
-				subClass: string | null;
-				text: string | null;
+				subClass: string | undefined;
+				text: string | undefined;
 				age1: number;
 				createdAt: Date;
 				arrayCol: string[];
-			} | null;
+			} | undefined;
 			cities: {
 				id: number;
 				name: string;
-				population: number | null;
-			} | null;
+				population: number | undefined;
+			} | undefined;
 			city: {
 				id: number;
 				name: string;
-				population: number | null;
-			} | null;
+				population: number | undefined;
+			} | undefined;
 			city1: {
 				id: number;
 			};
@@ -355,10 +355,10 @@ Expect<
 		{
 			user: {
 				id: number;
-			} | null;
+			} | undefined;
 			city: {
 				id: number;
-			} | null;
+			} | undefined;
 		}[],
 		typeof join2
 	>
@@ -385,10 +385,10 @@ Expect<
 		{
 			user: {
 				id: number;
-			} | null;
+			} | undefined;
 			city: {
 				id: number;
-			} | null;
+			} | undefined;
 			class: {
 				id: number;
 			};
@@ -503,7 +503,7 @@ const textSelect = await db
 	})
 	.from(users);
 
-Expect<Equal<{ t: string | null }[], typeof textSelect>>;
+Expect<Equal<{ t: string | undefined }[], typeof textSelect>>;
 
 const homeCity = alias(cities, 'homeCity');
 const c = alias(classes, 'c');
@@ -565,31 +565,31 @@ Expect<
 			homeCity: {
 				id: number;
 				name: string;
-				population: number | null;
+				population: number | undefined;
 			};
 			c: {
 				id: number;
-				class: string | null;
+				class: string | undefined;
 				subClass: string;
 			};
 			otherClass: {
 				id: number;
-				class: string | null;
+				class: string | undefined;
 				subClass: string;
 			};
 			anotherClass: {
 				id: number;
-				class: string | null;
+				class: string | undefined;
 				subClass: string;
 			};
 			friend: {
 				id: number;
 				uuid: string;
 				homeCity: number;
-				currentCity: number | null;
+				currentCity: number | undefined;
 				class: string;
-				subClass: string | null;
-				text: string | null;
+				subClass: string | undefined;
+				text: string | undefined;
 				age1: number;
 				createdAt: Date;
 				arrayCol: string[];
@@ -597,16 +597,16 @@ Expect<
 			currentCity: {
 				id: number;
 				name: string;
-				population: number | null;
+				population: number | undefined;
 			};
 			subscriber: {
 				id: number;
 				uuid: string;
 				homeCity: number;
-				currentCity: number | null;
+				currentCity: number | undefined;
 				class: string;
-				subClass: string | null;
-				text: string | null;
+				subClass: string | undefined;
+				text: string | undefined;
 				age1: number;
 				createdAt: Date;
 				arrayCol: string[];
@@ -614,7 +614,7 @@ Expect<
 			closestCity: {
 				id: number;
 				name: string;
-				population: number | null;
+				population: number | undefined;
 			};
 		}[],
 		typeof megaJoin
@@ -674,95 +674,95 @@ Expect<
 			};
 			city: {
 				id: number;
-			} | null;
+			} | undefined;
 			homeCity: {
 				id: number;
 				name: string;
-				population: number | null;
-			} | null;
+				population: number | undefined;
+			} | undefined;
 			c: {
 				id: number;
-				class: string | null;
+				class: string | undefined;
 				subClass: string;
-			} | null;
+			} | undefined;
 			otherClass: {
 				id: number;
-				class: string | null;
+				class: string | undefined;
 				subClass: string;
-			} | null;
+			} | undefined;
 			anotherClass: {
 				id: number;
-				class: string | null;
+				class: string | undefined;
 				subClass: string;
-			} | null;
+			} | undefined;
 			friend: {
 				id: number;
 				uuid: string;
 				homeCity: number;
-				currentCity: number | null;
+				currentCity: number | undefined;
 
 				class: string;
-				subClass: string | null;
-				text: string | null;
+				subClass: string | undefined;
+				text: string | undefined;
 				age1: number;
 				createdAt: Date;
 
 				arrayCol: string[];
-			} | null;
+			} | undefined;
 			currentCity: {
 				id: number;
 				name: string;
-				population: number | null;
-			} | null;
+				population: number | undefined;
+			} | undefined;
 			subscriber: {
 				id: number;
 				uuid: string;
 				homeCity: number;
-				currentCity: number | null;
+				currentCity: number | undefined;
 
 				class: string;
-				subClass: string | null;
-				text: string | null;
+				subClass: string | undefined;
+				text: string | undefined;
 				age1: number;
 				createdAt: Date;
 
 				arrayCol: string[];
-			} | null;
+			} | undefined;
 			closestCity: {
 				id: number;
 				name: string;
-				population: number | null;
-			} | null;
+				population: number | undefined;
+			} | undefined;
 			closestCity2: {
 				id: number;
 				name: string;
-				population: number | null;
-			} | null;
+				population: number | undefined;
+			} | undefined;
 			closestCity3: {
 				id: number;
 				name: string;
-				population: number | null;
-			} | null;
+				population: number | undefined;
+			} | undefined;
 			closestCity4: {
 				id: number;
 				name: string;
-				population: number | null;
-			} | null;
+				population: number | undefined;
+			} | undefined;
 			closestCity5: {
 				id: number;
 				name: string;
-				population: number | null;
-			} | null;
+				population: number | undefined;
+			} | undefined;
 			closestCity6: {
 				id: number;
 				name: string;
-				population: number | null;
-			} | null;
+				population: number | undefined;
+			} | undefined;
 			closestCity7: {
 				id: number;
 				name: string;
-				population: number | null;
-			} | null;
+				population: number | undefined;
+			} | undefined;
 		}[],
 		typeof megaLeftJoin
 	>
@@ -841,18 +841,18 @@ Expect<
 		};
 		class: {
 			id: number;
-			class: string | null;
+			class: string | undefined;
 			subClass: string;
 		};
 		friend: {
 			id: number;
 			uuid: string;
 			homeCity: number;
-			currentCity: number | null;
+			currentCity: number | undefined;
 
 			class: string;
-			subClass: string | null;
-			text: string | null;
+			subClass: string | undefined;
+			text: string | undefined;
 			age1: number;
 			createdAt: Date;
 
@@ -962,11 +962,11 @@ await db
 	Expect<
 		Equal<typeof result, {
 			users_table: typeof users.$inferSelect;
-			friends: typeof users.$inferSelect | null;
-			friends2: typeof users.$inferSelect | null;
-			friends3: typeof users.$inferSelect | null;
-			friends4: typeof users.$inferSelect | null;
-			friends5: typeof users.$inferSelect | null;
+			friends: typeof users.$inferSelect | undefined;
+			friends2: typeof users.$inferSelect | undefined;
+			friends3: typeof users.$inferSelect | undefined;
+			friends4: typeof users.$inferSelect | undefined;
+			friends5: typeof users.$inferSelect | undefined;
 		}[]>
 	>;
 }
@@ -991,11 +991,11 @@ await db
 	Expect<
 		Equal<typeof result, {
 			users_table: typeof users.$inferSelect;
-			friends: typeof users.$inferSelect | null;
-			friends2: typeof users.$inferSelect | null;
-			friends3: typeof users.$inferSelect | null;
-			friends4: typeof users.$inferSelect | null;
-			friends5: typeof users.$inferSelect | null;
+			friends: typeof users.$inferSelect | undefined;
+			friends2: typeof users.$inferSelect | undefined;
+			friends3: typeof users.$inferSelect | undefined;
+			friends4: typeof users.$inferSelect | undefined;
+			friends5: typeof users.$inferSelect | undefined;
 		}[]>
 	>;
 }
@@ -1142,7 +1142,7 @@ await db
 
 	const leftLateralRawRes = await db.select({
 		table1,
-		sqId: sql<number | null>`${sql.identifier('t2')}.${sql.identifier('id')}`.as('sqId'),
+		sqId: sql<number | undefined>`${sql.identifier('t2')}.${sql.identifier('id')}`.as('sqId'),
 	}).from(table1).leftJoinLateral(sql`(SELECT * FROM ${table2}) as ${sql.identifier('t2')}`, sql`true`);
 
 	Expect<
@@ -1151,7 +1151,7 @@ await db
 				id: number;
 				name: string;
 			};
-			sqId: number | null;
+			sqId: number | undefined;
 		}[]>
 	>;
 
@@ -1170,7 +1170,7 @@ await db
 				id: number;
 				age: number;
 				table1Id: number;
-			} | null;
+			} | undefined;
 		}[]>
 	>;
 
@@ -1189,7 +1189,7 @@ await db
 	Expect<
 		Equal<typeof leftLateralSubSelectionRes, {
 			id: number;
-			sId: number | null;
+			sId: number | undefined;
 		}[]>
 	>;
 

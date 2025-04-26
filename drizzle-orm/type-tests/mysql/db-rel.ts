@@ -52,11 +52,11 @@ const db = drizzle(pdb, { schema });
 			id: number;
 			name: string;
 			cityId: number;
-			homeCityId: number | null;
+			homeCityId: number | undefined;
 			createdAt: Date;
 			posts: {
 				title: string;
-				authorId: number | null;
+				authorId: number | undefined;
 				comments: {
 					text: string;
 					author: {
@@ -67,19 +67,19 @@ const db = drizzle(pdb, { schema });
 								id: number;
 								name: string;
 								cityId: number;
-								homeCityId: number | null;
+								homeCityId: number | undefined;
 								createdAt: Date;
 							}[];
 						};
-					} | null;
+					} | undefined;
 				}[];
 				author: {
 					id: number;
 					name: string;
 					cityId: number;
-					homeCityId: number | null;
+					homeCityId: number | undefined;
 					createdAt: Date;
-				} | null;
+				} | undefined;
 			}[];
 		}[], typeof result>
 	>;
@@ -109,7 +109,7 @@ const db = drizzle(pdb, { schema });
 				id: number;
 				name: string;
 				posts: {
-					authorId: number | null;
+					authorId: number | undefined;
 					lower: string;
 				}[];
 			}[],

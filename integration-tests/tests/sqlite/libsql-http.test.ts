@@ -119,10 +119,10 @@ test('test $onUpdateFn and $onUpdate works as $default', async (ctx) => {
 	const response = await db.select({ ...rest }).from(usersOnUpdate).orderBy(asc(usersOnUpdate.id));
 
 	expect(response).toEqual([
-		{ name: 'John', id: 1, updateCounter: 1, alwaysNull: null },
-		{ name: 'Jane', id: 2, updateCounter: 1, alwaysNull: null },
-		{ name: 'Jack', id: 3, updateCounter: 1, alwaysNull: null },
-		{ name: 'Jill', id: 4, updateCounter: 1, alwaysNull: null },
+		{ name: 'John', id: 1, updateCounter: 1, alwaysNull: undefined },
+		{ name: 'Jane', id: 2, updateCounter: 1, alwaysNull: undefined },
+		{ name: 'Jack', id: 3, updateCounter: 1, alwaysNull: undefined },
+		{ name: 'Jill', id: 4, updateCounter: 1, alwaysNull: undefined },
 	]);
 	const msDelay = 1750;
 
@@ -157,17 +157,17 @@ test('test $onUpdateFn and $onUpdate works updating', async (ctx) => {
 	const { updatedAt, ...rest } = getTableColumns(usersOnUpdate);
 
 	await db.update(usersOnUpdate).set({ name: 'Angel' }).where(eq(usersOnUpdate.id, 1));
-	await db.update(usersOnUpdate).set({ updateCounter: null }).where(eq(usersOnUpdate.id, 2));
+	await db.update(usersOnUpdate).set({ updateCounter: undefined }).where(eq(usersOnUpdate.id, 2));
 
 	const justDates = await db.select({ updatedAt }).from(usersOnUpdate).orderBy(asc(usersOnUpdate.id));
 
 	const response = await db.select({ ...rest }).from(usersOnUpdate).orderBy(asc(usersOnUpdate.id));
 
 	expect(response).toEqual([
-		{ name: 'Angel', id: 1, updateCounter: 2, alwaysNull: null },
-		{ name: 'Jane', id: 2, updateCounter: null, alwaysNull: null },
-		{ name: 'Jack', id: 3, updateCounter: 1, alwaysNull: null },
-		{ name: 'Jill', id: 4, updateCounter: 1, alwaysNull: null },
+		{ name: 'Angel', id: 1, updateCounter: 2, alwaysNull: undefined },
+		{ name: 'Jane', id: 2, updateCounter: undefined, alwaysNull: undefined },
+		{ name: 'Jack', id: 3, updateCounter: 1, alwaysNull: undefined },
+		{ name: 'Jill', id: 4, updateCounter: 1, alwaysNull: undefined },
 	]);
 	const msDelay = 1750;
 

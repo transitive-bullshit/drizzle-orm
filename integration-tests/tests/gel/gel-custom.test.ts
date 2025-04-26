@@ -125,7 +125,7 @@ test('select all fields', async (ctx) => {
 	await db.insert(usersTable).values({ id1: 1, name: 'John' });
 	const result = await db.select().from(usersTable);
 
-	expect(result).toEqual([{ id1: 1, name: 'John', verified: false, json: null }]);
+	expect(result).toEqual([{ id1: 1, name: 'John', verified: false, json: undefined }]);
 });
 
 test('select sql', async (ctx) => {
@@ -188,7 +188,7 @@ test('update with returning all fields', async (ctx) => {
 	await db.insert(usersTable).values({ id1: 1, name: 'John' });
 	const users = await db.update(usersTable).set({ name: 'Jane' }).where(eq(usersTable.name, 'John')).returning();
 
-	expect(users).toEqual([{ id1: 1, name: 'Jane', verified: false, json: null }]);
+	expect(users).toEqual([{ id1: 1, name: 'Jane', verified: false, json: undefined }]);
 });
 
 test('update with returning partial', async (ctx) => {
@@ -209,7 +209,7 @@ test('delete with returning all fields', async (ctx) => {
 	await db.insert(usersTable).values({ id1: 1, name: 'John' });
 	const users = await db.delete(usersTable).where(eq(usersTable.name, 'John')).returning();
 
-	expect(users).toEqual([{ id1: 1, name: 'John', verified: false, json: null }]);
+	expect(users).toEqual([{ id1: 1, name: 'John', verified: false, json: undefined }]);
 });
 
 test('delete with returning partial', async (ctx) => {
@@ -229,13 +229,13 @@ test('insert + select', async (ctx) => {
 
 	await db.insert(usersTable).values({ id1: 1, name: 'John' });
 	const result = await db.select().from(usersTable);
-	expect(result).toEqual([{ id1: 1, name: 'John', verified: false, json: null }]);
+	expect(result).toEqual([{ id1: 1, name: 'John', verified: false, json: undefined }]);
 
 	await db.insert(usersTable).values({ id1: 2, name: 'Jane' });
 	const result2 = await db.select().from(usersTable);
 	expect(result2).toEqual([
-		{ id1: 1, name: 'John', verified: false, json: null },
-		{ id1: 2, name: 'Jane', verified: false, json: null },
+		{ id1: 1, name: 'John', verified: false, json: undefined },
+		{ id1: 2, name: 'Jane', verified: false, json: undefined },
 	]);
 });
 
@@ -245,7 +245,7 @@ test('insert with overridden default values', async (ctx) => {
 	await db.insert(usersTable).values({ id1: 1, name: 'John', verified: true });
 	const result = await db.select().from(usersTable);
 
-	expect(result).toEqual([{ id1: 1, name: 'John', verified: true, json: null }]);
+	expect(result).toEqual([{ id1: 1, name: 'John', verified: true, json: undefined }]);
 });
 
 test('insert many', async (ctx) => {
@@ -265,10 +265,10 @@ test('insert many', async (ctx) => {
 	}).from(usersTable);
 
 	expect(result).toEqual([
-		{ id: 1, name: 'John', json: null, verified: false },
+		{ id: 1, name: 'John', json: undefined, verified: false },
 		{ id: 2, name: 'Bruce', json: ['foo', 'bar'], verified: false },
-		{ id: 3, name: 'Jane', json: null, verified: false },
-		{ id: 4, name: 'Austin', json: null, verified: true },
+		{ id: 3, name: 'Jane', json: undefined, verified: false },
+		{ id: 4, name: 'Austin', json: undefined, verified: true },
 	]);
 });
 
@@ -289,10 +289,10 @@ test('insert many with returning', async (ctx) => {
 		});
 
 	expect(result).toEqual([
-		{ id: 1, name: 'John', json: null, verified: false },
+		{ id: 1, name: 'John', json: undefined, verified: false },
 		{ id: 2, name: 'Bruce', json: ['foo', 'bar'], verified: false },
-		{ id: 3, name: 'Jane', json: null, verified: false },
-		{ id: 4, name: 'Austin', json: null, verified: true },
+		{ id: 3, name: 'Jane', json: undefined, verified: false },
+		{ id: 4, name: 'Austin', json: undefined, verified: true },
 	]);
 });
 
@@ -543,7 +543,7 @@ test('insert via db.execute + select via db.execute', async () => {
 	await db.execute(sql`insert into ${usersTable} (${sql.identifier(usersTable.name.name)}) values (${'John'})`);
 
 	const result = await db.execute<{ id1: number; name: string }>(sql`select id1, name from "users_custom"`);
-	expect(result).toEqual([{ id1: null, name: 'John' }]);
+	expect(result).toEqual([{ id1: undefined, name: 'John' }]);
 });
 
 test('insert via db.execute + returning', async () => {
@@ -552,7 +552,7 @@ test('insert via db.execute + returning', async () => {
 			sql.identifier(usersTable.name.name)
 		}) values (${'John'}) returning ${usersTable.id1}, ${usersTable.name}`,
 	);
-	expect(inserted).toEqual([{ id1: null, name: 'John' }]);
+	expect(inserted).toEqual([{ id1: undefined, name: 'John' }]);
 });
 
 test('insert via db.execute w/ query builder', async () => {

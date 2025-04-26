@@ -98,7 +98,7 @@ const usersOnUpdate = pgTable('users_on_update', {
 	name: text('name').notNull(),
 	updateCounter: integer('update_counter').default(sql`1`).$onUpdateFn(() => sql`update_counter + 1`),
 	updatedAt: timestamp('updated_at', { mode: 'date', precision: 3 }).$onUpdate(() => new Date()),
-	alwaysNull: text('always_null').$type<string | null>().$onUpdate(() => null),
+	alwaysNull: text('always_null').$type<string | undefined>().$onUpdate(() => undefined),
 });
 
 const citiesTable = pgTable('cities', {
@@ -202,7 +202,7 @@ const jsonTestTable = pgTable('jsontest', {
 let pgContainer: Docker.Container;
 
 afterAll(async () => {
-	await pgContainer?.stop().catch(console.error);
+	await pgContainer!.stop().catch(console.error);
 });
 
 let db: BunSQLDatabase;
@@ -430,10 +430,10 @@ async function setupAggregateFunctionsTest(db: PgDatabase<PgQueryResultHKT>) {
 		{ name: 'value 1', a: 5, b: 10, c: 20 },
 		{ name: 'value 1', a: 5, b: 20, c: 30 },
 		{ name: 'value 2', a: 10, b: 50, c: 60 },
-		{ name: 'value 3', a: 20, b: 20, c: null },
-		{ name: 'value 4', a: null, b: 90, c: 120 },
-		{ name: 'value 5', a: 80, b: 10, c: null },
-		{ name: 'value 6', a: null, b: null, c: 150 },
+		{ name: 'value 3', a: 20, b: 20, c: undefined },
+		{ name: 'value 4', a: undefined, b: 90, c: 120 },
+		{ name: 'value 5', a: 80, b: 10, c: undefined },
+		{ name: 'value 6', a: undefined, b: undefined, c: 150 },
 	]);
 }
 
@@ -523,7 +523,7 @@ test('select all fields', async () => {
 
 	expect(result[0]!.createdAt).toBeInstanceOf(Date);
 	expect(Math.abs(result[0]!.createdAt.getTime() - now)).toBeLessThan(100);
-	expect(result).toEqual([{ id: 1, name: 'John', verified: false, jsonb: null, createdAt: result[0]!.createdAt }]);
+	expect(result).toEqual([{ id: 1, name: 'John', verified: false, jsonb: undefined, createdAt: result[0]!.createdAt }]);
 });
 
 test('select sql', async () => {
@@ -697,7 +697,7 @@ test('update with returning all fields', async () => {
 	expect(users[0]!.createdAt).toBeInstanceOf(Date);
 	expect(Math.abs(users[0]!.createdAt.getTime() - now)).toBeLessThan(100);
 	expect(users).toEqual([
-		{ id: 1, name: 'Jane', verified: false, jsonb: null, createdAt: users[0]!.createdAt },
+		{ id: 1, name: 'Jane', verified: false, jsonb: undefined, createdAt: users[0]!.createdAt },
 	]);
 });
 
@@ -724,7 +724,7 @@ test('delete with returning all fields', async () => {
 	expect(users[0]!.createdAt).toBeInstanceOf(Date);
 	expect(Math.abs(users[0]!.createdAt.getTime() - now)).toBeLessThan(100);
 	expect(users).toEqual([
-		{ id: 1, name: 'John', verified: false, jsonb: null, createdAt: users[0]!.createdAt },
+		{ id: 1, name: 'John', verified: false, jsonb: undefined, createdAt: users[0]!.createdAt },
 	]);
 });
 
@@ -742,14 +742,14 @@ test('insert + select', async () => {
 	await db.insert(usersTable).values({ name: 'John' });
 	const result = await db.select().from(usersTable);
 	expect(result).toEqual([
-		{ id: 1, name: 'John', verified: false, jsonb: null, createdAt: result[0]!.createdAt },
+		{ id: 1, name: 'John', verified: false, jsonb: undefined, createdAt: result[0]!.createdAt },
 	]);
 
 	await db.insert(usersTable).values({ name: 'Jane' });
 	const result2 = await db.select().from(usersTable);
 	expect(result2).toEqual([
-		{ id: 1, name: 'John', verified: false, jsonb: null, createdAt: result2[0]!.createdAt },
-		{ id: 2, name: 'Jane', verified: false, jsonb: null, createdAt: result2[1]!.createdAt },
+		{ id: 1, name: 'John', verified: false, jsonb: undefined, createdAt: result2[0]!.createdAt },
+		{ id: 2, name: 'Jane', verified: false, jsonb: undefined, createdAt: result2[1]!.createdAt },
 	]);
 });
 
@@ -800,7 +800,7 @@ test('insert with overridden default values', async () => {
 	const result = await db.select().from(usersTable);
 
 	expect(result).toEqual([
-		{ id: 1, name: 'John', verified: true, jsonb: null, createdAt: result[0]!.createdAt },
+		{ id: 1, name: 'John', verified: true, jsonb: undefined, createdAt: result[0]!.createdAt },
 	]);
 });
 
@@ -823,10 +823,10 @@ test('insert many', async () => {
 		.from(usersTable);
 
 	expect(result).toEqual([
-		{ id: 1, name: 'John', jsonb: null, verified: false },
+		{ id: 1, name: 'John', jsonb: undefined, verified: false },
 		{ id: 2, name: 'Bruce', jsonb: ['foo', 'bar'], verified: false },
-		{ id: 3, name: 'Jane', jsonb: null, verified: false },
-		{ id: 4, name: 'Austin', jsonb: null, verified: true },
+		{ id: 3, name: 'Jane', jsonb: undefined, verified: false },
+		{ id: 4, name: 'Austin', jsonb: undefined, verified: true },
 	]);
 });
 
@@ -847,10 +847,10 @@ test('insert many with returning', async () => {
 		});
 
 	expect(result).toEqual([
-		{ id: 1, name: 'John', jsonb: null, verified: false },
+		{ id: 1, name: 'John', jsonb: undefined, verified: false },
 		{ id: 2, name: 'Bruce', jsonb: ['foo', 'bar'], verified: false },
-		{ id: 3, name: 'Jane', jsonb: null, verified: false },
-		{ id: 4, name: 'Austin', jsonb: null, verified: true },
+		{ id: 3, name: 'Jane', jsonb: undefined, verified: false },
+		{ id: 4, name: 'Austin', jsonb: undefined, verified: true },
 	]);
 });
 
@@ -1239,7 +1239,7 @@ test('Insert all defaults in 1 row', async () => {
 
 	const res = await db.select().from(users);
 
-	expect(res).toEqual([{ id: 1, name: 'Dan', state: null }]);
+	expect(res).toEqual([{ id: 1, name: 'Dan', state: undefined }]);
 });
 
 test('Insert all defaults in multiple rows', async () => {
@@ -1259,7 +1259,7 @@ test('Insert all defaults in multiple rows', async () => {
 
 	const res = await db.select().from(users);
 
-	expect(res).toEqual([{ id: 1, name: 'Dan', state: null }, { id: 2, name: 'Dan', state: null }]);
+	expect(res).toEqual([{ id: 1, name: 'Dan', state: undefined }, { id: 2, name: 'Dan', state: undefined }]);
 });
 
 test('build query insert with onConflict do update', async () => {
@@ -1384,7 +1384,7 @@ test('left join (flat object fields)', async () => {
 
 	expect(res).toEqual([
 		{ userId: 1, userName: 'John', cityId, cityName: 'Paris' },
-		{ userId: 2, userName: 'Jane', cityId: null, cityName: null },
+		{ userId: 2, userName: 'Jane', cityId: undefined, cityName: undefined },
 	]);
 });
 
@@ -1422,7 +1422,7 @@ test('left join (grouped fields)', async () => {
 		{
 			id: 2,
 			user: { name: 'Jane', nameUpper: 'JANE' },
-			city: null,
+			city: undefined,
 		},
 	]);
 });
@@ -1451,16 +1451,16 @@ test('left join (all fields)', async () => {
 			cities: {
 				id: cityId,
 				name: 'Paris',
-				state: null,
+				state: undefined,
 			},
 		},
 		{
 			users2: {
 				id: 2,
 				name: 'Jane',
-				cityId: null,
+				cityId: undefined,
 			},
-			cities: null,
+			cities: undefined,
 		},
 	]);
 });
@@ -2770,7 +2770,7 @@ test('join view as subquery', async () => {
 		},
 		{
 			users_join_view: { id: 2, name: 'Jane', cityId: 2 },
-			new_yorkers_sq: null,
+			new_yorkers_sq: undefined,
 		},
 		{
 			users_join_view: { id: 3, name: 'Jack', cityId: 1 },
@@ -2778,7 +2778,7 @@ test('join view as subquery', async () => {
 		},
 		{
 			users_join_view: { id: 4, name: 'Jill', cityId: 2 },
-			new_yorkers_sq: null,
+			new_yorkers_sq: undefined,
 		},
 	]);
 
@@ -2820,9 +2820,9 @@ test('set null to jsonb field', async () => {
 		sql`create table ${users} (id serial not null primary key, jsonb jsonb)`,
 	);
 
-	const result = await db.insert(users).values({ jsonb: null }).returning();
+	const result = await db.insert(users).values({ jsonb: undefined }).returning();
 
-	expect(result).toEqual([{ id: 1, jsonb: null }]);
+	expect(result).toEqual([{ id: 1, jsonb: undefined }]);
 
 	await db.execute(sql`drop table ${users}`);
 });
@@ -3523,10 +3523,10 @@ test('test $onUpdateFn and $onUpdate works as $default', async () => {
 	const response = await db.select({ ...rest }).from(usersOnUpdate).orderBy(asc(usersOnUpdate.id));
 
 	expect(response).toEqual([
-		{ name: 'John', id: 1, updateCounter: 1, alwaysNull: null },
-		{ name: 'Jane', id: 2, updateCounter: 1, alwaysNull: null },
-		{ name: 'Jack', id: 3, updateCounter: 1, alwaysNull: null },
-		{ name: 'Jill', id: 4, updateCounter: 1, alwaysNull: null },
+		{ name: 'John', id: 1, updateCounter: 1, alwaysNull: undefined },
+		{ name: 'Jane', id: 2, updateCounter: 1, alwaysNull: undefined },
+		{ name: 'Jack', id: 3, updateCounter: 1, alwaysNull: undefined },
+		{ name: 'Jill', id: 4, updateCounter: 1, alwaysNull: undefined },
 	]);
 });
 
@@ -3556,17 +3556,17 @@ test('test $onUpdateFn and $onUpdate works updating', async () => {
 	await db.select({ updatedAt }).from(usersOnUpdate).orderBy(asc(usersOnUpdate.id));
 
 	await db.update(usersOnUpdate).set({ name: 'Angel' }).where(eq(usersOnUpdate.id, 1));
-	await db.update(usersOnUpdate).set({ updateCounter: null }).where(eq(usersOnUpdate.id, 2));
+	await db.update(usersOnUpdate).set({ updateCounter: undefined }).where(eq(usersOnUpdate.id, 2));
 
 	const justDates = await db.select({ updatedAt }).from(usersOnUpdate).orderBy(asc(usersOnUpdate.id));
 
 	const response = await db.select({ ...rest }).from(usersOnUpdate).orderBy(asc(usersOnUpdate.id));
 
 	expect(response).toEqual([
-		{ name: 'Angel', id: 1, updateCounter: 2, alwaysNull: null },
-		{ name: 'Jane', id: 2, updateCounter: null, alwaysNull: null },
-		{ name: 'Jack', id: 3, updateCounter: 1, alwaysNull: null },
-		{ name: 'Jill', id: 4, updateCounter: 1, alwaysNull: null },
+		{ name: 'Angel', id: 1, updateCounter: 2, alwaysNull: undefined },
+		{ name: 'Jane', id: 2, updateCounter: undefined, alwaysNull: undefined },
+		{ name: 'Jack', id: 3, updateCounter: 1, alwaysNull: undefined },
+		{ name: 'Jill', id: 4, updateCounter: 1, alwaysNull: undefined },
 	]);
 	const msDelay = 15000;
 
@@ -3785,7 +3785,7 @@ test('mySchema :: select all fields', async () => {
 
 	expect(result[0]!.createdAt).toBeInstanceOf(Date);
 	expect(Math.abs(result[0]!.createdAt.getTime() - now)).toBeLessThan(100);
-	expect(result).toEqual([{ id: 1, name: 'John', verified: false, jsonb: null, createdAt: result[0]!.createdAt }]);
+	expect(result).toEqual([{ id: 1, name: 'John', verified: false, jsonb: undefined, createdAt: result[0]!.createdAt }]);
 });
 
 test('mySchema :: select sql', async () => {
@@ -3881,19 +3881,19 @@ test('mySchema :: delete with returning all fields', async () => {
 
 	expect(users[0]!.createdAt).toBeInstanceOf(Date);
 	expect(Math.abs(users[0]!.createdAt.getTime() - now)).toBeLessThan(100);
-	expect(users).toEqual([{ id: 1, name: 'John', verified: false, jsonb: null, createdAt: users[0]!.createdAt }]);
+	expect(users).toEqual([{ id: 1, name: 'John', verified: false, jsonb: undefined, createdAt: users[0]!.createdAt }]);
 });
 
 test('mySchema :: insert + select', async () => {
 	await db.insert(usersMySchemaTable).values({ name: 'John' });
 	const result = await db.select().from(usersMySchemaTable);
-	expect(result).toEqual([{ id: 1, name: 'John', verified: false, jsonb: null, createdAt: result[0]!.createdAt }]);
+	expect(result).toEqual([{ id: 1, name: 'John', verified: false, jsonb: undefined, createdAt: result[0]!.createdAt }]);
 
 	await db.insert(usersMySchemaTable).values({ name: 'Jane' });
 	const result2 = await db.select().from(usersMySchemaTable);
 	expect(result2).toEqual([
-		{ id: 1, name: 'John', verified: false, jsonb: null, createdAt: result2[0]!.createdAt },
-		{ id: 2, name: 'Jane', verified: false, jsonb: null, createdAt: result2[1]!.createdAt },
+		{ id: 1, name: 'John', verified: false, jsonb: undefined, createdAt: result2[0]!.createdAt },
+		{ id: 2, name: 'Jane', verified: false, jsonb: undefined, createdAt: result2[1]!.createdAt },
 	]);
 });
 
@@ -3901,7 +3901,7 @@ test('mySchema :: insert with overridden default values', async () => {
 	await db.insert(usersMySchemaTable).values({ name: 'John', verified: true });
 	const result = await db.select().from(usersMySchemaTable);
 
-	expect(result).toEqual([{ id: 1, name: 'John', verified: true, jsonb: null, createdAt: result[0]!.createdAt }]);
+	expect(result).toEqual([{ id: 1, name: 'John', verified: true, jsonb: undefined, createdAt: result[0]!.createdAt }]);
 });
 
 test('mySchema :: insert many', async () => {
@@ -3919,10 +3919,10 @@ test('mySchema :: insert many', async () => {
 	}).from(usersMySchemaTable);
 
 	expect(result).toEqual([
-		{ id: 1, name: 'John', jsonb: null, verified: false },
+		{ id: 1, name: 'John', jsonb: undefined, verified: false },
 		{ id: 2, name: 'Bruce', jsonb: ['foo', 'bar'], verified: false },
-		{ id: 3, name: 'Jane', jsonb: null, verified: false },
-		{ id: 4, name: 'Austin', jsonb: null, verified: true },
+		{ id: 3, name: 'Jane', jsonb: undefined, verified: false },
+		{ id: 4, name: 'Austin', jsonb: undefined, verified: true },
 	]);
 });
 
@@ -4048,14 +4048,14 @@ test('mySchema :: select from tables with same name from different schema using 
 			id: 10,
 			name: 'Ivan',
 			verified: false,
-			jsonb: null,
+			jsonb: undefined,
 			createdAt: result[0]!.users.createdAt,
 		},
 		customer: {
 			id: 11,
 			name: 'Hans',
 			verified: false,
-			jsonb: null,
+			jsonb: undefined,
 			createdAt: result[0]!.customer!.createdAt,
 		},
 	}]);
@@ -4538,9 +4538,9 @@ test('update ... from with join', async () => {
 		cities: {
 			id: 3,
 			name: 'London',
-			stateId: null,
+			stateId: undefined,
 		},
-		states: null,
+		states: undefined,
 	}]);
 });
 

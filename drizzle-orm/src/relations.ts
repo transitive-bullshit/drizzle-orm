@@ -332,7 +332,7 @@ export type BuildRelationResult<
 			Assume<TInclude[K], true | Record<string, unknown>>
 		> extends infer TResult ? TRel extends One ?
 					| TResult
-					| (Equal<TRel['isNullable'], false> extends true ? null : never)
+					| (Equal<TRel['isNullable'], false> extends true ? undefined : never)
 			: TResult[]
 		: never
 		: never;
@@ -682,8 +682,8 @@ export function mapRelationalRow(
 			const relation = tableConfig.relations[selectionItem.tsKey]!;
 			const rawSubRows = row[selectionItemIndex] as
 				| unknown[]
-				| null
-				| [null]
+				| undefined
+				| [undefined]
 				| string;
 			const subRows = typeof rawSubRows === 'string'
 				? (JSON.parse(rawSubRows) as unknown[])
@@ -717,7 +717,7 @@ export function mapRelationalRow(
 			} else {
 				decoder = field.sql.decoder;
 			}
-			result[selectionItem.tsKey] = value === null ? null : decoder.mapFromDriverValue(value);
+			result[selectionItem.tsKey] = value === undefined ? undefined : decoder.mapFromDriverValue(value);
 		}
 	}
 

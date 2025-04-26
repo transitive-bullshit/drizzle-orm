@@ -35,7 +35,7 @@ const updateReturning = await db.update(users)
 	.returning({
 		text: users.text,
 	});
-Expect<Equal<{ text: string | null }[], typeof updateReturning>>;
+Expect<Equal<{ text: string | undefined }[], typeof updateReturning>>;
 
 const updateReturningStmt = db.update(users)
 	.set({
@@ -48,7 +48,7 @@ const updateReturningStmt = db.update(users)
 	})
 	.prepare('updateReturningStmt');
 const updateReturningPrepared = await updateReturningStmt.execute();
-Expect<Equal<{ text: string | null }[], typeof updateReturningPrepared>>;
+Expect<Equal<{ text: string | undefined }[], typeof updateReturningPrepared>>;
 
 {
 	function dynamic<T extends PgUpdate>(qb: T) {
@@ -148,7 +148,7 @@ Expect<Equal<{ text: string | null }[], typeof updateReturningPrepared>>;
 		Equal<Simplify<
 			typeof users.$inferSelect & {
 				cities_table: typeof cities.$inferSelect;
-				sal_emp: typeof salEmp.$inferSelect | null;
+				sal_emp: typeof salEmp.$inferSelect | undefined;
 			}
 		>[], typeof result1>
 	>;
@@ -156,8 +156,8 @@ Expect<Equal<{ text: string | null }[], typeof updateReturningPrepared>>;
 	const result2 = await db.update(users).set({}).from(cities).rightJoin(salEmp, sql``).returning();
 	Expect<
 		Equal<Simplify<
-			{ [K in keyof typeof users.$inferSelect]: typeof users.$inferSelect[K] | null } & {
-				cities_table: typeof cities.$inferSelect | null;
+			{ [K in keyof typeof users.$inferSelect]: typeof users.$inferSelect[K] | undefined } & {
+				cities_table: typeof cities.$inferSelect | undefined;
 				sal_emp: typeof salEmp.$inferSelect;
 			}
 		>[], typeof result2>
@@ -176,9 +176,9 @@ Expect<Equal<{ text: string | null }[], typeof updateReturningPrepared>>;
 	const result4 = await db.update(users).set({}).from(cities).fullJoin(salEmp, sql``).returning();
 	Expect<
 		Equal<Simplify<
-			{ [K in keyof typeof users.$inferSelect]: typeof users.$inferSelect[K] | null } & {
-				cities_table: typeof cities.$inferSelect | null;
-				sal_emp: typeof salEmp.$inferSelect | null;
+			{ [K in keyof typeof users.$inferSelect]: typeof users.$inferSelect[K] | undefined } & {
+				cities_table: typeof cities.$inferSelect | undefined;
+				sal_emp: typeof salEmp.$inferSelect | undefined;
 			}
 		>[], typeof result4>
 	>;
@@ -212,8 +212,8 @@ Expect<Equal<{ text: string | null }[], typeof updateReturningPrepared>>;
 			id: number;
 			cities: typeof cities.$inferSelect;
 			cityName: string;
-			salEmp: typeof salEmp.$inferSelect | null;
-			salEmpName: string | null;
+			salEmp: typeof salEmp.$inferSelect | undefined;
+			salEmpName: string | undefined;
 		}>[], typeof result1>
 	>;
 
@@ -226,9 +226,9 @@ Expect<Equal<{ text: string | null }[], typeof updateReturningPrepared>>;
 	});
 	Expect<
 		Equal<Simplify<{
-			id: number | null;
-			cities: typeof cities.$inferSelect | null;
-			cityName: string | null;
+			id: number | undefined;
+			cities: typeof cities.$inferSelect | undefined;
+			cityName: string | undefined;
 			salEmp: typeof salEmp.$inferSelect;
 			salEmpName: string;
 		}>[], typeof result2>
@@ -260,11 +260,11 @@ Expect<Equal<{ text: string | null }[], typeof updateReturningPrepared>>;
 	});
 	Expect<
 		Equal<Simplify<{
-			id: number | null;
-			cities: typeof cities.$inferSelect | null;
-			cityName: string | null;
-			salEmp: typeof salEmp.$inferSelect | null;
-			salEmpName: string | null;
+			id: number | undefined;
+			cities: typeof cities.$inferSelect | undefined;
+			cityName: string | undefined;
+			salEmp: typeof salEmp.$inferSelect | undefined;
+			salEmpName: string | undefined;
 		}>[], typeof result4>
 	>;
 }

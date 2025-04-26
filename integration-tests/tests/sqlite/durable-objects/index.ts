@@ -60,7 +60,7 @@ export const usersOnUpdate = sqliteTable('users_on_update', {
 	name: text('name').notNull(),
 	updateCounter: integer('update_counter').default(sql`1`).$onUpdateFn(() => sql`update_counter + 1`),
 	updatedAt: integer('updated_at', { mode: 'timestamp_ms' }).$onUpdate(() => new Date()),
-	alwaysNull: text('always_null').$type<string | null>().$onUpdate(() => null),
+	alwaysNull: text('always_null').$type<string | undefined>().$onUpdate(() => undefined),
 });
 
 export const users2Table = sqliteTable('users2', {
@@ -183,10 +183,10 @@ async function setupAggregateFunctionsTest(db: BaseSQLiteDatabase<any, any>) {
 		{ name: 'value 1', a: 5, b: 10, c: 20 },
 		{ name: 'value 1', a: 5, b: 20, c: 30 },
 		{ name: 'value 2', a: 10, b: 50, c: 60 },
-		{ name: 'value 3', a: 20, b: 20, c: null },
-		{ name: 'value 4', a: null, b: 90, c: 120 },
-		{ name: 'value 5', a: 80, b: 10, c: null },
-		{ name: 'value 6', a: null, b: null, c: 150 },
+		{ name: 'value 3', a: 20, b: 20, c: undefined },
+		{ name: 'value 4', a: undefined, b: 90, c: 120 },
+		{ name: 'value 5', a: 80, b: 10, c: undefined },
+		{ name: 'value 6', a: undefined, b: undefined, c: 150 },
 	]);
 }
 
@@ -352,7 +352,7 @@ export class MyDurableObject extends DurableObject {
 				id: 1,
 				name: 'John',
 				verified: false,
-				json: null,
+				json: undefined,
 				createdAt: result[0]!.createdAt,
 			}]);
 		} catch {
@@ -610,7 +610,7 @@ export class MyDurableObject extends DurableObject {
 
 			const res = this.db.select().from(users).all();
 
-			expect(res).deep.equal([{ id: 1, name: 'Dan', state: null }]);
+			expect(res).deep.equal([{ id: 1, name: 'Dan', state: undefined }]);
 		} catch (error: any) {
 			console.error(error);
 			throw new Error('insertAllDefaultsIn1Row has broken');
@@ -636,8 +636,8 @@ export class MyDurableObject extends DurableObject {
 			const res = this.db.select().from(users).all();
 
 			expect(res).deep.equal([
-				{ id: 1, name: 'Dan', state: null },
-				{ id: 2, name: 'Dan', state: null },
+				{ id: 1, name: 'Dan', state: undefined },
+				{ id: 2, name: 'Dan', state: undefined },
 			]);
 		} catch (error: any) {
 			console.error(error);
@@ -699,7 +699,7 @@ export class MyDurableObject extends DurableObject {
 				id: 1,
 				name: 'John',
 				verified: false,
-				json: null,
+				json: undefined,
 				createdAt: result[0]!.createdAt,
 			}]);
 		} catch (error: any) {
@@ -715,7 +715,13 @@ export class MyDurableObject extends DurableObject {
 			this.db.insert(usersTable).values({ name: 'John', verified: true }).run();
 			const result = this.db.select().from(usersTable).all();
 
-			expect(result).deep.equal([{ id: 1, name: 'John', verified: true, json: null, createdAt: result[0]!.createdAt }]);
+			expect(result).deep.equal([{
+				id: 1,
+				name: 'John',
+				verified: true,
+				json: undefined,
+				createdAt: result[0]!.createdAt,
+			}]);
 		} catch (error: any) {
 			console.error(error);
 			throw new Error('insertDataWithOverridenDefaultValues has broken');
@@ -733,7 +739,13 @@ export class MyDurableObject extends DurableObject {
 
 			expect(users[0]!.createdAt).instanceOf(Date);
 			expect(Math.abs(users[0]!.createdAt.getTime() - now)).lessThan(5000);
-			expect(users).deep.equal([{ id: 1, name: 'Jane', verified: false, json: null, createdAt: users[0]!.createdAt }]);
+			expect(users).deep.equal([{
+				id: 1,
+				name: 'Jane',
+				verified: false,
+				json: undefined,
+				createdAt: users[0]!.createdAt,
+			}]);
 		} catch (error: any) {
 			console.error(error);
 			throw new Error('updateWithReturningFields has broken');
@@ -773,7 +785,13 @@ export class MyDurableObject extends DurableObject {
 
 			expect(users[0]!.createdAt).instanceOf(Date);
 			expect(Math.abs(users[0]!.createdAt.getTime() - now)).lessThan(5000);
-			expect(users).deep.equal([{ id: 1, name: 'John', verified: false, json: null, createdAt: users[0]!.createdAt }]);
+			expect(users).deep.equal([{
+				id: 1,
+				name: 'John',
+				verified: false,
+				json: undefined,
+				createdAt: users[0]!.createdAt,
+			}]);
 		} catch (error: any) {
 			console.error(error);
 			throw new Error('updateWithReturningFields has broken');
@@ -865,10 +883,10 @@ export class MyDurableObject extends DurableObject {
 				.all();
 
 			expect(result).deep.equal([
-				{ id: 1, name: 'John', json: null, verified: false },
+				{ id: 1, name: 'John', json: undefined, verified: false },
 				{ id: 2, name: 'Bruce', json: ['foo', 'bar'], verified: false },
-				{ id: 3, name: 'Jane', json: null, verified: false },
-				{ id: 4, name: 'Austin', json: null, verified: true },
+				{ id: 3, name: 'Jane', json: undefined, verified: false },
+				{ id: 4, name: 'Austin', json: undefined, verified: true },
 			]);
 		} catch (error: any) {
 			console.error(error);
@@ -894,10 +912,10 @@ export class MyDurableObject extends DurableObject {
 				.all();
 
 			expect(result).deep.equal([
-				{ id: 1, name: 'John', json: null, verified: false },
+				{ id: 1, name: 'John', json: undefined, verified: false },
 				{ id: 2, name: 'Bruce', json: ['foo', 'bar'], verified: false },
-				{ id: 3, name: 'Jane', json: null, verified: false },
-				{ id: 4, name: 'Austin', json: null, verified: true },
+				{ id: 3, name: 'Jane', json: undefined, verified: false },
+				{ id: 4, name: 'Austin', json: undefined, verified: true },
 			]);
 		} catch (error: any) {
 			console.error(error);
@@ -1891,9 +1909,9 @@ export class MyDurableObject extends DurableObject {
 
 			this.db.run(sql`create table ${test} (t timestamp)`);
 
-			this.db.insert(test).values({ t: null }).run();
+			this.db.insert(test).values({ t: undefined }).run();
 			const res = await this.db.select().from(test).all();
-			expect(res).deep.equal([{ t: null }]);
+			expect(res).deep.equal([{ t: undefined }]);
 
 			this.db.run(sql`drop table ${test}`);
 		} catch (error: any) {
@@ -2290,7 +2308,7 @@ export class MyDurableObject extends DurableObject {
 				},
 				{
 					users_join_view: { id: 2, name: 'Jane', cityId: 2 },
-					new_yorkers_sq: null,
+					new_yorkers_sq: undefined,
 				},
 				{
 					users_join_view: { id: 3, name: 'Jack', cityId: 1 },
@@ -2298,7 +2316,7 @@ export class MyDurableObject extends DurableObject {
 				},
 				{
 					users_join_view: { id: 4, name: 'Jill', cityId: 2 },
-					new_yorkers_sq: null,
+					new_yorkers_sq: undefined,
 				},
 			]);
 
@@ -3061,7 +3079,7 @@ export class MyDurableObject extends DurableObject {
 			const result3 = await this.db.select({ value: avgDistinct(table.b) }).from(table);
 
 			expect(result1[0]?.value).eq('24');
-			expect(result2[0]?.value).eq(null);
+			expect(result2[0]?.value).eq(undefined);
 			expect(result3[0]?.value).eq('42.5');
 		} catch (error: any) {
 			console.error(error);
@@ -3080,7 +3098,7 @@ export class MyDurableObject extends DurableObject {
 			const result3 = await this.db.select({ value: sumDistinct(table.b) }).from(table);
 
 			expect(result1[0]?.value).eq('200');
-			expect(result2[0]?.value).eq(null);
+			expect(result2[0]?.value).eq(undefined);
 			expect(result3[0]?.value).eq('170');
 		} catch (error: any) {
 			console.error(error);
@@ -3098,7 +3116,7 @@ export class MyDurableObject extends DurableObject {
 			const result2 = await this.db.select({ value: max(table.nullOnly) }).from(table);
 
 			expect(result1[0]?.value).eq(90);
-			expect(result2[0]?.value).eq(null);
+			expect(result2[0]?.value).eq(undefined);
 		} catch (error: any) {
 			console.error(error);
 			throw new Error(`aggregateFunctionMax error`);
@@ -3115,7 +3133,7 @@ export class MyDurableObject extends DurableObject {
 			const result2 = await this.db.select({ value: min(table.nullOnly) }).from(table);
 
 			expect(result1[0]?.value).eq(10);
-			expect(result2[0]?.value).eq(null);
+			expect(result2[0]?.value).eq(undefined);
 		} catch (error: any) {
 			console.error(error);
 			throw new Error(`aggregateFunctionMin error`);
@@ -3153,10 +3171,10 @@ export class MyDurableObject extends DurableObject {
 				.orderBy(asc(usersOnUpdate.id));
 
 			expect(response).deep.equal([
-				{ name: 'John', id: 1, updateCounter: 1, alwaysNull: null },
-				{ name: 'Jane', id: 2, updateCounter: 1, alwaysNull: null },
-				{ name: 'Jack', id: 3, updateCounter: 1, alwaysNull: null },
-				{ name: 'Jill', id: 4, updateCounter: 1, alwaysNull: null },
+				{ name: 'John', id: 1, updateCounter: 1, alwaysNull: undefined },
+				{ name: 'Jane', id: 2, updateCounter: 1, alwaysNull: undefined },
+				{ name: 'Jack', id: 3, updateCounter: 1, alwaysNull: undefined },
+				{ name: 'Jill', id: 4, updateCounter: 1, alwaysNull: undefined },
 			]);
 			const msDelay = 250;
 
@@ -3194,7 +3212,7 @@ export class MyDurableObject extends DurableObject {
 			const { updatedAt, ...rest } = getTableColumns(usersOnUpdate);
 
 			await this.db.update(usersOnUpdate).set({ name: 'Angel' }).where(eq(usersOnUpdate.id, 1));
-			await this.db.update(usersOnUpdate).set({ updateCounter: null }).where(eq(usersOnUpdate.id, 2));
+			await this.db.update(usersOnUpdate).set({ updateCounter: undefined }).where(eq(usersOnUpdate.id, 2));
 
 			const justDates = await this.db.select({ updatedAt }).from(usersOnUpdate).orderBy(asc(usersOnUpdate.id));
 
@@ -3204,10 +3222,10 @@ export class MyDurableObject extends DurableObject {
 				.orderBy(asc(usersOnUpdate.id));
 
 			expect(response).deep.equal([
-				{ name: 'Angel', id: 1, updateCounter: 2, alwaysNull: null },
-				{ name: 'Jane', id: 2, updateCounter: null, alwaysNull: null },
-				{ name: 'Jack', id: 3, updateCounter: 1, alwaysNull: null },
-				{ name: 'Jill', id: 4, updateCounter: 1, alwaysNull: null },
+				{ name: 'Angel', id: 1, updateCounter: 2, alwaysNull: undefined },
+				{ name: 'Jane', id: 2, updateCounter: undefined, alwaysNull: undefined },
+				{ name: 'Jack', id: 3, updateCounter: 1, alwaysNull: undefined },
+				{ name: 'Jill', id: 4, updateCounter: 1, alwaysNull: undefined },
 			]);
 			const msDelay = 250;
 

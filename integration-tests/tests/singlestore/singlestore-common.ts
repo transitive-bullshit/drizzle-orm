@@ -169,7 +169,7 @@ const usersOnUpdate = singlestoreTable('users_on_update', {
 	name: text('name').notNull(),
 	updateCounter: int('update_counter').default(sql`1`).$onUpdateFn(() => sql`update_counter + 1`),
 	updatedAt: datetime('updated_at', { mode: 'date' }).$onUpdateFn(() => new Date()),
-	alwaysNull: text('always_null').$type<string | null>().$onUpdateFn(() => null), // need to add $type because $onUpdate add a default value
+	alwaysNull: text('always_null').$type<string | undefined>().$onUpdateFn(() => undefined), // need to add $type because $onUpdate add a default value
 });
 
 const datesTable = singlestoreTable('datestable', {
@@ -356,7 +356,7 @@ export function tests(driver?: string) {
 					create table \`mySchema\`.\`users2\` (
 						\`id\` serial primary key,
 						\`name\` text not null,
-						\`city_id\` int 
+						\`city_id\` int
 					)
 				`,
 			);
@@ -432,10 +432,10 @@ export function tests(driver?: string) {
 				{ id: 1, name: 'value 1', a: 5, b: 10, c: 20 },
 				{ id: 2, name: 'value 1', a: 5, b: 20, c: 30 },
 				{ id: 3, name: 'value 2', a: 10, b: 50, c: 60 },
-				{ id: 4, name: 'value 3', a: 20, b: 20, c: null },
-				{ id: 5, name: 'value 4', a: null, b: 90, c: 120 },
-				{ id: 6, name: 'value 5', a: 80, b: 10, c: null },
-				{ id: 7, name: 'value 6', a: null, b: null, c: 150 },
+				{ id: 4, name: 'value 3', a: 20, b: 20, c: undefined },
+				{ id: 5, name: 'value 4', a: undefined, b: 90, c: 120 },
+				{ id: 6, name: 'value 5', a: 80, b: 10, c: undefined },
+				{ id: 7, name: 'value 6', a: undefined, b: undefined, c: 150 },
 			]);
 		}
 
@@ -580,7 +580,13 @@ export function tests(driver?: string) {
 			expect(result[0]!.createdAt).toBeInstanceOf(Date);
 			// not timezone based timestamp, thats why it should not work here
 			// t.assert(Math.abs(result[0]!.createdAt.getTime() - now) < 2000);
-			expect(result).toEqual([{ id: 1, name: 'John', verified: false, jsonb: null, createdAt: result[0]!.createdAt }]);
+			expect(result).toEqual([{
+				id: 1,
+				name: 'John',
+				verified: false,
+				jsonb: undefined,
+				createdAt: result[0]!.createdAt,
+			}]);
 		});
 
 		test('select sql', async (ctx) => {
@@ -701,7 +707,13 @@ export function tests(driver?: string) {
 			expect(users[0]!.createdAt).toBeInstanceOf(Date);
 			// not timezone based timestamp, thats why it should not work here
 			// t.assert(Math.abs(users[0]!.createdAt.getTime() - now) < 2000);
-			expect(users).toEqual([{ id: 1, name: 'Jane', verified: false, jsonb: null, createdAt: users[0]!.createdAt }]);
+			expect(users).toEqual([{
+				id: 1,
+				name: 'Jane',
+				verified: false,
+				jsonb: undefined,
+				createdAt: users[0]!.createdAt,
+			}]);
 		});
 
 		test('update with returning partial', async (ctx) => {
@@ -742,13 +754,19 @@ export function tests(driver?: string) {
 
 			await db.insert(usersTable).values({ id: 1, name: 'John' });
 			const result = await db.select().from(usersTable);
-			expect(result).toEqual([{ id: 1, name: 'John', verified: false, jsonb: null, createdAt: result[0]!.createdAt }]);
+			expect(result).toEqual([{
+				id: 1,
+				name: 'John',
+				verified: false,
+				jsonb: undefined,
+				createdAt: result[0]!.createdAt,
+			}]);
 
 			await db.insert(usersTable).values({ id: 2, name: 'Jane' });
 			const result2 = await db.select().from(usersTable).orderBy(asc(usersTable.id));
 			expect(result2).toEqual([
-				{ id: 1, name: 'John', verified: false, jsonb: null, createdAt: result2[0]!.createdAt },
-				{ id: 2, name: 'Jane', verified: false, jsonb: null, createdAt: result2[1]!.createdAt },
+				{ id: 1, name: 'John', verified: false, jsonb: undefined, createdAt: result2[0]!.createdAt },
+				{ id: 2, name: 'Jane', verified: false, jsonb: undefined, createdAt: result2[1]!.createdAt },
 			]);
 		});
 
@@ -771,7 +789,13 @@ export function tests(driver?: string) {
 			await db.insert(usersTable).values({ id: 1, name: 'John', verified: true });
 			const result = await db.select().from(usersTable);
 
-			expect(result).toEqual([{ id: 1, name: 'John', verified: true, jsonb: null, createdAt: result[0]!.createdAt }]);
+			expect(result).toEqual([{
+				id: 1,
+				name: 'John',
+				verified: true,
+				jsonb: undefined,
+				createdAt: result[0]!.createdAt,
+			}]);
 		});
 
 		test('insert many', async (ctx) => {
@@ -792,10 +816,10 @@ export function tests(driver?: string) {
 				.orderBy(asc(usersTable.id));
 
 			expect(result).toEqual([
-				{ id: 1, name: 'John', jsonb: null, verified: false },
+				{ id: 1, name: 'John', jsonb: undefined, verified: false },
 				{ id: 2, name: 'Bruce', jsonb: ['foo', 'bar'], verified: false },
-				{ id: 3, name: 'Jane', jsonb: null, verified: false },
-				{ id: 4, name: 'Austin', jsonb: null, verified: true },
+				{ id: 3, name: 'Jane', jsonb: undefined, verified: false },
+				{ id: 4, name: 'Austin', jsonb: undefined, verified: true },
 			]);
 		});
 
@@ -1020,7 +1044,7 @@ export function tests(driver?: string) {
 
 			const res = await db.select().from(users);
 
-			expect(res).toEqual([{ id: 1, name: 'Dan', state: null }]);
+			expect(res).toEqual([{ id: 1, name: 'Dan', state: undefined }]);
 		});
 
 		test('Insert all defaults in multiple rows', async (ctx) => {
@@ -1042,7 +1066,7 @@ export function tests(driver?: string) {
 
 			const res = await db.select().from(users).orderBy(asc(users.id));
 
-			expect(res).toEqual([{ id: 1, name: 'Dan', state: null }, { id: 2, name: 'Dan', state: null }]);
+			expect(res).toEqual([{ id: 1, name: 'Dan', state: undefined }, { id: 2, name: 'Dan', state: undefined }]);
 		});
 
 		test('build query insert with onDuplicate', async (ctx) => {
@@ -1465,7 +1489,7 @@ export function tests(driver?: string) {
 
 			expect(res).toEqual([
 				{ userId: 1, userName: 'John', cityId: 1, cityName: 'Paris' },
-				{ userId: 2, userName: 'Jane', cityId: null, cityName: null },
+				{ userId: 2, userName: 'Jane', cityId: undefined, cityName: undefined },
 			]);
 		});
 
@@ -1501,7 +1525,7 @@ export function tests(driver?: string) {
 				{
 					id: 2,
 					user: { name: 'Jane', nameUpper: 'JANE' },
-					city: null,
+					city: undefined,
 				},
 			]);
 		});
@@ -1534,9 +1558,9 @@ export function tests(driver?: string) {
 					users2: {
 						id: 2,
 						name: 'Jane',
-						cityId: null,
+						cityId: undefined,
 					},
-					cities: null,
+					cities: undefined,
 				},
 			]);
 		});
@@ -2339,7 +2363,7 @@ export function tests(driver?: string) {
 				},
 				{
 					users_join_view: { id: 2, name: 'Jane', cityId: 2 },
-					new_yorkers_sq: null,
+					new_yorkers_sq: undefined,
 				},
 				{
 					users_join_view: { id: 3, name: 'Jack', cityId: 1 },
@@ -2347,7 +2371,7 @@ export function tests(driver?: string) {
 				},
 				{
 					users_join_view: { id: 4, name: 'Jill', cityId: 2 },
-					new_yorkers_sq: null,
+					new_yorkers_sq: undefined,
 				},
 			]);
 
@@ -2961,7 +2985,7 @@ export function tests(driver?: string) {
 			const result3 = await db.select({ value: avgDistinct(table.b) }).from(table);
 
 			expect(result1[0]?.value).toBe('33.3333');
-			expect(result2[0]?.value).toBe(null);
+			expect(result2[0]?.value).toBe(undefined);
 			expect(result3[0]?.value).toBe('42.5000');
 		});
 
@@ -2975,7 +2999,7 @@ export function tests(driver?: string) {
 			const result3 = await db.select({ value: sumDistinct(table.b) }).from(table);
 
 			expect(result1[0]?.value).toBe('200');
-			expect(result2[0]?.value).toBe(null);
+			expect(result2[0]?.value).toBe(undefined);
 			expect(result3[0]?.value).toBe('170');
 		});
 
@@ -2988,7 +3012,7 @@ export function tests(driver?: string) {
 			const result2 = await db.select({ value: max(table.nullOnly) }).from(table);
 
 			expect(result1[0]?.value).toBe(90);
-			expect(result2[0]?.value).toBe(null);
+			expect(result2[0]?.value).toBe(undefined);
 		});
 
 		test('aggregate function: min', async (ctx) => {
@@ -3000,7 +3024,7 @@ export function tests(driver?: string) {
 			const result2 = await db.select({ value: min(table.nullOnly) }).from(table);
 
 			expect(result1[0]?.value).toBe(10);
-			expect(result2[0]?.value).toBe(null);
+			expect(result2[0]?.value).toBe(undefined);
 		});
 
 		test('simple vector search', async (ctx) => {
@@ -3063,10 +3087,10 @@ export function tests(driver?: string) {
 			const response = await db.select({ ...rest }).from(usersOnUpdate).orderBy(asc(usersOnUpdate.id));
 
 			expect(response).toEqual([
-				{ name: 'John', id: 1, updateCounter: 1, alwaysNull: null },
-				{ name: 'Jane', id: 2, updateCounter: 1, alwaysNull: null },
-				{ name: 'Jack', id: 3, updateCounter: 1, alwaysNull: null },
-				{ name: 'Jill', id: 4, updateCounter: 1, alwaysNull: null },
+				{ name: 'John', id: 1, updateCounter: 1, alwaysNull: undefined },
+				{ name: 'Jane', id: 2, updateCounter: 1, alwaysNull: undefined },
+				{ name: 'Jack', id: 3, updateCounter: 1, alwaysNull: undefined },
+				{ name: 'Jill', id: 4, updateCounter: 1, alwaysNull: undefined },
 			]);
 			const msDelay = 750;
 
@@ -3110,10 +3134,10 @@ export function tests(driver?: string) {
 			const response = await db.select().from(usersOnUpdate).orderBy(asc(usersOnUpdate.id));
 
 			expect(response).toEqual([
-				{ id: 1, name: 'Angel', updateCounter: 2, updatedAt: expect.any(Date), alwaysNull: null },
-				{ id: 2, name: 'Jane', updateCounter: 1, updatedAt: expect.any(Date), alwaysNull: null },
-				{ id: 3, name: 'Jack', updateCounter: 1, updatedAt: expect.any(Date), alwaysNull: null },
-				{ id: 4, name: 'Jill', updateCounter: 1, updatedAt: expect.any(Date), alwaysNull: null },
+				{ id: 1, name: 'Angel', updateCounter: 2, updatedAt: expect.any(Date), alwaysNull: undefined },
+				{ id: 2, name: 'Jane', updateCounter: 1, updatedAt: expect.any(Date), alwaysNull: undefined },
+				{ id: 3, name: 'Jack', updateCounter: 1, updatedAt: expect.any(Date), alwaysNull: undefined },
+				{ id: 4, name: 'Jill', updateCounter: 1, updatedAt: expect.any(Date), alwaysNull: undefined },
 			]);
 
 			const initialRecord = initial.find((record) => record.id === 1);
@@ -3138,7 +3162,13 @@ export function tests(driver?: string) {
 			expect(result[0]!.createdAt).toBeInstanceOf(Date);
 			// not timezone based timestamp, thats why it should not work here
 			// t.assert(Math.abs(result[0]!.createdAt.getTime() - now) < 2000);
-			expect(result).toEqual([{ id: 1, name: 'John', verified: false, jsonb: null, createdAt: result[0]!.createdAt }]);
+			expect(result).toEqual([{
+				id: 1,
+				name: 'John',
+				verified: false,
+				jsonb: undefined,
+				createdAt: result[0]!.createdAt,
+			}]);
 		});
 
 		test('mySchema :: select sql', async (ctx) => {
@@ -3247,13 +3277,19 @@ export function tests(driver?: string) {
 
 			await db.insert(usersMySchemaTable).values({ id: 1, name: 'John' });
 			const result = await db.select().from(usersMySchemaTable);
-			expect(result).toEqual([{ id: 1, name: 'John', verified: false, jsonb: null, createdAt: result[0]!.createdAt }]);
+			expect(result).toEqual([{
+				id: 1,
+				name: 'John',
+				verified: false,
+				jsonb: undefined,
+				createdAt: result[0]!.createdAt,
+			}]);
 
 			await db.insert(usersMySchemaTable).values({ id: 2, name: 'Jane' });
 			const result2 = await db.select().from(usersMySchemaTable).orderBy(asc(usersMySchemaTable.id));
 			expect(result2).toEqual([
-				{ id: 1, name: 'John', verified: false, jsonb: null, createdAt: result2[0]!.createdAt },
-				{ id: 2, name: 'Jane', verified: false, jsonb: null, createdAt: result2[1]!.createdAt },
+				{ id: 1, name: 'John', verified: false, jsonb: undefined, createdAt: result2[0]!.createdAt },
+				{ id: 2, name: 'Jane', verified: false, jsonb: undefined, createdAt: result2[1]!.createdAt },
 			]);
 		});
 
@@ -3264,7 +3300,13 @@ export function tests(driver?: string) {
 			await db.insert(usersMySchemaTable).values({ id: 1, name: 'John', verified: true });
 			const result = await db.select().from(usersMySchemaTable);
 
-			expect(result).toEqual([{ id: 1, name: 'John', verified: true, jsonb: null, createdAt: result[0]!.createdAt }]);
+			expect(result).toEqual([{
+				id: 1,
+				name: 'John',
+				verified: true,
+				jsonb: undefined,
+				createdAt: result[0]!.createdAt,
+			}]);
 		});
 
 		test('mySchema :: insert many', async (ctx) => {
@@ -3286,10 +3328,10 @@ export function tests(driver?: string) {
 				.orderBy(asc(usersMySchemaTable.id));
 
 			expect(result).toEqual([
-				{ id: 1, name: 'John', jsonb: null, verified: false },
+				{ id: 1, name: 'John', jsonb: undefined, verified: false },
 				{ id: 2, name: 'Bruce', jsonb: ['foo', 'bar'], verified: false },
-				{ id: 3, name: 'Jane', jsonb: null, verified: false },
-				{ id: 4, name: 'Austin', jsonb: null, verified: true },
+				{ id: 3, name: 'Jane', jsonb: undefined, verified: false },
+				{ id: 4, name: 'Austin', jsonb: undefined, verified: true },
 			]);
 		});
 
@@ -3399,14 +3441,14 @@ export function tests(driver?: string) {
 					id: 10,
 					name: 'Ivan',
 					verified: false,
-					jsonb: null,
+					jsonb: undefined,
 					createdAt: result[0]!.userstest.createdAt,
 				},
 				customer: {
 					id: 11,
 					name: 'Hans',
 					verified: false,
-					jsonb: null,
+					jsonb: undefined,
 					createdAt: result[0]!.customer!.createdAt,
 				},
 			}]);
@@ -3685,7 +3727,7 @@ export function tests(driver?: string) {
 
 			expect(res).toStrictEqual([
 				{ cityId: 1, cityName: 'Paris', userId: 1, userName: 'John' },
-				{ cityId: 2, cityName: 'London', userId: null, userName: null },
+				{ cityId: 2, cityName: 'London', userId: undefined, userName: undefined },
 			]);
 		});
 
@@ -3855,34 +3897,34 @@ export function tests(driver?: string) {
 
 			type ExpectedType = {
 				serial: number;
-				bigint53: number | null;
-				bigint64: bigint | null;
-				binary: string | null;
-				boolean: boolean | null;
-				char: string | null;
-				date: Date | null;
-				dateStr: string | null;
-				datetime: Date | null;
-				datetimeStr: string | null;
-				decimal: string | null;
-				decimalNum: number | null;
-				decimalBig: bigint | null;
-				double: number | null;
-				float: number | null;
-				int: number | null;
+				bigint53: number | undefined;
+				bigint64: bigint | undefined;
+				binary: string | undefined;
+				boolean: boolean | undefined;
+				char: string | undefined;
+				date: Date | undefined;
+				dateStr: string | undefined;
+				datetime: Date | undefined;
+				datetimeStr: string | undefined;
+				decimal: string | undefined;
+				decimalNum: number | undefined;
+				decimalBig: bigint | undefined;
+				double: number | undefined;
+				float: number | undefined;
+				int: number | undefined;
 				json: unknown;
-				medInt: number | null;
-				smallInt: number | null;
-				real: number | null;
-				text: string | null;
-				time: string | null;
-				timestamp: Date | null;
-				timestampStr: string | null;
-				tinyInt: number | null;
-				varbin: string | null;
-				varchar: string | null;
-				year: number | null;
-				enum: 'enV1' | 'enV2' | null;
+				medInt: number | undefined;
+				smallInt: number | undefined;
+				real: number | undefined;
+				text: string | undefined;
+				time: string | undefined;
+				timestamp: Date | undefined;
+				timestampStr: string | undefined;
+				tinyInt: number | undefined;
+				varbin: string | undefined;
+				varchar: string | undefined;
+				year: number | undefined;
+				enum: 'enV1' | 'enV2' | undefined;
 			}[];
 
 			const expectedRes: ExpectedType = [

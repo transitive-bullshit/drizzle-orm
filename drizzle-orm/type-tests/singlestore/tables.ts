@@ -155,7 +155,7 @@ Expect<
 	Equal<{
 		id: number;
 		name_db: string;
-		population: number | null;
+		population: number | undefined;
 	}, InferSelectModel<typeof cities, { dbColumnNames: true }>>
 >;
 
@@ -163,7 +163,7 @@ Expect<
 	Equal<{
 		id?: number;
 		name: string;
-		population?: number | null;
+		population?: number | undefined;
 	}, typeof cities.$inferInsert>
 >;
 
@@ -683,9 +683,9 @@ Expect<
 					userId: number;
 				};
 				custom_user: {
-					id: number | null;
+					id: number | undefined;
 				};
-			} | null;
+			} | undefined;
 			ticket: {
 				staffId: number;
 			};
@@ -761,18 +761,18 @@ Expect<
 			receiverEmail: string;
 			id?: number | undefined;
 			createdAt?: string | undefined;
-			clientId?: number | null | undefined;
-			messageId?: string | null | undefined;
-			contextId?: number | null | undefined;
-			contextType?: ['test'] | null | undefined;
-			action?: ['test'] | null | undefined;
+			clientId?: number | undefined;
+			messageId?: string | undefined;
+			contextId?: number | undefined;
+			contextType?: ['test'] | undefined;
+			action?: ['test'] | undefined;
 			events?:
 				| {
 					t: 'test';
 				}[]
-				| null
+				| undefined
 				| undefined;
-			updatedAt?: string | null | undefined;
+			updatedAt?: string | undefined;
 		}, typeof emailLog.$inferInsert>
 	>;
 }

@@ -75,7 +75,7 @@ import { db } from './db.ts';
 			product: string;
 			amount: number;
 			quantity: number;
-			generated: string | null;
+			generated: string | undefined;
 		}[], typeof allFromWith>
 	>;
 
@@ -125,7 +125,7 @@ import { db } from './db.ts';
 			inserted_products: {
 				id: number;
 				productName: string;
-			} | null;
+			} | undefined;
 		}[]>
 	>;
 
@@ -135,7 +135,7 @@ import { db } from './db.ts';
 	Expect<
 		Equal<
 			typeof q6,
-			{ providers: { id: number; providerName: string }; inserted_products: { productName: string } | null }[]
+			{ providers: { id: number; providerName: string }; inserted_products: { productName: string } | undefined }[]
 		>
 	>;
 }
@@ -189,7 +189,7 @@ import { db } from './db.ts';
 			updated_products: {
 				id: number;
 				productName: string;
-			} | null;
+			} | undefined;
 		}[]>
 	>;
 
@@ -208,7 +208,7 @@ import { db } from './db.ts';
 			};
 			updated_products: {
 				productName: string;
-			} | null;
+			} | undefined;
 		}[]>
 	>;
 
@@ -241,7 +241,7 @@ import { db } from './db.ts';
 					id: number;
 					productName: string;
 				};
-			} | null;
+			} | undefined;
 		}[]>
 	>;
 }
@@ -288,7 +288,7 @@ import { db } from './db.ts';
 			inserted_products: {
 				id: number;
 				productName: string;
-			} | null;
+			} | undefined;
 		}[]>
 	>;
 
@@ -298,7 +298,7 @@ import { db } from './db.ts';
 	Expect<
 		Equal<
 			typeof q6,
-			{ providers: { id: number; providerName: string }; inserted_products: { productName: string } | null }[]
+			{ providers: { id: number; providerName: string }; inserted_products: { productName: string } | undefined }[]
 		>
 	>;
 }

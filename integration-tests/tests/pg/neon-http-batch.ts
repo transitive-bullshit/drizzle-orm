@@ -220,14 +220,14 @@ export function tests() {
 			expectTypeOf(batchResponse).toEqualTypeOf<[
 				{
 					id: number;
-					invitedBy: number | null;
+					invitedBy: number | undefined;
 				}[],
 				NeonHttpQueryResult<never>,
 				{
 					id: number;
 					name: string;
 					verified: number;
-					invitedBy: number | null;
+					invitedBy: number | undefined;
 				}[],
 			]>();
 
@@ -235,14 +235,14 @@ export function tests() {
 
 			expect(batchResponse[0]).toEqual([{
 				id: 1,
-				invitedBy: null,
+				invitedBy: undefined,
 			}]);
 
 			expect(batchResponse[1]).toMatchObject({ rows: [], rowCount: 1 });
 
 			expect(batchResponse[2]).toEqual([
-				{ id: 1, name: 'John', verified: 0, invitedBy: null },
-				{ id: 2, name: 'Dan', verified: 0, invitedBy: null },
+				{ id: 1, name: 'John', verified: 0, invitedBy: undefined },
+				{ id: 2, name: 'Dan', verified: 0, invitedBy: undefined },
 			]);
 		});
 
@@ -265,7 +265,7 @@ export function tests() {
 					id: number;
 					name: string;
 					verified: number;
-					invitedBy: number | null;
+					invitedBy: number | undefined;
 				}[],
 			]>();
 
@@ -278,8 +278,8 @@ export function tests() {
 			expect(batchResponse[1]).toMatchObject({ rows: [], rowCount: 1 });
 
 			expect(batchResponse[2]).toEqual([
-				{ id: 1, name: 'John', verified: 0, invitedBy: null },
-				{ id: 2, name: 'Dan', verified: 0, invitedBy: null },
+				{ id: 1, name: 'John', verified: 0, invitedBy: undefined },
+				{ id: 2, name: 'Dan', verified: 0, invitedBy: undefined },
 			]);
 		});
 
@@ -303,13 +303,13 @@ export function tests() {
 					id: number;
 					name: string;
 					verified: number;
-					invitedBy: number | null;
+					invitedBy: number | undefined;
 				}[],
 				{
 					id: number;
 					name: string;
 					verified: number;
-					invitedBy: number | null;
+					invitedBy: number | undefined;
 				} | undefined,
 			]>();
 
@@ -322,12 +322,12 @@ export function tests() {
 			expect(batchResponse[1]).toMatchObject({ rows: [], rowCount: 1 });
 
 			expect(batchResponse[2]).toEqual([
-				{ id: 1, name: 'John', verified: 0, invitedBy: null },
-				{ id: 2, name: 'Dan', verified: 0, invitedBy: null },
+				{ id: 1, name: 'John', verified: 0, invitedBy: undefined },
+				{ id: 2, name: 'Dan', verified: 0, invitedBy: undefined },
 			]);
 
 			expect(batchResponse[3]).toEqual(
-				{ id: 1, name: 'John', verified: 0, invitedBy: null },
+				{ id: 1, name: 'John', verified: 0, invitedBy: undefined },
 			);
 		});
 
@@ -375,13 +375,13 @@ export function tests() {
 					id: number;
 					name: string;
 					verified: number;
-					invitedBy: number | null;
+					invitedBy: number | undefined;
 				}[],
 				NeonHttpQueryResult<{
 					id: number;
 					name: string;
 					verified: number;
-					invitedBy: number | null;
+					invitedBy: number | undefined;
 				}>,
 			]>();
 
@@ -394,14 +394,14 @@ export function tests() {
 			expect(batchResponse[1]).toMatchObject({ rowAsArray: true, rows: [], rowCount: 1 });
 
 			expect(batchResponse[2]).toEqual([
-				{ id: 1, name: 'John', verified: 0, invitedBy: null },
-				{ id: 2, name: 'Dan', verified: 0, invitedBy: null },
+				{ id: 1, name: 'John', verified: 0, invitedBy: undefined },
+				{ id: 2, name: 'Dan', verified: 0, invitedBy: undefined },
 			]);
 
 			expect(batchResponse[3]).toMatchObject({
 				rows: [
-					{ id: 1, name: 'John', verified: 0, invited_by: null },
-					{ id: 2, name: 'Dan', verified: 0, invited_by: null },
+					{ id: 1, name: 'John', verified: 0, invited_by: undefined },
+					{ id: 2, name: 'Dan', verified: 0, invited_by: undefined },
 				],
 			});
 		});
@@ -427,17 +427,17 @@ export function tests() {
 					id: number;
 					name: string;
 					verified: number;
-					invitedBy: number | null;
+					invitedBy: number | undefined;
 				}[],
 				{
 					id: number;
 					name: string;
 					verified: number;
-					invitedBy: number | null;
+					invitedBy: number | undefined;
 				}[],
 				{
 					id: number;
-					invitedBy: number | null;
+					invitedBy: number | undefined;
 				}[],
 			]>();
 
@@ -450,15 +450,15 @@ export function tests() {
 			expect(batchResponse[1]).toMatchObject({ rows: [], rowCount: 1 });
 
 			expect(batchResponse[2]).toEqual([
-				{ id: 1, name: 'Dan', verified: 0, invitedBy: null },
+				{ id: 1, name: 'Dan', verified: 0, invitedBy: undefined },
 			]);
 
 			expect(batchResponse[3]).toEqual([
-				{ id: 1, name: 'Dan', verified: 0, invitedBy: null },
+				{ id: 1, name: 'Dan', verified: 0, invitedBy: undefined },
 			]);
 
 			expect(batchResponse[4]).toEqual([
-				{ id: 1, invitedBy: null },
+				{ id: 1, invitedBy: undefined },
 			]);
 		});
 
@@ -488,11 +488,11 @@ export function tests() {
 				NeonHttpQueryResult<never>,
 				{
 					id: number;
-					invitedBy: number | null;
+					invitedBy: number | undefined;
 				}[],
 				{
 					id: number;
-					invitedBy: number | null;
+					invitedBy: number | undefined;
 				} | undefined,
 			]>();
 
@@ -505,11 +505,11 @@ export function tests() {
 			expect(batchResponse[1]).toMatchObject({ rows: [], rowCount: 1 });
 
 			expect(batchResponse[2]).toEqual([
-				{ id: 1, invitedBy: null },
+				{ id: 1, invitedBy: undefined },
 			]);
 
 			expect(batchResponse[3]).toEqual(
-				{ id: 2, invitedBy: null },
+				{ id: 2, invitedBy: undefined },
 			);
 		});
 
@@ -527,13 +527,13 @@ export function tests() {
 					id: number;
 					name: string;
 					verified: number;
-					invited_by: number | null;
+					invited_by: number | undefined;
 				}>,
 				NeonHttpQueryResult<{
 					id: number;
 					name: string;
 					verified: number;
-					invited_by: number | null;
+					invited_by: number | undefined;
 				}>,
 			]>();
 
@@ -541,14 +541,14 @@ export function tests() {
 
 			expect(batchResponse[0]).toMatchObject({
 				rows: [
-					{ id: 1, name: 'John', verified: 0, invited_by: null },
-					{ id: 2, name: 'Dan', verified: 0, invited_by: null },
+					{ id: 1, name: 'John', verified: 0, invited_by: undefined },
+					{ id: 2, name: 'Dan', verified: 0, invited_by: undefined },
 				],
 			});
 
 			expect(batchResponse[1]).toMatchObject({
 				rows: [
-					{ id: 1, name: 'John', verified: 0, invited_by: null },
+					{ id: 1, name: 'John', verified: 0, invited_by: undefined },
 				],
 			});
 		});

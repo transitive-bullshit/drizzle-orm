@@ -256,14 +256,14 @@ test('batch api example', async () => {
 	expectTypeOf(batchResponse).toEqualTypeOf<[
 		{
 			id: number;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 		}[],
 		ResultSet,
 		{
 			id: number;
 			name: string;
 			verified: number;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 		}[],
 	]>();
 
@@ -271,14 +271,14 @@ test('batch api example', async () => {
 
 	expect(batchResponse[0]).toEqual([{
 		id: 1,
-		invitedBy: null,
+		invitedBy: undefined,
 	}]);
 
 	expect(batchResponse[1]).toEqual({ columnTypes: [], columns: [], rows: [], rowsAffected: 1, lastInsertRowid: 2n });
 
 	expect(batchResponse[2]).toEqual([
-		{ id: 1, name: 'John', verified: 0, invitedBy: null },
-		{ id: 2, name: 'Dan', verified: 0, invitedBy: null },
+		{ id: 1, name: 'John', verified: 0, invitedBy: undefined },
+		{ id: 2, name: 'Dan', verified: 0, invitedBy: undefined },
 	]);
 });
 
@@ -299,7 +299,7 @@ test('insert + findMany', async () => {
 			id: number;
 			name: string;
 			verified: number;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 		}[],
 	]>();
 
@@ -312,8 +312,8 @@ test('insert + findMany', async () => {
 	expect(batchResponse[1]).toEqual({ columnTypes: [], columns: [], rows: [], rowsAffected: 1, lastInsertRowid: 2n });
 
 	expect(batchResponse[2]).toEqual([
-		{ id: 1, name: 'John', verified: 0, invitedBy: null },
-		{ id: 2, name: 'Dan', verified: 0, invitedBy: null },
+		{ id: 1, name: 'John', verified: 0, invitedBy: undefined },
+		{ id: 2, name: 'Dan', verified: 0, invitedBy: undefined },
 	]);
 });
 
@@ -335,13 +335,13 @@ test('insert + findMany + findFirst', async () => {
 			id: number;
 			name: string;
 			verified: number;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 		}[],
 		{
 			id: number;
 			name: string;
 			verified: number;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 		} | undefined,
 	]>();
 
@@ -354,12 +354,12 @@ test('insert + findMany + findFirst', async () => {
 	expect(batchResponse[1]).toEqual({ columnTypes: [], columns: [], rows: [], rowsAffected: 1, lastInsertRowid: 2n });
 
 	expect(batchResponse[2]).toEqual([
-		{ id: 1, name: 'John', verified: 0, invitedBy: null },
-		{ id: 2, name: 'Dan', verified: 0, invitedBy: null },
+		{ id: 1, name: 'John', verified: 0, invitedBy: undefined },
+		{ id: 2, name: 'Dan', verified: 0, invitedBy: undefined },
 	]);
 
 	expect(batchResponse[3]).toEqual(
-		{ id: 1, name: 'John', verified: 0, invitedBy: null },
+		{ id: 1, name: 'John', verified: 0, invitedBy: undefined },
 	);
 });
 
@@ -381,14 +381,14 @@ test('insert + db.all + db.get + db.values + db.run', async () => {
 			id: number;
 			name: string;
 			verified: number;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 		}[],
 		unknown[][],
 		{
 			id: number;
 			name: string;
 			verified: number;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 		},
 	]>();
 
@@ -401,8 +401,8 @@ test('insert + db.all + db.get + db.values + db.run', async () => {
 	expect(batchResponse[1]).toEqual({ columnTypes: [], columns: [], rows: [], rowsAffected: 1, lastInsertRowid: 2n });
 
 	expect(batchResponse[2]).toEqual([
-		{ id: 1, name: 'John', verified: 0, invited_by: null },
-		{ id: 2, name: 'Dan', verified: 0, invited_by: null },
+		{ id: 1, name: 'John', verified: 0, invited_by: undefined },
+		{ id: 2, name: 'Dan', verified: 0, invited_by: undefined },
 	]);
 
 	expect(batchResponse[3].map((row) => Array.prototype.slice.call(row))).toEqual([
@@ -411,7 +411,7 @@ test('insert + db.all + db.get + db.values + db.run', async () => {
 	]);
 
 	expect(batchResponse[4]).toEqual(
-		{ id: 1, name: 'John', verified: 0, invited_by: null },
+		{ id: 1, name: 'John', verified: 0, invited_by: undefined },
 	);
 });
 
@@ -433,13 +433,13 @@ test('insert + findManyWith + db.all', async () => {
 			id: number;
 			name: string;
 			verified: number;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 		}[],
 		{
 			id: number;
 			name: string;
 			verified: number;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 		}[],
 	]>();
 
@@ -452,13 +452,13 @@ test('insert + findManyWith + db.all', async () => {
 	expect(batchResponse[1]).toEqual({ columnTypes: [], columns: [], rows: [], rowsAffected: 1, lastInsertRowid: 2n });
 
 	expect(batchResponse[2]).toEqual([
-		{ id: 1, name: 'John', verified: 0, invitedBy: null },
-		{ id: 2, name: 'Dan', verified: 0, invitedBy: null },
+		{ id: 1, name: 'John', verified: 0, invitedBy: undefined },
+		{ id: 2, name: 'Dan', verified: 0, invitedBy: undefined },
 	]);
 
 	expect(batchResponse[3]).toEqual([
-		{ id: 1, name: 'John', verified: 0, invited_by: null },
-		{ id: 2, name: 'Dan', verified: 0, invited_by: null },
+		{ id: 1, name: 'John', verified: 0, invited_by: undefined },
+		{ id: 2, name: 'Dan', verified: 0, invited_by: undefined },
 	]);
 });
 
@@ -481,17 +481,17 @@ test('insert + update + select + select partial', async () => {
 			id: number;
 			name: string;
 			verified: number;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 		}[],
 		{
 			id: number;
 			name: string;
 			verified: number;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 		}[],
 		{
 			id: number;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 		}[],
 	]>();
 
@@ -504,15 +504,15 @@ test('insert + update + select + select partial', async () => {
 	expect(batchResponse[1]).toEqual({ columnTypes: [], columns: [], rows: [], rowsAffected: 1, lastInsertRowid: 1n });
 
 	expect(batchResponse[2]).toEqual([
-		{ id: 1, name: 'Dan', verified: 0, invitedBy: null },
+		{ id: 1, name: 'Dan', verified: 0, invitedBy: undefined },
 	]);
 
 	expect(batchResponse[3]).toEqual([
-		{ id: 1, name: 'Dan', verified: 0, invitedBy: null },
+		{ id: 1, name: 'Dan', verified: 0, invitedBy: undefined },
 	]);
 
 	expect(batchResponse[4]).toEqual([
-		{ id: 1, invitedBy: null },
+		{ id: 1, invitedBy: undefined },
 	]);
 });
 
@@ -537,11 +537,11 @@ test('insert + delete + select + select partial', async () => {
 		ResultSet,
 		{
 			id: number;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 		}[],
 		{
 			id: number;
-			invitedBy: number | null;
+			invitedBy: number | undefined;
 		} | undefined,
 	]>();
 
@@ -554,10 +554,10 @@ test('insert + delete + select + select partial', async () => {
 	expect(batchResponse[1]).toEqual({ columnTypes: [], columns: [], rows: [], rowsAffected: 1, lastInsertRowid: 2n });
 
 	expect(batchResponse[2]).toEqual([
-		{ id: 1, invitedBy: null },
+		{ id: 1, invitedBy: undefined },
 	]);
 
 	expect(batchResponse[3]).toEqual(
-		{ id: 2, invitedBy: null },
+		{ id: 2, invitedBy: undefined },
 	);
 });
