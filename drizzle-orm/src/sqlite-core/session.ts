@@ -9,6 +9,7 @@ import { QueryPromise } from '~/query-promise.ts';
 import { BaseSQLiteDatabase } from './db.ts';
 import type { SQLiteRaw } from './query-builders/raw.ts';
 import type { SelectedFieldsOrdered } from './query-builders/select.types.ts';
+import { nullToUndefinedDeep } from '~/utils.ts';
 
 export interface PreparedQueryConfig {
 	type: 'sync' | 'async';
@@ -57,7 +58,7 @@ export abstract class SQLitePreparedQuery<T extends PreparedQueryConfig> impleme
 	abstract run(placeholderValues?: Record<string, unknown>): Result<T['type'], T['run']>;
 
 	mapRunResult(result: unknown, _isFromBatch?: boolean): unknown {
-		return result;
+		return nullToUndefinedDeep(result);
 	}
 
 	abstract all(placeholderValues?: Record<string, unknown>): Result<T['type'], T['all']>;
@@ -84,13 +85,13 @@ export abstract class SQLitePreparedQuery<T extends PreparedQueryConfig> impleme
 	mapResult(response: unknown, isFromBatch?: boolean) {
 		switch (this.executeMethod) {
 			case 'run': {
-				return this.mapRunResult(response, isFromBatch);
+				return nullToUndefinedDeep( this.mapRunResult(response, isFromBatch));
 			}
 			case 'all': {
-				return this.mapAllResult(response, isFromBatch);
+				return  nullToUndefinedDeep(this.mapAllResult(response, isFromBatch));
 			}
 			case 'get': {
-				return this.mapGetResult(response, isFromBatch);
+				return  nullToUndefinedDeep(this.mapGetResult(response, isFromBatch));
 			}
 		}
 	}

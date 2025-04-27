@@ -40,7 +40,7 @@ export function mapResultRow<TResult>(
 					const rawValue = row[columnIndex]!;
 					const value = node[pathChunk] = rawValue === undefined || rawValue === null
 						? undefined
-						: decoder.mapFromDriverValue(rawValue);
+						: nullToUndefinedDeep(decoder.mapFromDriverValue(rawValue) as any);
 
 					if (joinsNotNullableMap && is(field, Column) && path.length === 2) {
 						const objectName = path[0]!;
@@ -321,3 +321,44 @@ export function isConfig(data: any): boolean {
 }
 
 export type NeonAuthToken = string | (() => string | Promise<string>);
+
+export type NullToUndefinedDeep<T> = T extends null ? undefined
+	: T extends Date | undefined ? T
+	: T extends readonly (infer U)[] ? NullToUndefinedDeep<U>[]
+	: T extends object ? { [K in keyof T]: NullToUndefinedDeep<T[K]> }
+	: T;
+
+export function nullToUndefinedDeep<T>(
+	input: T,
+): NullToUndefinedDeep<T> {
+	if (input === null || input === undefined) {
+		return undefined as NullToUndefinedDeep<T>;
+	}
+
+	if (typeof input !== 'object') {
+		return input as NullToUndefinedDeep<T>;
+	}
+
+	if (Array.isArray(input)) {
+		return input
+			.filter((v) => v !== undefined && v !== null)
+			.map((v) => nullToUndefinedDeep(v)) as any;
+	}
+
+	return Object.fromEntries(
+		Object.entries(input)
+			.filter(([, value]) => value !== undefined && value !== null)
+			.map(([key, value]) =>
+				Array.isArray(value)
+					? [
+						key,
+						value
+							.filter((v) => v !== undefined && v !== null)
+							.map((v) => nullToUndefinedDeep(v)),
+					]
+					: typeof value === 'object'
+					? [key, nullToUndefinedDeep(value)]
+					: [key, value]
+			),
+	) as any;
+}

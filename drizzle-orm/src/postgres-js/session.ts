@@ -10,7 +10,7 @@ import { PgPreparedQuery, PgSession } from '~/pg-core/session.ts';
 import type { RelationalSchemaConfig, TablesRelationalConfig } from '~/relations.ts';
 import { fillPlaceholders, type Query } from '~/sql/sql.ts';
 import { tracer } from '~/tracing.ts';
-import { type Assume, mapResultRow } from '~/utils.ts';
+import { type Assume, mapResultRow, nullToUndefinedDeep } from '~/utils.ts';
 
 export class PostgresJsPreparedQuery<T extends PreparedQueryConfig> extends PgPreparedQuery<T> {
 	static override readonly [entityKind]: string = 'PostgresJsPreparedQuery';
@@ -25,6 +25,10 @@ export class PostgresJsPreparedQuery<T extends PreparedQueryConfig> extends PgPr
 		private customResultMapper?: (rows: unknown[][]) => T['execute'],
 	) {
 		super({ sql: queryString, params });
+	}
+
+	override mapResult(response: unknown, _isFromBatch?: boolean): unknown {
+		return nullToUndefinedDeep(response as any);
 	}
 
 	async execute(placeholderValues: Record<string, unknown> | undefined = {}): Promise<T['execute']> {
